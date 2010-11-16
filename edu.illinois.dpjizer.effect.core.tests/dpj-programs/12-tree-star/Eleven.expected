@@ -1,0 +1,3 @@
+eleven.C.C() invokes java.lang.Object.Object()
+eleven.C.m1() writes X invokes eleven.C.m1() where { this -> X : eleven.C.R1 : *, X -> X : eleven.C.R1 }, eleven.C.m2() where { this -> X : eleven.C.R2 : *, X -> X : eleven.C.R2 }
+eleven.C.m2() invokes eleven.C.m1() where { this -> X : eleven.C.R3 : *, X -> X : eleven.C.R3 }

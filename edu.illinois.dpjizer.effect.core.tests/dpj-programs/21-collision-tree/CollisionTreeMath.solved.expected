@@ -1,0 +1,28 @@
+com.jme.math.Matrix3f.<>mult(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rproduct>) reads R, Rvec writes Rproduct
+com.jme.math.Matrix3f.<>set(com.jme.math.Quaternion<Rquaternion>) reads Rquaternion writes R
+com.jme.math.Matrix3f.Matrix3f() pure
+com.jme.math.Quaternion.<>mult(com.jme.math.Vector3f<Rv>,com.jme.math.Vector3f<Rstore>) reads R, Rv writes Rstore
+com.jme.math.Quaternion.<>toRotationMatrix(com.jme.math.Matrix3f<Rresult>) reads R writes Rresult
+com.jme.math.Quaternion.Quaternion() writes R
+com.jme.math.Quaternion.norm() reads R
+com.jme.math.Quaternion.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Quaternion.writeExternal(java.io.ObjectOutput) reads R
+com.jme.math.Vector2f.Vector2f() writes R
+com.jme.math.Vector2f.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Vector2f.writeExternal(java.io.ObjectOutput) reads R
+com.jme.math.Vector3f.<>addLocal(com.jme.math.Vector3f<Rvec>) reads Rvec writes R
+com.jme.math.Vector3f.<>cross(com.jme.math.Vector3f<Rv>,com.jme.math.Vector3f<Rresult>) reads R, Rv writes Rresult
+com.jme.math.Vector3f.<>cross(float,float,float,com.jme.math.Vector3f<Rresult>) reads R writes Rresult
+com.jme.math.Vector3f.<>dot(com.jme.math.Vector3f<Rvec>) reads R, Rvec
+com.jme.math.Vector3f.<>isValidVector(com.jme.math.Vector3f<Rvector>) reads Rvector
+com.jme.math.Vector3f.<>mult(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rstore>) reads R, Rvec writes Rstore
+com.jme.math.Vector3f.<>multLocal(com.jme.math.Vector3f<Rvec>) reads Rvec writes R
+com.jme.math.Vector3f.<>set(com.jme.math.Vector3f<Rvect>) reads Rvect writes R
+com.jme.math.Vector3f.<>subtract(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rresult>) reads R, Rvec writes Rresult
+com.jme.math.Vector3f.<>toArray(float[]<Rfloats>) reads R writes Rfloats
+com.jme.math.Vector3f.Vector3f() writes R
+com.jme.math.Vector3f.Vector3f(float,float,float) writes R
+com.jme.math.Vector3f.multLocal(float) writes R
+com.jme.math.Vector3f.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Vector3f.set(float,float,float) writes R
+com.jme.math.Vector3f.writeExternal(java.io.ObjectOutput) reads R

@@ -1,0 +1,3 @@
+five.C.C() invokes java.lang.Object.Object()
+five.C.m1() reads X invokes five.C.m2() where { this -> X : *, X -> X }
+five.C.m2() writes X invokes five.C.m1() where { this -> X : *, X -> X }

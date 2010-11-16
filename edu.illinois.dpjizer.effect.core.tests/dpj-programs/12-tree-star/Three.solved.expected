@@ -1,0 +1,3 @@
+three.C.C() pure
+three.C.m1() writes Root : three.C.Q : three.C.L, X : three.C.L
+three.C.m2() writes Root : three.C.Q : three.C.L, X

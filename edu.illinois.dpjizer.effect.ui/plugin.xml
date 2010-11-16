@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="edu.illinois.dpjizer.effect.ui.contribution">
+         <menu
+               label="DPJizer"
+               path="additions"
+               id="edu.illinois.dpjizer.effect.ui.menu">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Infer Effects"
+               class="edu.illinois.dpjizer.effect.ui.InferEffectsAction"
+               menubarPath="edu.illinois.dpjizer.effect.ui.menu/group"
+               enablesFor="1"
+               id="edu.illinois.dpjizer.effect.ui.popup.actions.inferEffectsAction">
+         </action>
+      </objectContribution>
+   </extension>
+<!--   
+   <extension
+         point="org.eclipse.ui.editors.annotationTypes">
+      <type
+         name="DPJ.occurrences">
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="DPJ.occurrences"
+            label="%WriteOccurrenceAnnotation.label"
+            textPreferenceKey="writeOccurrenceIndication"
+            textPreferenceValue="false"
+            highlightPreferenceKey="writeOccurrenceHighlighting"
+            highlightPreferenceValue="true"
+            overviewRulerPreferenceKey="writeOccurrenceIndicationInOverviewRuler"
+            overviewRulerPreferenceValue="true"
+            verticalRulerPreferenceKey="writeOccurrenceIndicationInVerticalRuler"
+            verticalRulerPreferenceValue="false"
+            colorPreferenceKey="writeOccurrenceIndicationColor"
+            colorPreferenceValue="240,0,0"
+            textStylePreferenceKey="writeOccurrenceTextStyle"
+            textStylePreferenceValue="NONE">
+	  </specification>
+	</extension> 
+-->
+</plugin>

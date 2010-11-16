@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="clean" name="edu.illinois.dpjizer.effect.core.tests">
+	<target name="delete-effects">
+		<delete dir="dpj-programs/${test-dir}/effects" />
+	</target>
+
+	<target name="clean">
+		<antcall target="delete-effects">
+			<param name="test-dir" value="01-flat-regions" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="02-region-param" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="03-packages" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="04-multi-files" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="05-arrays" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="06-sum-reduce" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="07-quad-tree" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="08-quicksort" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="09-list-ranking" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="10-mergesort" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="11-string-matching" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="12-tree-star" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="13-method-region-params" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="14-param-subclass" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="15-overrides-params" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="16-idea-crypt" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="17-method-overloads" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="18-method-overrides" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="19-kmeans" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="20-barnes-hut" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/math" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/util" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/intersection" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/scene" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/scene/shape" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jme/bounding" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/com/jmex/effects/cloth" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="21-collision-tree/jmetest/collisiontree" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="22-ownership" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="23-montecarlo" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="24-barnes-hut-extra-region" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="25-collision-tree-extra-region" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="26-collision-tree-nontermination" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="27-mergesort4" />
+		</antcall>
+		<antcall target="delete-effects">
+			<param name="test-dir" value="28-mergesort8" />
+		</antcall>
+	</target>
+</project>

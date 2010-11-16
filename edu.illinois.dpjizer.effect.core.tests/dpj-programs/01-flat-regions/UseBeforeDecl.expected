@@ -1,0 +1,3 @@
+flatregion.usebefore.C.C() invokes java.lang.Object.Object()
+flatregion.usebefore.C.m() reads Root : flatregion.usebefore.C.r1 writes Root
+flatregion.usebefore.MyPair.MyPair() invokes java.lang.Object.Object()

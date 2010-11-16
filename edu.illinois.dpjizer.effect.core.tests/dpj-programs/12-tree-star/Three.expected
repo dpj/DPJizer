@@ -1,0 +1,3 @@
+three.C.C() invokes java.lang.Object.Object()
+three.C.m1() reads X : three.C.L invokes three.C.m2() where { this -> X : three.C.L : *, X -> X : three.C.L }
+three.C.m2() writes X invokes three.C.m1() where { this -> Root : three.C.Q : *, X -> Root : three.C.Q }

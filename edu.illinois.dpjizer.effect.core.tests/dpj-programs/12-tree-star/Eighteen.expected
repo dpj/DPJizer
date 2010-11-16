@@ -1,0 +1,3 @@
+Node.Node() invokes java.lang.Object.Object()
+Node.setMass(double) writes P
+Node.setMassOfChildren(double) reads Root : Node.L, Root : Node.R invokes Node.setMass(double) where { this -> Root : Node.L : *, P -> Root : Node.L }, Node.setMass(double) where { this -> Root : Node.R : *, P -> Root : Node.R }

@@ -1,0 +1,4 @@
+seven.C.C() pure
+seven.C.m1() writes Root : seven.C.Q, Root : seven.C.Q : seven.C.L, X, X : seven.C.L
+seven.C.m2() writes Root : seven.C.Q, Root : seven.C.Q : seven.C.L, X, X : seven.C.L
+seven.C.m3() writes Root : seven.C.Q, Root : seven.C.Q : seven.C.L, X

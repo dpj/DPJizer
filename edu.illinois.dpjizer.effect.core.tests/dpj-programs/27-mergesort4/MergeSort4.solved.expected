@@ -1,0 +1,43 @@
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>,int,int) pure
+DPJRuntime.DPJArrayInt.get(int) reads R
+DPJRuntime.DPJArrayInt.put(int,int) writes R
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() reads R
+DPJRuntime.DPJPartitionInt.<>DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int[]<RA>) reads RA writes this : [?]
+DPJRuntime.DPJPartitionInt.<>stridedPartition(DPJRuntime.DPJArrayInt<R>,int) pure
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int,boolean) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int,double) pure
+DPJRuntime.DPJPartitionInt.get(int) reads this : [idx]
+DPJRuntime.DPJUtils.<>permuteInt(int[]<R>) writes R
+DPJRuntime.DPJUtils.<>print(int[]<R>) pure
+DPJRuntime.DPJUtils.<T>permute(T[]<R>) writes R
+DPJRuntime.DPJUtils.<T>print(T[]<R>) pure
+DPJRuntime.DPJUtils.<T>swap(T[]<R>,int,int) writes R
+DPJRuntime.DPJUtils.DPJUtils() pure
+DPJRuntime.DPJUtils.log2(int) pure
+Harness.Harness(java.lang.String,java.lang.String[]) writes Root
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root
+Harness.initialize() writes Root, Root : MergeSort.Input
+Harness.run() writes Root, Root : MergeSort.Input : *, Root : MergeSort.Result : *
+Harness.runCleanup() pure
+Harness.runTest() reads Root, Root : MergeSort.Input
+Harness.runWork() reads Root writes Root : MergeSort.Input : *, Root : MergeSort.Result : *
+Harness.usage() reads Root
+MergeSort.<>checkSorted(int[]<P>,int) reads P
+MergeSort.<>findSplit(int,DPJRuntime.DPJArrayInt<P>) reads P
+MergeSort.<>merge(DPJRuntime.DPJArrayInt<P1>,DPJRuntime.DPJArrayInt<P2>,DPJRuntime.DPJArrayInt<P3>) reads P1 : *, P2 : * writes P3 : *
+MergeSort.<>quickSort(DPJRuntime.DPJArrayInt<R>) writes R
+MergeSort.<>sequentialMerge(DPJRuntime.DPJArrayInt<P1>,DPJRuntime.DPJArrayInt<P2>,DPJRuntime.DPJArrayInt<P3>) reads P1, P2 writes P3
+MergeSort.<>sort(DPJRuntime.DPJArrayInt<P1>,DPJRuntime.DPJArrayInt<P2>) writes P1 : *, P2 : *
+MergeSort.MergeSort(java.lang.String,java.lang.String[]) writes Root
+MergeSort.initialize() writes Root, Root : MergeSort.Input
+MergeSort.runTest() reads Root, Root : MergeSort.Input
+MergeSort.runWork() reads Root writes Root : MergeSort.Input : *, Root : MergeSort.Result : *
+MergeSort4.<>sort(DPJRuntime.DPJArrayInt<P1>,DPJRuntime.DPJArrayInt<P2>) writes P1 : *, P2 : *
+MergeSort4.MergeSort4(java.lang.String[]) writes Root
+MergeSort4.main(java.lang.String[]) writes Root, Root : MergeSort.Input : *, Root : MergeSort.Result : *

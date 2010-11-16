@@ -1,0 +1,4 @@
+overridesparams.A.A() invokes java.lang.Object.Object()
+overridesparams.A.m() writes R
+overridesparams.B.B() invokes overridesparams.A.A() where { R -> Rb }
+overridesparams.B.m() writes Rb overrides overridesparams.A.m() where { R -> Rb }

@@ -1,0 +1,4 @@
+regionparam.uninstantiated.C1.C1() pure
+regionparam.uninstantiated.C1.m() writes R1
+regionparam.uninstantiated.C2.C2() pure
+regionparam.uninstantiated.C2.m() writes R2

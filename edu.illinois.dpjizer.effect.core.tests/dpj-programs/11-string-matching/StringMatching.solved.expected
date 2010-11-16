@@ -1,0 +1,105 @@
+DPJRuntime.DPJArrayChar.DPJArrayChar(char[]<R>) pure
+DPJRuntime.DPJArrayChar.DPJArrayChar(char[]<R>,int,int) pure
+DPJRuntime.DPJArrayChar.DPJArrayChar(int) pure
+DPJRuntime.DPJArrayChar.get(int) reads R
+DPJRuntime.DPJArrayChar.put(int,char) writes R
+DPJRuntime.DPJArrayChar.subarray(int,int) pure
+DPJRuntime.DPJArrayChar.swap(int,int) writes R
+DPJRuntime.DPJArrayChar.toArray() pure
+DPJRuntime.DPJArrayChar.toString() reads R
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>,int,int) pure
+DPJRuntime.DPJArrayInt.get(int) reads R
+DPJRuntime.DPJArrayInt.put(int,int) writes R
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() reads R
+DPJRuntime.DPJHashSet.DPJHashSet() pure
+DPJRuntime.DPJHashSet.add(E) reads R
+DPJRuntime.DPJHashSet.clear() reads R
+DPJRuntime.DPJHashSet.iterator() reads R
+DPJRuntime.DPJHashSet.main(java.lang.String[]) reads Root
+DPJRuntime.DPJHashSet.size() reads R
+DPJRuntime.DPJIterator.get(int) reads R
+DPJRuntime.DPJIterator.hasNext() reads R
+DPJRuntime.DPJIterator.next() reads R
+DPJRuntime.DPJIterator.remove() reads R
+DPJRuntime.DPJIterator.size() reads R
+DPJRuntime.DPJPair.DPJPair(T1,T2) writes R
+DPJRuntime.DPJPair.toString() reads R
+DPJRuntime.DPJPartitionChar.<>DPJPartitionChar(DPJRuntime.DPJArrayChar<R>,int[]<RA>) reads RA writes this : [?]
+DPJRuntime.DPJPartitionChar.<>stridedPartition(DPJRuntime.DPJArrayChar<R>,int) pure
+DPJRuntime.DPJPartitionChar.DPJPartitionChar(DPJRuntime.DPJArrayChar<R>,int) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionChar.DPJPartitionChar(DPJRuntime.DPJArrayChar<R>,int,boolean) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionChar.DPJPartitionChar(DPJRuntime.DPJArrayChar<R>,int,double) pure
+DPJRuntime.DPJPartitionChar.get(int) reads this : [idx]
+DPJRuntime.DPJPartitionInt.<>DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int[]<RA>) reads RA writes this : [?]
+DPJRuntime.DPJPartitionInt.<>stridedPartition(DPJRuntime.DPJArrayInt<R>,int) pure
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int,boolean) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R>,int,double) pure
+DPJRuntime.DPJPartitionInt.get(int) reads this : [idx]
+DPJRuntime.DPJSet.add(E) reads R
+DPJRuntime.DPJSet.clear() reads R
+DPJRuntime.DPJSet.iterator() reads R
+DPJRuntime.DPJSet.size() reads R
+DPJRuntime.DPJSetWrapper.DPJSetWrapper(java.util.Set<E>) writes R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.DPJSetWrapperIterator() writes R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.get(int) reads R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.hasNext() reads R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.next() reads R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.remove() reads R
+DPJRuntime.DPJSetWrapper.DPJSetWrapperIterator.size() reads R
+DPJRuntime.DPJSetWrapper.add(E) reads R
+DPJRuntime.DPJSetWrapper.clear() reads R
+DPJRuntime.DPJSetWrapper.iterator() pure
+DPJRuntime.DPJSetWrapper.main(java.lang.String[]) reads Root
+DPJRuntime.DPJSetWrapper.size() reads R
+DPJRuntime.DPJSparseArray.DPJSparseArray(int,T) pure
+DPJRuntime.DPJSparseArray.DPJSparseArray(java.util.SortedMap<java.lang.Integer,T>,int,int,T) pure
+DPJRuntime.DPJSparseArray.clear() pure
+DPJRuntime.DPJSparseArray.get(int) pure
+DPJRuntime.DPJSparseArray.main(java.lang.String[]) pure
+DPJRuntime.DPJSparseArray.nonZeroIndices() pure
+DPJRuntime.DPJSparseArray.put(int,T) pure
+DPJRuntime.DPJSparseArray.subarray(int,int) pure
+DPJRuntime.DPJSparseArray.toString() reads R
+DPJRuntime.DPJUtils.<>permuteInt(int[]<R15>) writes R15
+DPJRuntime.DPJUtils.<>print(int[]<R17>) pure
+DPJRuntime.DPJUtils.<T6>swap(T6[]<R13>,int,int) writes R13
+DPJRuntime.DPJUtils.<T7>permute(T7[]<R14>) writes R14
+DPJRuntime.DPJUtils.<T8>print(T8[]<R16>) pure
+DPJRuntime.DPJUtils.DPJUtils() pure
+DPJRuntime.DPJUtils.log2(int) pure
+Harness.Harness(java.lang.String,java.lang.String[]) writes Root
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root
+Harness.initialize() pure
+Harness.run() reads Root
+Harness.runCleanup() pure
+Harness.runTest() pure
+Harness.runWork() pure
+Harness.usage() reads Root
+StringMatching.<>checkIdx(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,int) reads Pat, Root : StringMatching.SM, Text
+StringMatching.<>checkSegment(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<Wit>) reads Pat, Root : StringMatching.SM, Text, Wit
+StringMatching.<>computeMatchWitnesses(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJArrayInt<MW>) reads PW, Pat, Root : StringMatching.SM, Text writes MW : *
+StringMatching.<>computePatternWitnesses(DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<Wit>) reads Pat : * writes Root : StringMatching.SM, Wit : *
+StringMatching.<>doDoubling(DPJRuntime.DPJSparseArray<java.lang.Integer, R1>,DPJRuntime.DPJSparseArray<java.lang.Integer, R2>,DPJRuntime.DPJArrayChar<Text>,int) reads R1, Root : StringMatching.SM
+StringMatching.<>duel(int,int,DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJArrayInt<MW>) reads PW, Pat, Text writes MW
+StringMatching.<>getCandidate(DPJRuntime.DPJArrayInt<R>) reads R
+StringMatching.<>getCandidates(DPJRuntime.DPJArrayInt<R2>) reads R2
+StringMatching.<>getNegIdx(DPJRuntime.DPJArrayInt<R>) reads R
+StringMatching.<>initialize(DPJRuntime.DPJArrayInt<R>,int) writes R
+StringMatching.<>makeKSparse(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJArrayInt<MW>,int) reads PW, Pat, Text writes MW : *
+StringMatching.<>makeSparse(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJArrayInt<MW>,int) reads PW, Pat, Text writes MW : *
+StringMatching.<>makeSparsePeriodic(DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<Wit>,int,int,int) reads Pat : * writes Wit : *
+StringMatching.<>match(DPJRuntime.DPJArrayChar<In>,DPJRuntime.DPJArrayChar<In>,DPJRuntime.DPJSet<java.lang.Integer, Out>) reads In : *, Out writes In, Root : StringMatching.SM
+StringMatching.<>match(char[]<In>,char[]<In>,DPJRuntime.DPJSet<java.lang.Integer, Out>) reads In : *, Out writes In, Root : StringMatching.SM
+StringMatching.<>matchAperiodic(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJSet<java.lang.Integer, Out>) reads Out, PW, Pat, Root : StringMatching.SM, Text
+StringMatching.<>matchPeriodic(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>,DPJRuntime.DPJArrayInt<PW>,DPJRuntime.DPJSet<java.lang.Integer, Out>) reads Out, PW, Text writes Pat, Root : StringMatching.SM
+StringMatching.<>pad(DPJRuntime.DPJArrayChar<Pat>) reads Root : StringMatching.SM writes Pat
+StringMatching.<>periodCont(DPJRuntime.DPJArrayChar<Pat>,int,int) reads Pat : *, Root : StringMatching.SM
+StringMatching.<>witness(DPJRuntime.DPJArrayChar<Text>,DPJRuntime.DPJArrayChar<Pat>) reads Pat : *, Text
+StringMatching.StringMatching() pure
+StringMatching.modPrime(int,int) pure

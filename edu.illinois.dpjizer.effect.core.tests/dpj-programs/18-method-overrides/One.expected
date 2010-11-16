@@ -1,0 +1,4 @@
+methodoverrides.A.A() invokes java.lang.Object.Object()
+methodoverrides.A.m1() pure
+methodoverrides.B.B() invokes methodoverrides.A.A() where { R1 -> R3, R2 -> R3 }
+methodoverrides.B.m1() writes R3 overrides methodoverrides.A.m1() where { R1 -> R3, R2 -> R3 }

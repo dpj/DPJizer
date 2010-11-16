@@ -1,0 +1,4 @@
+multipleinvocations.C.C() invokes java.lang.Object.Object()
+multipleinvocations.C.m1() writes Root : multipleinvocations.C.r1
+multipleinvocations.C.m2() writes Root : multipleinvocations.C.r2
+multipleinvocations.C.m3() invokes multipleinvocations.C.m1(), multipleinvocations.C.m2()

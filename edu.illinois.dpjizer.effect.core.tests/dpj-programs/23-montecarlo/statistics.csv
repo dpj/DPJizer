@@ -1,0 +1,19 @@
+#Corresponds to revision r1948 of montecarlo
+Java File,Number of Manual Effects,Number of Inferred Effects,Redundant Effects,Coarse Grained by Region,Coarse Grained by Keyword
+AppDemo,10,24,4,1,0
+CallAppDemo,0,8,0,0,0
+DemoException,0,3,0,0,0
+JGFInstrumentor,0,13,0,0,0
+JGFMonteCarloBench,0,13,0,0,0
+JGFTimer,0,11,0,0,0
+MonteCarloPath,26,29,0,0,0
+PathId,14,12,0,0,0
+PriceStock,10,9,0,1,0
+RatePath,35,28,2,1,1
+ReturnPath,30,28,0,0,0
+ToInitAllTasks,22,22,0,0,0
+ToResult,14,15,0,0,0
+ToTask,5,5,0,0,0
+Universal,11,11,0,0,0
+Utilities,2,4,0,0,0
+Total,179,273,6,3,1

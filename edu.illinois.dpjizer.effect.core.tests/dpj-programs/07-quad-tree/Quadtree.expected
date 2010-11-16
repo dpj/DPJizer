@@ -1,0 +1,48 @@
+DPJRuntime.DPJIndexedSet.DPJIndexedSet(int) writes R invokes java.lang.Object.Object()
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.DPJIndexedSetIterator() invokes java.lang.Object.Object()
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.get(int) reads R overrides DPJRuntime.DPJIterator.get(int) where { R -> R }
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.hasNext() reads R overrides DPJRuntime.DPJIterator.hasNext() where { R -> R }
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.next() reads R overrides DPJRuntime.DPJIterator.next() where { R -> R }
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.remove() writes R overrides DPJRuntime.DPJIterator.remove() where { R -> R }
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.size() reads R overrides DPJRuntime.DPJIterator.size() where { R -> R }
+DPJRuntime.DPJIndexedSet.add(E) writes R
+DPJRuntime.DPJIndexedSet.clear() writes R
+DPJRuntime.DPJIndexedSet.get(int) reads R
+DPJRuntime.DPJIndexedSet.iterator() pure
+DPJRuntime.DPJIndexedSet.remove(int) writes R
+DPJRuntime.DPJIndexedSet.size() reads R
+DPJRuntime.DPJIterator.get(int) pure
+DPJRuntime.DPJIterator.hasNext() pure
+DPJRuntime.DPJIterator.next() pure
+DPJRuntime.DPJIterator.remove() pure
+DPJRuntime.DPJIterator.size() pure
+Harness.Harness(java.lang.String,java.lang.String[]) invokes Harness.Harness(java.lang.String,java.lang.String[],int,int)
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root invokes Harness.usage(), java.lang.Integer.parseInt(java.lang.String) where { this -> Root : * }, java.lang.Object.Object(), java.lang.System.exit(int) where { this -> Root : * }
+Harness.initialize() pure
+Harness.run() reads Root invokes Harness.initialize(), Harness.runCleanup(), Harness.runTest(), Harness.runWork(), Harness.usage(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.equals(java.lang.Object) where { this -> Root : * }, java.lang.System.exit(int) where { this -> Root : * }, java.lang.System.nanoTime() where { this -> Root : * }
+Harness.runCleanup() pure
+Harness.runTest() pure
+Harness.runWork() pure
+Harness.usage() reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+Quadtree.<>checkTree(Quadtree.Node<R1>,java.util.Set<Quadtree.Body<R2>>) reads R1, R1 : [?] invokes Quadtree.<>checkTree(Quadtree.Node<R1>,java.util.Set<Quadtree.Body<R2>>) where { R1 -> R1 : [?], R2 -> R2 }, java.util.Set.add(E) where { this -> Root : * }
+Quadtree.<>makeTree(DPJRuntime.DPJIndexedSet<Quadtree.Body<R1>, R2>,Quadtree.Box,int) reads R2 writes R2 : [?] invokes DPJRuntime.DPJIndexedSet.add(E) where { this -> R2 : [?] : *, R -> R2 : [?] }, DPJRuntime.DPJIndexedSet.iterator() where { this -> R2 : *, R -> R2 }, DPJRuntime.DPJIndexedSet.size() where { this -> R2 : *, R -> R2 }, DPJRuntime.DPJIterator.get(int) where { this -> R2 : *, R -> R2 }, Quadtree.<>makeTree(DPJRuntime.DPJIndexedSet<Quadtree.Body<R1>, R2>,Quadtree.Box,int) where { R1 -> R1, R2 -> R2 : [?] }, Quadtree.Body.<>copy() where { this -> R1 : *, R -> R1, R1 -> R2 }, Quadtree.Box.<>quadrant(Quadtree.Body<R>) where { this -> Root : *, R -> R1 }, Quadtree.Box.makeQuadrant(int) where { this -> Root : * }
+Quadtree.Body.<>copy() overrides Quadtree.Node.<>copy() where { R -> R, R1 -> R1 }
+Quadtree.Body.Body(int,int) invokes Quadtree.Node.Node() where { R -> R }
+Quadtree.Body.equals(java.lang.Object) overrides java.lang.Object.equals(java.lang.Object)
+Quadtree.Body.hashCode() overrides java.lang.Object.hashCode()
+Quadtree.Body.toString() overrides java.lang.Object.toString()
+Quadtree.Box.<>quadrant(Quadtree.Body<R>) pure
+Quadtree.Box.Box(int,int,int,int) invokes java.lang.Object.Object()
+Quadtree.Box.makeQuadrant(int) pure
+Quadtree.Box.toString() overrides java.lang.Object.toString()
+Quadtree.InnerNode.<>copy() overrides Quadtree.Node.<>copy() where { R -> R, R1 -> R1 }
+Quadtree.InnerNode.InnerNode(Quadtree.Box) invokes Quadtree.Node.Node() where { R -> R }
+Quadtree.Node.<>copy() pure
+Quadtree.Node.Node() invokes java.lang.Object.Object()
+Quadtree.Quadtree(java.lang.String[]) invokes Harness.Harness(java.lang.String,java.lang.String[])
+Quadtree.initialize() reads Root invokes DPJRuntime.DPJIndexedSet.add(E) where { this -> Root : *, R -> Root }, Quadtree.randomBody() overrides Harness.initialize()
+Quadtree.main(java.lang.String[]) invokes Harness.run() where { this -> Root : * }
+Quadtree.randomBody() invokes Quadtree.randomCoord()
+Quadtree.randomCoord() invokes java.lang.Math.random() where { this -> Root : * }
+Quadtree.runTest() reads Root invokes DPJRuntime.DPJIndexedSet.iterator() where { this -> Root : *, R -> Root }, Quadtree.<>checkTree(Quadtree.Node<R1>,java.util.Set<Quadtree.Body<R2>>) where { R1 -> Root, R2 -> Root }, java.util.Set.contains(java.lang.Object) where { this -> Root : * } overrides Harness.runTest()
+Quadtree.runWork() writes Root invokes Quadtree.<>makeTree(DPJRuntime.DPJIndexedSet<Quadtree.Body<R1>, R2>,Quadtree.Box,int) where { R1 -> Root, R2 -> Root } overrides Harness.runWork()

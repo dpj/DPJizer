@@ -1,0 +1,53 @@
+com.jme.bounding.BoundingBox.<>BoundingBox(com.jme.math.Vector3f<Rc>,float,float,float) reads Rc writes R
+com.jme.bounding.BoundingBox.<>computeFromTris(int[]<Rindices>,com.jme.scene.TriMesh<Rindices>,int,int) reads Rindices writes R, Root
+com.jme.bounding.BoundingBox.<>intersectsBoundingBox(com.jme.bounding.BoundingBox<Rbb>) reads R, Rbb
+com.jme.bounding.BoundingBox.<>transform_r(com.jme.math.Quaternion<Rrotate>,com.jme.math.Vector3f<Rtranslate>,com.jme.math.Vector3f<Rscale>,com.jme.bounding.BoundingBox<Rstore>,com.jme.math.Matrix3f<RTemp1>,com.jme.math.Vector3f<RTemp2>,com.jme.math.Vector3f<RTemp3>) reads R, Rrotate, Rscale, Rtranslate writes RTemp1, RTemp2, RTemp3, Rstore
+com.jme.bounding.BoundingBox.BoundingBox() pure
+com.jme.bounding.BoundingBox.BoundingBox(com.jme.bounding.BoundingBox<Root : *>) reads Root : * writes R
+com.jme.bounding.BoundingBox.checkMinMax(com.jme.math.Vector3f<Root>,com.jme.math.Vector3f<Root>,com.jme.math.Vector3f<Root>) writes Root
+com.jme.bounding.BoundingVolume.<>computeFromTris(int[]<Rindices>,com.jme.scene.TriMesh<Rindices>,int,int) reads Rindices writes R, Root
+com.jme.bounding.BoundingVolume.<>intersectsBoundingBox(com.jme.bounding.BoundingBox<Rbb>) reads R, Rbb
+com.jme.bounding.BoundingVolume.<>transform_r(com.jme.math.Quaternion<Rrotate>,com.jme.math.Vector3f<Rtranslate>,com.jme.math.Vector3f<Rscale>,com.jme.bounding.BoundingBox<Rstore>,com.jme.math.Matrix3f<RTemp1>,com.jme.math.Vector3f<RTemp2>,com.jme.math.Vector3f<RTemp3>) reads R, Rrotate, Rscale, Rtranslate writes RTemp1, RTemp2, RTemp3, Rstore
+com.jme.bounding.BoundingVolume.BoundingVolume() pure
+com.jme.math.Matrix3f.<>mult(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rproduct>) reads R, Rvec writes Rproduct
+com.jme.math.Matrix3f.<>set(com.jme.math.Quaternion<Rquaternion>) reads Rquaternion writes R
+com.jme.math.Matrix3f.Matrix3f() pure
+com.jme.math.Quaternion.<>mult(com.jme.math.Vector3f<Rv>,com.jme.math.Vector3f<Rstore>) reads R, Rv writes Rstore
+com.jme.math.Quaternion.<>toRotationMatrix(com.jme.math.Matrix3f<Rresult>) reads R writes Rresult
+com.jme.math.Quaternion.Quaternion() writes R
+com.jme.math.Quaternion.norm() reads R
+com.jme.math.Quaternion.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Quaternion.writeExternal(java.io.ObjectOutput) reads R
+com.jme.math.Vector2f.Vector2f() writes R
+com.jme.math.Vector2f.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Vector2f.writeExternal(java.io.ObjectOutput) reads R
+com.jme.math.Vector3f.<>addLocal(com.jme.math.Vector3f<Rvec>) reads Rvec writes R
+com.jme.math.Vector3f.<>cross(com.jme.math.Vector3f<Rv>,com.jme.math.Vector3f<Rresult>) reads R, Rv writes Rresult
+com.jme.math.Vector3f.<>cross(float,float,float,com.jme.math.Vector3f<Rresult>) reads R writes Rresult
+com.jme.math.Vector3f.<>dot(com.jme.math.Vector3f<Rvec>) reads R, Rvec
+com.jme.math.Vector3f.<>isValidVector(com.jme.math.Vector3f<Rvector>) reads Rvector
+com.jme.math.Vector3f.<>mult(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rstore>) reads R, Rvec writes Rstore
+com.jme.math.Vector3f.<>multLocal(com.jme.math.Vector3f<Rvec>) reads Rvec writes R
+com.jme.math.Vector3f.<>set(com.jme.math.Vector3f<Rvect>) reads Rvect writes R
+com.jme.math.Vector3f.<>subtract(com.jme.math.Vector3f<Rvec>,com.jme.math.Vector3f<Rresult>) reads R, Rvec writes Rresult
+com.jme.math.Vector3f.<>toArray(float[]<Rfloats>) reads R writes Rfloats
+com.jme.math.Vector3f.Vector3f() writes R
+com.jme.math.Vector3f.Vector3f(float,float,float) writes R
+com.jme.math.Vector3f.multLocal(float) writes R
+com.jme.math.Vector3f.readExternal(java.io.ObjectInput) writes R
+com.jme.math.Vector3f.set(float,float,float) writes R
+com.jme.math.Vector3f.writeExternal(java.io.ObjectOutput) reads R
+com.jme.scene.TriMesh.<>getTriangle(int,com.jme.math.Vector3f<R>[]<R>) reads RMesh writes R
+com.jme.scene.TriMesh.<>getTriangleIndices(int[]<Rindices>) reads RMesh writes Rindices
+com.jme.scene.TriMesh.TriMesh() pure
+com.jme.scene.TriMesh.getTriangleCount() reads RMesh
+com.jme.scene.TriMesh.getWorldRotation() reads RMesh
+com.jme.scene.TriMesh.getWorldScale() reads RMesh
+com.jme.scene.TriMesh.getWorldTranslation() reads RMesh
+com.jme.scene.TriMesh.readExternal(java.io.ObjectInput) writes RMesh
+com.jme.scene.TriMesh.writeExternal(java.io.ObjectOutput) reads RMesh
+com.jme.scene.shape.Sphere.Sphere() pure
+com.jme.util.ParallelArrayList.<>addAll(com.jme.util.ParallelArrayList<Rb>) reads R, Rb
+com.jme.util.ParallelArrayList.ParallelArrayList() writes R
+com.jme.util.ParallelArrayList.ParallelArrayList(int) writes R
+com.jme.util.ParallelArrayList.add(int) reads R

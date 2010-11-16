@@ -1,0 +1,5 @@
+two.C1.C1() invokes java.lang.Object.Object()
+two.C1.m1(two.C2<Root : *>) writes Root : two.C1.R3 invokes two.C2.m3() where { this -> Root : *, Y -> Root : * }
+two.C1.m2() writes Root : two.C1.R2 invokes two.C1.m1(two.C2<Root : *>)
+two.C2.C2() invokes java.lang.Object.Object()
+two.C2.m3() writes Y

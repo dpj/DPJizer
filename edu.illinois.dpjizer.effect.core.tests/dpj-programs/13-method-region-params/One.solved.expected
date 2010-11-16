@@ -1,0 +1,5 @@
+one.C1.<>m1(one.C2<X>) writes Root : one.C1.R3, X
+one.C1.C1() pure
+one.C1.m2() writes Root : one.C1.R1, Root : one.C1.R2, Root : one.C1.R3
+one.C2.C2() pure
+one.C2.m3() writes Y

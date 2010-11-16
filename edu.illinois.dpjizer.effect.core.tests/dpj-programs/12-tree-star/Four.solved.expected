@@ -1,0 +1,3 @@
+four.C.C() pure
+four.C.m1() writes X : four.C.L : *
+four.C.m2() writes X, X : four.C.L : *

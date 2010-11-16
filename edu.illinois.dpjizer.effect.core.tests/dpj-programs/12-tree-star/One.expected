@@ -1,0 +1,2 @@
+one.Tree.Tree() invokes java.lang.Object.Object()
+one.Tree.print() reads P, P : one.Tree.L, P : one.Tree.R invokes java.io.PrintStream.println(int) where { this -> Root : * }, one.Tree.print() where { this -> P : one.Tree.L : *, P -> P : one.Tree.L }, one.Tree.print() where { this -> P : one.Tree.R : *, P -> P : one.Tree.R }

@@ -1,0 +1,24 @@
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>,int,int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.get(int) reads R
+DPJRuntime.DPJArrayInt.put(int,int) writes R
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() invokes DPJRuntime.DPJArrayInt.get(int) where { R -> R }, java.lang.StringBuffer.append(int) where { this -> Root : * }, java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * } overrides java.lang.Object.toString()
+Harness.Harness(java.lang.String,java.lang.String[]) invokes Harness.Harness(java.lang.String,java.lang.String[],int,int)
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root invokes Harness.usage(), java.lang.Integer.parseInt(java.lang.String) where { this -> Root : * }, java.lang.Object.Object(), java.lang.System.exit(int) where { this -> Root : * }
+Harness.initialize() pure
+Harness.run() reads Root invokes Harness.initialize(), Harness.runCleanup(), Harness.runTest(), Harness.runWork(), Harness.usage(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.equals(java.lang.Object) where { this -> Root : * }, java.lang.System.exit(int) where { this -> Root : * }, java.lang.System.nanoTime() where { this -> Root : * }
+Harness.runCleanup() pure
+Harness.runTest() pure
+Harness.runWork() pure
+Harness.usage() reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+SumReduce.<>reduce(DPJRuntime.DPJArrayInt<R>,int) invokes DPJRuntime.DPJArrayInt.get(int) where { this -> R : *, R -> R }, DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R : *, R -> R }, SumReduce.<>reduce(DPJRuntime.DPJArrayInt<R>,int) where { R -> R }
+SumReduce.SumReduce(java.lang.String[]) writes Root invokes Harness.Harness(java.lang.String,java.lang.String[],int,int), java.lang.Integer.parseInt(java.lang.String) where { this -> Root : * }
+SumReduce.initialize() writes Root, Root : [?] overrides Harness.initialize()
+SumReduce.main(java.lang.String[]) invokes Harness.run() where { this -> Root : * }
+SumReduce.runTest() reads Root, Root : [?] overrides Harness.runTest()
+SumReduce.runWork() writes Root invokes SumReduce.<>reduce(DPJRuntime.DPJArrayInt<R>,int) where { R -> Root : * } overrides Harness.runWork()
+SumReduce.usage() reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * } overrides Harness.usage()

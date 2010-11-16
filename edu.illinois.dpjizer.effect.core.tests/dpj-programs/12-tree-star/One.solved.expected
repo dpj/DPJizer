@@ -1,0 +1,2 @@
+one.Tree.Tree() pure
+one.Tree.print() reads P, P : one.Tree.L : *, P : one.Tree.R : *

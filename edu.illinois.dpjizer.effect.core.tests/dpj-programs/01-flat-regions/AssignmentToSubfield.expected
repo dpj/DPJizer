@@ -1,0 +1,3 @@
+flatregion.assignmenttosubfield.AssignmentToSubfield.AssignmentToSubfield() invokes java.lang.Object.Object()
+flatregion.assignmenttosubfield.AssignmentToSubfield.m() reads Root : flatregion.assignmenttosubfield.AssignmentToSubfield.r1 writes Root
+flatregion.assignmenttosubfield.MyPair.MyPair() invokes java.lang.Object.Object()

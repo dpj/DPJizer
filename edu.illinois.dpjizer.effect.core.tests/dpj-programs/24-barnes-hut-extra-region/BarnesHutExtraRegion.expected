@@ -1,0 +1,9 @@
+Body.<>subdivp(Node,HGStruct<R2>) reads R2 overrides Node.<>subdivp(Node,HGStruct<R5>) where { R5 -> R2 }
+Body.Body() invokes Node.Node()
+Body.hackgrav(HGStruct<R1>,Node) invokes Body.walksub(Node,HGStruct<R1>) where { R1 -> R1 }
+Body.walksub(Node,HGStruct<R1>) invokes Node.<>subdivp(Node,HGStruct<R5>) where { this -> Root : *, R5 -> R1 }
+HGStruct.HGStruct() invokes java.lang.Object.Object()
+Node.<>subdivp(Node,HGStruct<R5>) pure
+Node.Node() invokes java.lang.Object.Object()
+Tree.Tree() invokes java.lang.Object.Object()
+Tree.computegrav() reads Root invokes Body.hackgrav(HGStruct<R1>,Node) where { this -> Root : [0] : *, R1 -> Root : [0] }

@@ -1,0 +1,4 @@
+localregions.C1.C1() pure
+localregions.C1.m1() pure
+localregions.C2.C2() pure
+localregions.C2.m2() writes R2

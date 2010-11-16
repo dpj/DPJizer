@@ -1,0 +1,4 @@
+overridesparams.A.A() pure
+overridesparams.A.m() writes R
+overridesparams.B.B() pure
+overridesparams.B.m() writes Rb

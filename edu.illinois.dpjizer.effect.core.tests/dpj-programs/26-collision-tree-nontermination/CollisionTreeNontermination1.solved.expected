@@ -1,0 +1,2 @@
+CT.<>intersect(CT<R>) reads P : CT.L : *, R : CT.L : *
+CT.CT() pure

@@ -1,0 +1,4 @@
+A.A() pure
+A.m(int) reads R1 writes this
+B.B() pure
+B.m(int) reads R2 writes this

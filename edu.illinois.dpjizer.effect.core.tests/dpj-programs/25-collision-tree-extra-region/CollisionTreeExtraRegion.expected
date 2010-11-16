@@ -1,0 +1,3 @@
+BoundingBox.BoundingBox() invokes BoundingVolume.BoundingVolume() where { RVolume -> RBox }
+BoundingBox.MyBoundingBox() writes RBox
+BoundingVolume.BoundingVolume() invokes java.lang.Object.Object()

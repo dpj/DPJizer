@@ -1,0 +1,35 @@
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R1>) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R1>,int,int) pure
+DPJRuntime.DPJArrayInt.get(int) reads R1
+DPJRuntime.DPJArrayInt.put(int,int) writes R1
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R1
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() reads R1
+DPJRuntime.DPJPartitionInt.<>DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int[]<RA>) reads RA writes this : [?]
+DPJRuntime.DPJPartitionInt.<>stridedPartition(DPJRuntime.DPJArrayInt<R3>,int) pure
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int,boolean) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int,double) pure
+DPJRuntime.DPJPartitionInt.get(int) reads this : [idx]
+DPJRuntime.DPJUtils.<>permuteInt(int[]<R6>) writes R6
+DPJRuntime.DPJUtils.<>print(int[]<R8>) pure
+DPJRuntime.DPJUtils.<T>permute(T[]<R5>) writes R5
+DPJRuntime.DPJUtils.<T>print(T[]<R7>) pure
+DPJRuntime.DPJUtils.<T>swap(T[]<R4>,int,int) writes R4
+DPJRuntime.DPJUtils.DPJUtils() pure
+DPJRuntime.DPJUtils.log2(int) pure
+Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) writes R10 : *
+Partition.<>partitionHelperRight(DPJRuntime.DPJArrayInt<R11>,int) writes R11 : *
+Partition.<>sequentialPartition(DPJRuntime.DPJArrayInt<R9>) writes R9
+Partition.Partition(int) pure
+Quicksort.<>median(DPJRuntime.DPJArrayInt<R12>,int) writes R12
+Quicksort.<>median(int[]<R13>) writes R13
+Quicksort.<>partitionFirst(DPJRuntime.DPJArrayInt<R15>) writes R15 : *
+Quicksort.<>partitionMedian(DPJRuntime.DPJArrayInt<R16>) writes R16 : *
+Quicksort.<>seqPartitionFirst(DPJRuntime.DPJArrayInt<R14>) writes R14
+Quicksort.<>seqSort(DPJRuntime.DPJArrayInt<R17>) writes R17 : *
+Quicksort.<>sort(DPJRuntime.DPJArrayInt<R18>) writes R18 : *
+Quicksort.<>sort(int[]<R19>) writes R19 : *
+Quicksort.Quicksort(int) pure

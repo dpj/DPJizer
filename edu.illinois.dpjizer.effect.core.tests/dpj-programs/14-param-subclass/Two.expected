@@ -1,0 +1,6 @@
+PathId.PathId() invokes Universal.Universal() where { P1 -> P2 }
+PathId.get_name() reads P2
+ReturnPath.ReturnPath() invokes PathId.PathId() where { P2 -> P6 }
+ToInitAllTasks.ToInitAllTasks() invokes java.lang.Object.Object()
+ToInitAllTasks.ToInitAllTasks(ReturnPath<Root>) invokes PathId.get_name() where { this -> Root : *, P2 -> Root }
+Universal.Universal() invokes java.lang.Object.Object()

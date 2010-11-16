@@ -1,0 +1,3 @@
+two.C.C() invokes java.lang.Object.Object()
+two.C.m1() reads X : two.C.L invokes two.C.m2() where { this -> X : two.C.L : *, X -> X : two.C.L }
+two.C.m2() invokes two.C.m1() where { this -> Root : two.C.Q : *, X -> Root : two.C.Q }

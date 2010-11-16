@@ -1,0 +1,2 @@
+C.C() invokes java.lang.Object.Object()
+C.m() reads this : [0] invokes C.m() where { this -> this : [0] : *, P -> this : [0] }

@@ -1,0 +1,4 @@
+A.A() pure
+A.m() writes Root : A.Rx, Root : A.Ry
+B.B() pure
+B.m() writes Root : A.Ry

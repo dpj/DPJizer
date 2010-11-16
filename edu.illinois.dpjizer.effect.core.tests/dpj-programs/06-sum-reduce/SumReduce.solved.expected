@@ -1,0 +1,24 @@
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>) pure
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R>,int,int) pure
+DPJRuntime.DPJArrayInt.get(int) reads R
+DPJRuntime.DPJArrayInt.put(int,int) writes R
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() reads R
+Harness.Harness(java.lang.String,java.lang.String[]) writes Root
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root
+Harness.initialize() writes Root, Root : [?]
+Harness.run() reads Root : * writes Root, Root : [?]
+Harness.runCleanup() pure
+Harness.runTest() reads Root, Root : [?]
+Harness.runWork() reads Root : * writes Root
+Harness.usage() reads Root
+SumReduce.<>reduce(DPJRuntime.DPJArrayInt<R>,int) reads R
+SumReduce.SumReduce(java.lang.String[]) writes Root
+SumReduce.initialize() writes Root, Root : [?]
+SumReduce.main(java.lang.String[]) reads Root : * writes Root, Root : [?]
+SumReduce.runTest() reads Root, Root : [?]
+SumReduce.runWork() reads Root : * writes Root
+SumReduce.usage() reads Root

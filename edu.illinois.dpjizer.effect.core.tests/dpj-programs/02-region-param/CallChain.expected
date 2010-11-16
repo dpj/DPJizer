@@ -1,0 +1,6 @@
+regionparam.callchain.C1.C1() invokes java.lang.Object.Object()
+regionparam.callchain.C1.m1() writes R
+regionparam.callchain.C2.C2() invokes java.lang.Object.Object()
+regionparam.callchain.C2.m2() writes R
+regionparam.callchain.C3.C3() invokes java.lang.Object.Object()
+regionparam.callchain.C3.m3() invokes regionparam.callchain.C1.m1() where { this -> Root : regionparam.callchain.C3.r3 : *, R -> Root : regionparam.callchain.C3.r3 }, regionparam.callchain.C2.m2() where { this -> Root : regionparam.callchain.C3.r3 : *, R -> Root : regionparam.callchain.C3.r3 }

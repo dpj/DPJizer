@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.illinois.dpjizer.effect.core
+Bundle-SymbolicName: edu.illinois.dpjizer.effect.core
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.illinois.dpjizer.effect.core.Activator
+Bundle-Vendor: University of Illinois
+Require-Bundle: Compiler;bundle-version="1.0.0",
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: edu.illinois.dpjizer.effect.core.compile,
+ edu.illinois.dpjizer.effect.core.constraint,
+ edu.illinois.dpjizer.effect.core.log

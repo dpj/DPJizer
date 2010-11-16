@@ -1,0 +1,4 @@
+nine.C1.C1() invokes java.lang.Object.Object()
+nine.C1.m1() writes X invokes nine.C2.m2() where { this -> X : nine.C1.L : *, Y -> X : nine.C1.L }
+nine.C2.C2() invokes java.lang.Object.Object()
+nine.C2.m2() invokes nine.C1.m1() where { this -> Y : *, X -> Y }

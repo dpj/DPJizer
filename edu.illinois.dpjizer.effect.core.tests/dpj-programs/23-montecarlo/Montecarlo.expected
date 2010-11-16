@@ -1,0 +1,197 @@
+AppDemo.AppDemo(java.lang.String,java.lang.String,int,int) writes Root invokes Universal.Universal() where { P -> Root }, Universal.set_DEBUG(boolean) where { P -> Root }, Universal.set_prompt(java.lang.String) where { P -> Root }
+AppDemo.get_dataDirname() reads Root
+AppDemo.get_dataFilename() reads Root
+AppDemo.get_nRunsMC() reads Root
+AppDemo.get_nTimeStepsMC() reads Root
+AppDemo.get_results() reads Root : AppDemo.resultR
+AppDemo.get_tasks() reads Root : AppDemo.taskR
+AppDemo.initParallel() writes Root invokes AppDemo.initTasks(int), PathId.dbgDumpFields() where { this -> Root : *, P -> Root }, RatePath.getReturnCompounded() where { this -> Root : *, P -> Root }, ReturnPath.dbgDumpFields() where { this -> Root : *, P -> Root }, ReturnPath.estimatePath() where { this -> Root : *, P -> Root }, ReturnPath.get_expectedReturnRate() where { this -> Root : *, P -> Root }, ReturnPath.get_volatility() where { this -> Root : *, P -> Root }, Universal.dbgPrintln(java.lang.String) where { P -> Root }, java.lang.System.exit(int) where { this -> Root : * }, java.lang.Throwable.toString() where { this -> Root : * }
+AppDemo.initTasks(int) writes Root : AppDemo.taskR, Root : AppDemo.taskR : [?] invokes java.lang.String.valueOf(int) where { this -> Root : * }
+AppDemo.processParallel() invokes AppDemo.processResults(), Universal.dbgPrintln(java.lang.String) where { P -> Root }, java.lang.System.exit(int) where { this -> Root : * }, java.lang.Throwable.toString() where { this -> Root : * }
+AppDemo.processResults() reads Root : AppDemo.resultR, Root : AppDemo.resultR : [?] writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?] invokes AppDemo.sumReduction(int,double,double), RatePath.inc_pathValue(double) where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR }, RatePath.inc_pathValue(double[]<P>) where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR : [?] }, ToResult.get_expectedReturnRate() where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR : [?] }, ToResult.get_pathValue() where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR : [?] }, ToResult.get_volatility() where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR : [?] }, Universal.errPrintln(java.lang.String) where { P -> Root }, java.lang.System.exit(int) where { this -> Root : * }
+AppDemo.runParallel() reads Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?] writes Root : AppDemo.resultR, Root : AppDemo.resultR : [?] invokes PriceStock.<>setTask(ToTask<R>) where { this -> Root : [?] : *, P -> Root : [?], R -> Root : [?] }, PriceStock.getResult() where { this -> Root : [?] : *, P -> Root : [?] }, PriceStock.run() where { this -> Root : [?] : *, P -> Root : [?] }, PriceStock.setInitAllTasks(ToInitAllTasks) where { this -> Root : [?] : *, P -> Root : [?] }
+AppDemo.set_dataDirname(java.lang.String) writes Root
+AppDemo.set_dataFilename(java.lang.String) writes Root
+AppDemo.set_nRunsMC(int) writes Root
+AppDemo.set_nTimeStepsMC(int) writes Root
+AppDemo.set_results(ToResult<Root : [i]>[]<Root : AppDemo.resultR : [i]>#i) writes Root : AppDemo.resultR
+AppDemo.set_tasks(ToTask<Root : [i]>[]<Root : AppDemo.taskR : [i]>#i) writes Root : AppDemo.taskR
+AppDemo.sumReduction(int,double,double) reads Root, Root : AppDemo.reductionR : [index] writes Root : AppDemo.reductionR invokes RatePath.<>inc_pathValue2(double[]<R>) where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR, R -> Root : AppDemo.reductionR : [index] }, RatePath.get_pathValue() where { this -> Root : AppDemo.reductionR : *, P -> Root : AppDemo.reductionR : [index] }, java.util.concurrent.locks.ReentrantLock.lock() where { this -> Root : * }, java.util.concurrent.locks.ReentrantLock.unlock() where { this -> Root : * }
+CallAppDemo.CallAppDemo() invokes java.lang.Object.Object()
+CallAppDemo.initialise() writes Root invokes AppDemo.initParallel() where { this -> Root : * }
+CallAppDemo.presults() reads Root invokes AppDemo.processParallel() where { this -> Root : * }
+CallAppDemo.runiters() reads Root invokes AppDemo.runParallel() where { this -> Root : * }
+DemoException.DemoException() reads Root invokes java.lang.Exception.Exception(), java.lang.Throwable.printStackTrace()
+DemoException.DemoException(int) reads Root invokes java.lang.Exception.Exception(java.lang.String), java.lang.String.valueOf(int) where { this -> Root : * }, java.lang.Throwable.printStackTrace()
+DemoException.DemoException(java.lang.String) reads Root invokes java.lang.Exception.Exception(java.lang.String), java.lang.Throwable.printStackTrace()
+JGFInstrumentor.JGFInstrumentor() invokes java.lang.Object.Object()
+JGFInstrumentor.addOpsToTimer(java.lang.String,double) reads Root invokes JGFTimer.addops(double) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.printHeader(int,int) invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+JGFInstrumentor.printTimer(java.lang.String) reads Root invokes JGFTimer.print() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.printperfTimer(java.lang.String) reads Root invokes JGFTimer.printperf() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.readTimer(java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.resetTimer(java.lang.String) reads Root invokes JGFTimer.reset() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.retrieveData(java.lang.String,java.lang.Object) reads Root invokes java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.startTimer(java.lang.String) reads Root invokes JGFTimer.start() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.stopTimer(java.lang.String) reads Root invokes JGFTimer.stop() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.storeData(java.lang.String,java.lang.Object) reads Root invokes java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFMonteCarloBench.JGFMonteCarloBench() invokes CallAppDemo.CallAppDemo()
+JGFMonteCarloBench.JGFapplication() invokes CallAppDemo.presults(), CallAppDemo.runiters(), JGFInstrumentor.startTimer(java.lang.String) where { this -> Root : * }, JGFInstrumentor.stopTimer(java.lang.String) where { this -> Root : * }
+JGFMonteCarloBench.JGFinitialise() invokes CallAppDemo.initialise()
+JGFMonteCarloBench.JGFrun(int) reads Root invokes JGFInstrumentor.addOpsToTimer(java.lang.String,double) where { this -> Root : * }, JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) where { this -> Root : * }, JGFInstrumentor.printTimer(java.lang.String) where { this -> Root : * }, JGFInstrumentor.startTimer(java.lang.String) where { this -> Root : * }, JGFInstrumentor.stopTimer(java.lang.String) where { this -> Root : * }, JGFMonteCarloBench.JGFapplication(), JGFMonteCarloBench.JGFinitialise(), JGFMonteCarloBench.JGFsetsize(int), JGFMonteCarloBench.JGFtidyup(), JGFMonteCarloBench.JGFvalidate()
+JGFMonteCarloBench.JGFsetsize(int) writes Root
+JGFMonteCarloBench.JGFtidyup() invokes java.lang.System.gc() where { this -> Root : * }
+JGFMonteCarloBench.JGFvalidate() reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.Math.abs(double) where { this -> Root : * }
+JGFTimer.JGFTimer(java.lang.String) invokes JGFTimer.JGFTimer(java.lang.String,java.lang.String)
+JGFTimer.JGFTimer(java.lang.String,java.lang.String) writes Root invokes JGFTimer.reset(), java.lang.Object.Object()
+JGFTimer.JGFTimer(java.lang.String,java.lang.String,int) writes Root invokes JGFTimer.reset(), java.lang.Object.Object()
+JGFTimer.addops(double) writes Root
+JGFTimer.longprint() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+JGFTimer.perf() reads Root
+JGFTimer.print() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.equals(java.lang.Object) where { this -> Root : * }
+JGFTimer.printperf() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.length() where { this -> Root : * }
+JGFTimer.reset() writes Root
+JGFTimer.start() writes Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.currentTimeMillis() where { this -> Root : * }
+JGFTimer.stop() writes Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.currentTimeMillis() where { this -> Root : * }
+MonteCarloPath.MonteCarloPath() reads Root writes P invokes PathId.PathId() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+MonteCarloPath.MonteCarloPath(PathId<P>,int,double,double,int) reads Root writes P invokes PathId.PathId() where { P -> P }, PathId.copyInstanceVariables(PathId<P>) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+MonteCarloPath.MonteCarloPath(ReturnPath<Root>,int) reads Root writes P invokes MonteCarloPath.copyInstanceVariables(ReturnPath<Root>) where { P -> P }, PathId.PathId() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+MonteCarloPath.MonteCarloPath(java.lang.String,int,int,double,int,double,double,int) reads Root writes P invokes PathId.PathId() where { P -> P }, PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+MonteCarloPath.computeFluctuationsGaussian() invokes MonteCarloPath.computeFluctuationsGaussian(long) where { P -> P }
+MonteCarloPath.computeFluctuationsGaussian(long) writes P invokes PathId.get_dTime() where { P -> P }, java.lang.Math.sqrt(double) where { this -> Root : * }, java.util.Random.nextGaussian() where { this -> Root : * }
+MonteCarloPath.computePathValue(double) reads Root writes P invokes java.lang.Math.exp(double) where { this -> Root : * }
+MonteCarloPath.copyInstanceVariables(ReturnPath<Root>) writes P invokes PathId.get_dTime() where { this -> Root : *, P -> Root }, PathId.get_endDate() where { this -> Root : *, P -> Root }, PathId.get_name() where { this -> Root : *, P -> Root }, PathId.get_startDate() where { this -> Root : *, P -> Root }, PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }, ReturnPath.get_expectedReturnRate() where { this -> Root : *, P -> Root }, ReturnPath.get_returnDefinition() where { this -> Root : *, P -> Root }, ReturnPath.get_volatility() where { this -> Root : *, P -> Root }
+MonteCarloPath.getRatePath() pure
+MonteCarloPath.get_expectedReturnRate() reads P
+MonteCarloPath.get_fluctuations() reads P
+MonteCarloPath.get_nTimeSteps() reads P
+MonteCarloPath.get_pathStartValue() reads P
+MonteCarloPath.get_pathValue() reads P
+MonteCarloPath.get_returnDefinition() reads P
+MonteCarloPath.get_volatility() reads P
+MonteCarloPath.set_expectedReturnRate(double) writes P
+MonteCarloPath.set_fluctuations(double[]<P>) writes P
+MonteCarloPath.set_nTimeSteps(int) writes P
+MonteCarloPath.set_pathStartValue(double) writes P
+MonteCarloPath.set_pathValue(double[]<P>) writes P
+MonteCarloPath.set_returnDefinition(int) writes P
+MonteCarloPath.set_volatility(double) writes P
+MonteCarloPath.writeFile(java.lang.String,java.lang.String) reads P, Root invokes java.io.File.canWrite() where { this -> Root : * }, java.io.File.exists() where { this -> Root : * }, java.io.PrintWriter.close() where { this -> Root : * }, java.io.PrintWriter.print(java.lang.String) where { this -> Root : * }, java.io.PrintWriter.println(java.lang.String) where { this -> Root : * }, java.lang.Throwable.toString() where { this -> Root : * }
+PathId.PathId() reads Root invokes Universal.Universal() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+PathId.PathId(java.lang.String) reads Root writes P invokes Universal.Universal() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+PathId.copyInstanceVariables(PathId<P>) writes P invokes PathId.get_dTime() where { this -> P : *, P -> P }, PathId.get_endDate() where { this -> P : *, P -> P }, PathId.get_name() where { this -> P : *, P -> P }, PathId.get_startDate() where { this -> P : *, P -> P }
+PathId.dbgDumpFields() pure
+PathId.get_dTime() reads P
+PathId.get_endDate() reads P
+PathId.get_name() reads P
+PathId.get_startDate() reads P
+PathId.set_dTime(double) writes P
+PathId.set_endDate(int) writes P
+PathId.set_name(java.lang.String) writes P
+PathId.set_startDate(int) writes P
+PriceStock.<>setTask(ToTask<R>) writes P invokes ToTask.get_header() where { this -> R : *, P -> R }, ToTask.get_randomSeed() where { this -> R : *, P -> R }
+PriceStock.PriceStock() reads Root writes P invokes Universal.Universal() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+PriceStock.getResult() reads P
+PriceStock.run() writes P invokes MonteCarloPath.computeFluctuationsGaussian(long) where { this -> P : *, P -> P }, MonteCarloPath.computePathValue(double) where { this -> P : *, P -> P }, MonteCarloPath.get_pathValue() where { this -> P : *, P -> P }, RatePath.getEndPathValue() where { this -> P : *, P -> P }, RatePath.getReturnCompounded() where { this -> P : *, P -> P }, ReturnPath.estimatePath() where { this -> P : *, P -> P }, ReturnPath.get_expectedReturnRate() where { this -> P : *, P -> P }, ReturnPath.get_volatility() where { this -> P : *, P -> P }, ReturnPath.get_volatility2() where { this -> P : *, P -> P }, Universal.errPrintln(java.lang.String) where { P -> P }, java.lang.Throwable.toString() where { this -> Root : * }
+PriceStock.setInitAllTasks(ToInitAllTasks) writes P invokes MonteCarloPath.set_expectedReturnRate(double) where { this -> P : *, P -> P }, MonteCarloPath.set_fluctuations(double[]<P>) where { this -> P : *, P -> P }, MonteCarloPath.set_nTimeSteps(int) where { this -> P : *, P -> P }, MonteCarloPath.set_pathStartValue(double) where { this -> P : *, P -> P }, MonteCarloPath.set_pathValue(double[]<P>) where { this -> P : *, P -> P }, MonteCarloPath.set_returnDefinition(int) where { this -> P : *, P -> P }, MonteCarloPath.set_volatility(double) where { this -> P : *, P -> P }, PathId.set_dTime(double) where { this -> P : *, P -> P }, PathId.set_endDate(int) where { this -> P : *, P -> P }, PathId.set_name(java.lang.String) where { this -> P : *, P -> P }, PathId.set_startDate(int) where { this -> P : *, P -> P }, ToInitAllTasks.get_dTime() where { this -> Root : * }, ToInitAllTasks.get_endDate() where { this -> Root : * }, ToInitAllTasks.get_expectedReturnRate() where { this -> Root : * }, ToInitAllTasks.get_nTimeSteps() where { this -> Root : * }, ToInitAllTasks.get_name() where { this -> Root : * }, ToInitAllTasks.get_pathStartValue() where { this -> Root : * }, ToInitAllTasks.get_returnDefinition() where { this -> Root : * }, ToInitAllTasks.get_startDate() where { this -> Root : * }, ToInitAllTasks.get_volatility() where { this -> Root : * }
+RatePath.<>inc_pathValue2(double[]<R>) reads R writes P
+RatePath.RatePath(MonteCarloPath<P>) writes P invokes MonteCarloPath.get_nTimeSteps() where { this -> P : *, P -> P }, MonteCarloPath.get_pathValue() where { this -> P : *, P -> P }, PathId.PathId() where { P -> P }, PathId.get_dTime() where { this -> P : *, P -> P }, PathId.get_endDate() where { this -> P : *, P -> P }, PathId.get_name() where { this -> P : *, P -> P }, PathId.get_startDate() where { this -> P : *, P -> P }, PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }
+RatePath.RatePath(double[]<P>,java.lang.String,int,int,double) reads Root writes P invokes PathId.PathId() where { P -> P }, PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+RatePath.RatePath(int,java.lang.String,int,int,double) reads Root writes P invokes PathId.PathId() where { P -> P }, PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+RatePath.RatePath(java.lang.String) reads Root invokes PathId.PathId() where { P -> P }, RatePath.readRatesFile(java.lang.String,java.lang.String) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+RatePath.RatePath(java.lang.String,java.lang.String) reads Root invokes PathId.PathId() where { P -> P }, RatePath.readRatesFile(java.lang.String,java.lang.String) where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+RatePath.getEndPathValue() reads P invokes RatePath.getPathValue(int) where { P -> P }
+RatePath.getPathValue(int) reads P
+RatePath.getReturnCompounded() reads Root writes P invokes PathId.copyInstanceVariables(PathId<P>) where { this -> P : *, P -> P }, ReturnPath.estimatePath() where { this -> P : *, P -> P }, java.lang.Math.log(double) where { this -> Root : * }, java.lang.Throwable.toString() where { this -> Root : * }
+RatePath.getReturnNonCompounded() reads Root writes P invokes PathId.copyInstanceVariables(PathId<P>) where { this -> P : *, P -> P }, ReturnPath.estimatePath() where { this -> P : *, P -> P }, java.lang.Throwable.toString() where { this -> Root : * }
+RatePath.get_pathDate() reads P
+RatePath.get_pathValue() reads P
+RatePath.inc_pathValue(double) writes P
+RatePath.inc_pathValue(double[]<P>) writes P
+RatePath.readRatesFile(java.lang.String,java.lang.String) writes P, Root invokes PathId.set_dTime(double) where { P -> P }, PathId.set_endDate(int) where { P -> P }, PathId.set_name(java.lang.String) where { P -> P }, PathId.set_startDate(int) where { P -> P }, Utilities.splitString(java.lang.String,java.lang.String) where { this -> Root : * }, java.io.BufferedReader.readLine() where { this -> Root : * }, java.io.File.canRead() where { this -> Root : * }, java.io.File.getName() where { this -> Root : * }, java.io.File.toString() where { this -> Root : * }, java.lang.Double.doubleValue() where { this -> Root : * }, java.lang.Double.valueOf(java.lang.String) where { this -> Root : * }, java.lang.Integer.parseInt(java.lang.String) where { this -> Root : * }, java.lang.Math.abs(double) where { this -> Root : * }, java.lang.Throwable.toString() where { this -> Root : * }, java.util.Enumeration.hasMoreElements() where { this -> Root : * }, java.util.Enumeration.nextElement() where { this -> Root : * }, java.util.Vector.addElement(E) where { this -> Root : * }, java.util.Vector.elements() where { this -> Root : * }
+RatePath.set_pathDate(int[]) writes P
+RatePath.set_pathValue(double[]<P>) writes P
+ReturnPath.ReturnPath() reads Root invokes PathId.PathId() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+ReturnPath.ReturnPath(double[]<P>,int,int) reads Root writes P invokes PathId.PathId() where { P -> P }, Universal.set_DEBUG(boolean) where { P -> P }, Universal.set_prompt(java.lang.String) where { P -> P }
+ReturnPath.computeExpectedReturnRate() writes P invokes PathId.get_dTime() where { P -> P }
+ReturnPath.computeMean() writes P
+ReturnPath.computeVariance() writes P
+ReturnPath.computeVolatility() writes P invokes PathId.get_dTime() where { P -> P }, java.lang.Math.sqrt(double) where { this -> Root : * }
+ReturnPath.dbgDumpFields() invokes PathId.dbgDumpFields() where { this -> P : *, P -> P } overrides PathId.dbgDumpFields() where { P -> P }
+ReturnPath.estimatePath() invokes ReturnPath.computeExpectedReturnRate() where { P -> P }, ReturnPath.computeMean() where { P -> P }, ReturnPath.computeVariance() where { P -> P }, ReturnPath.computeVolatility() where { P -> P }
+ReturnPath.get_expectedReturnRate() reads P
+ReturnPath.get_mean() reads P
+ReturnPath.get_nPathValue() reads P
+ReturnPath.get_pathValue() reads P
+ReturnPath.get_returnDefinition() reads P
+ReturnPath.get_variance() reads P
+ReturnPath.get_volatility() reads P
+ReturnPath.get_volatility2() reads P
+ReturnPath.set_expectedReturnRate(double) writes P
+ReturnPath.set_mean(double) writes P
+ReturnPath.set_nPathValue(int) writes P
+ReturnPath.set_pathValue(double[]<P>) writes P
+ReturnPath.set_returnDefinition(int) writes P
+ReturnPath.set_variance(double) writes P
+ReturnPath.set_volatility(double) writes P
+ReturnPath.set_volatility2(double) writes P
+ToInitAllTasks.ToInitAllTasks(ReturnPath<Root>,int,double) writes Root invokes PathId.get_dTime() where { this -> Root : *, P -> Root }, PathId.get_endDate() where { this -> Root : *, P -> Root }, PathId.get_name() where { this -> Root : *, P -> Root }, PathId.get_startDate() where { this -> Root : *, P -> Root }, ReturnPath.get_expectedReturnRate() where { this -> Root : *, P -> Root }, ReturnPath.get_returnDefinition() where { this -> Root : *, P -> Root }, ReturnPath.get_volatility() where { this -> Root : *, P -> Root }, java.lang.Object.Object()
+ToInitAllTasks.ToInitAllTasks(java.lang.String,java.lang.String,int,int,double,int,double,double,double) writes Root invokes java.lang.Object.Object()
+ToInitAllTasks.get_dTime() reads Root
+ToInitAllTasks.get_endDate() reads Root
+ToInitAllTasks.get_expectedReturnRate() reads Root
+ToInitAllTasks.get_header() reads Root
+ToInitAllTasks.get_nTimeSteps() reads Root
+ToInitAllTasks.get_name() reads Root
+ToInitAllTasks.get_pathStartValue() reads Root
+ToInitAllTasks.get_returnDefinition() reads Root
+ToInitAllTasks.get_startDate() reads Root
+ToInitAllTasks.get_volatility() reads Root
+ToInitAllTasks.set_dTime(double) writes Root
+ToInitAllTasks.set_endDate(int) writes Root
+ToInitAllTasks.set_expectedReturnRate(double) writes Root
+ToInitAllTasks.set_header(java.lang.String) writes Root
+ToInitAllTasks.set_nTimeSteps(int) writes Root
+ToInitAllTasks.set_name(java.lang.String) writes Root
+ToInitAllTasks.set_pathStartValue(double) writes Root
+ToInitAllTasks.set_returnDefinition(int) writes Root
+ToInitAllTasks.set_startDate(int) writes Root
+ToInitAllTasks.set_volatility(double) writes Root
+ToResult.ToResult(java.lang.String,double,double,double,double,double[]<P>) writes P invokes java.lang.Object.Object()
+ToResult.get_expectedReturnRate() reads P
+ToResult.get_finalStockPrice() reads P
+ToResult.get_header() reads P
+ToResult.get_pathValue() reads P
+ToResult.get_volatility() reads P
+ToResult.get_volatility2() reads P
+ToResult.set_expectedReturnRate(double) writes P
+ToResult.set_finalStockPrice(double) writes P
+ToResult.set_header(java.lang.String) writes P
+ToResult.set_pathValue(double[]<P>) writes P
+ToResult.set_volatility(double) writes P
+ToResult.set_volatility2(double) writes P
+ToResult.toString() reads P overrides java.lang.Object.toString()
+ToTask.ToTask(java.lang.String,long) writes P invokes java.lang.Object.Object()
+ToTask.get_header() reads P
+ToTask.get_randomSeed() reads P
+ToTask.set_header(java.lang.String) writes P
+ToTask.set_randomSeed(long) writes P
+Universal.Universal() writes P invokes java.lang.Object.Object()
+Universal.dbgPrint(java.lang.String) reads P invokes java.io.PrintStream.print(java.lang.String) where { this -> Root : * }
+Universal.dbgPrintln(java.lang.String) reads P invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+Universal.errPrint(java.lang.String) reads P invokes java.io.PrintStream.print(java.lang.String) where { this -> Root : * }
+Universal.errPrintln(java.lang.String) reads P invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+Universal.get_DEBUG() reads P
+Universal.get_UNIVERSAL_DEBUG() reads P
+Universal.get_prompt() reads P
+Universal.set_DEBUG(boolean) writes P
+Universal.set_UNIVERSAL_DEBUG(boolean) writes P
+Universal.set_prompt(java.lang.String) writes P
+Utilities.Utilities() invokes java.lang.Object.Object()
+Utilities.joinString(java.lang.String,java.lang.String[]) invokes Utilities.joinString(java.lang.String,java.lang.String[],int)
+Utilities.joinString(java.lang.String,java.lang.String[],int) reads Root invokes java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * }, java.lang.reflect.Array.getLength(java.lang.Object) where { this -> Root : * }
+Utilities.splitString(java.lang.String,java.lang.String) writes Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.indexOf(java.lang.String,int) where { this -> Root : * }, java.lang.String.substring(int) where { this -> Root : * }, java.lang.String.substring(int,int) where { this -> Root : * }
+Utilities.which(java.lang.String,java.lang.String) reads Root invokes Utilities.splitString(java.lang.String,java.lang.String), java.io.File.isDirectory() where { this -> Root : * }, java.io.File.list() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.equals(java.lang.Object) where { this -> Root : * }, java.lang.String.length() where { this -> Root : * }, java.lang.System.getProperty(java.lang.String) where { this -> Root : * }

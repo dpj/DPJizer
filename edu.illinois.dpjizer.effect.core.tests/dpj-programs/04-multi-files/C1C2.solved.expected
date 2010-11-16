@@ -1,0 +1,4 @@
+multifiles.C1.C1() writes Root : multifiles.C1.r1
+multifiles.C1.m1() writes Root : multifiles.C1.r1, Root : multifiles.C2.r2
+multifiles.C2.C2(int) writes Root : multifiles.C2.r2
+multifiles.C2.m2() writes Root : multifiles.C1.r1, Root : multifiles.C2.r2

@@ -1,0 +1,61 @@
+BarnesHut.BarnesHut(int) writes Root invokes java.lang.Object.Object()
+BarnesHut.BarnesHut(int,int,boolean) writes Root invokes java.lang.Object.Object()
+BarnesHut.doSimulation() writes Root invokes Tree.stepsystem(int,int) where { this -> Root : * }, Util.chatting(java.lang.String,java.lang.Object...) where { this -> Root : * }, java.io.PrintStream.print(java.lang.String) where { this -> Root : * }, java.io.PrintStream.println(double) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.nanoTime() where { this -> Root : * }
+BarnesHut.initSystem(int) reads Root : Node.r writes Root invokes BarnesHut.uniformTestdata(int,Vector<Root>,Vector<Root>), Tree.setRsize() where { this -> Root : * }, Vector.<>DIVVS(Vector<Ru>,double) where { this -> Root : *, R -> Root, Ru -> Root }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> Root : Node.r : *, R -> Root : Node.r, Ru -> Root : Node.r, Rw -> Root }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : [?], Rw -> Root }, Vector.SETVS(double) where { this -> Root : *, R -> Root }
+BarnesHut.main(java.lang.String[]) reads Root invokes BarnesHut.doSimulation() where { this -> Root : * }, BarnesHut.initSystem(int) where { this -> Root : * }, BarnesHut.printUsage(), java.lang.Integer.parseInt(java.lang.String) where { this -> Root : * }
+BarnesHut.printUsage() invokes java.io.PrintStream.print(java.lang.String) where { this -> Root : * }, java.lang.System.exit(int) where { this -> Root : * }
+BarnesHut.uniformTestdata(int,Vector<Root>,Vector<Root>) writes Root : * invokes Util.rand(double) where { this -> Root : * }, Util.xrand(double,double,double) where { this -> Root : * }, Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : *, R -> Root, Ru -> Root, Rw -> Root : * }, Vector.<>DOTVP(Vector<Ru>) where { this -> Root : *, R -> Root : *, Ru -> Root : * }, Vector.<>MULVS(Vector<Ru>,double) where { this -> Root : *, R -> Root : *, Ru -> Root : * }, java.lang.Math.pow(double,double) where { this -> Root : * }, java.lang.Math.sqrt(double) where { this -> Root : * }
+Body.<>subdivp(Node,double,double,HGStruct<R>) overrides Node.<>subdivp(Node,double,double,HGStruct<R>) where { R -> R }
+Body.Body() invokes Node.Node()
+Body.Body(Body<Root : *>) reads Root : * writes R, Root invokes Node.Node(Node), Vector.<>SETV(Vector<Ru>) where { this -> R : *, R -> R, Ru -> Root : * }
+Body.gravsub(Node,HGStruct<R>) reads Root : Node.r writes R invokes Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> R : *, R -> R, Ru -> R, Rw -> R }, Vector.<>DOTVP(Vector<Ru>) where { this -> R : *, R -> R, Ru -> R }, Vector.<>MULVS(Vector<Ru>,double) where { this -> R : *, R -> R, Ru -> R }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> R : *, R -> R, Ru -> Root : Node.r, Rw -> R }, java.lang.Math.sqrt(double) where { this -> Root : * }
+Body.hackcofm() reads Root : Node.r overrides Node.hackcofm()
+Body.hackgrav(HGStruct<R>,double,Node) writes R invokes Body.walksub(Node,double,double,HGStruct<R>,int) where { R -> R }, Vector.<>SETV(Vector<Ru>) where { this -> R : *, R -> R, Ru -> R }
+Body.toString() reads Root : Node.r invokes java.lang.StringBuffer.append(double) where { this -> Root : * }, java.lang.StringBuffer.append(java.lang.Object) where { this -> Root : * }, java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * } overrides java.lang.Object.toString()
+Body.walksub(Node,double,double,HGStruct<R>,int) reads R, Root : Node.r invokes Body.gravsub(Node,HGStruct<R>) where { R -> R }, Body.walksub(Node,double,double,HGStruct<R>,int) where { R -> R }, Node.<>subdivp(Node,double,double,HGStruct<R>) where { this -> Root : *, R -> R }
+Cell.<>subdivp(Node,double,double,HGStruct<R>) reads R, Root : Node.r invokes Vector.<>DOTVP(Vector<Ru>) where { this -> R : *, R -> R, Ru -> R }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> R : *, R -> R, Ru -> Root : Node.r, Rw -> R } overrides Node.<>subdivp(Node,double,double,HGStruct<R>) where { R -> R }
+Cell.Cell() invokes Node.Node()
+Cell.hackcofm() writes Root, Root : Node.r invokes Node.hackcofm() where { this -> Root : * }, Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : *, R -> Root, Ru -> Root, Rw -> Root }, Vector.<>DIVVS(Vector<Ru>,double) where { this -> Root : Node.r : *, R -> Root : Node.r, Ru -> Root }, Vector.<>MULVS(Vector<Ru>,double) where { this -> Root : *, R -> Root, Ru -> Root : Node.r } overrides Node.hackcofm()
+Constants.Constants() invokes java.lang.Object.Object()
+HGStruct.HGStruct() writes R invokes java.lang.Object.Object()
+Node.<>subdivp(Node,double,double,HGStruct<R>) pure
+Node.Node() invokes java.lang.Object.Object()
+Node.Node(Node) writes Root : Node.r invokes Vector.<>SETV(Vector<Ru>) where { this -> Root : Node.r : *, R -> Root : Node.r, Ru -> Root : Node.r }, java.lang.Object.Object()
+Node.hackcofm() pure
+SlaveStart.SlaveStart(int,Tree,double) writes Root invokes java.lang.Object.Object()
+SlaveStart.run() writes Root invokes Tree.stepsystem(int,int) where { this -> Root : * }, Util.chatting(java.lang.String,java.lang.Object...) where { this -> Root : * } overrides java.lang.Runnable.run()
+Tree.Tree() invokes java.lang.Object.Object()
+Tree.computegrav(int,int) reads Root, Root : Node.r writes Root : [?] invokes Body.hackgrav(HGStruct<R>,double,Node) where { this -> Root : [?] : *, R -> Root : [?] }, Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : [?], Rw -> Root : [?] }, Vector.<>MULVS(Vector<Ru>,double) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : [?] }, Vector.<>SETV(Vector<Ru>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : Node.r }, Vector.<>SETV(Vector<Ru>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : [?] }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root : [?], Rw -> Root : [?] }, Vector.CLRV() where { this -> Root : [?] : *, R -> Root : [?] }
+Tree.intcoord(Body<Root : *>) reads Root : Node.r writes Root invokes Vector.<>SETV(Vector<Ru>) where { this -> Root : *, R -> Root, Ru -> Root : Node.r }, java.lang.Math.floor(double) where { this -> Root : * }
+Tree.loadtree(Body<Root : *>,int[],Node,int,int) writes Root : Node.r invokes Tree.intcoord(Body<Root : *>), Tree.loadtree(Body<Root : *>,int[],Node,int,int), Tree.subindex(int[],int)
+Tree.maketree(int) reads Root : Node.r writes Root invokes Node.hackcofm() where { this -> Root : * }, Tree.intcoord(Body<Root : *>), Tree.loadtree(Body<Root : *>,int[],Node,int,int), Tree.reOrderBodies(Node,int), Util.chatting(java.lang.String,java.lang.Object...) where { this -> Root : * }, java.io.PrintStream.print(java.lang.String) where { this -> Root : * }, java.io.PrintStream.printf(java.lang.String,java.lang.Object...) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+Tree.reOrderBodies(Node,int) writes Root, Root : Node.r invokes Tree.reOrderBodies(Node,int)
+Tree.setRsize() reads Root : Node.r writes Root invokes Vector.<>ADDVS(Vector<Ru>,double) where { this -> Root : *, R -> Root, Ru -> Root }, Vector.<>SUBV(Vector<Ru>,Vector<Rw>) where { this -> Root : *, R -> Root, Ru -> Root, Rw -> Root }, Vector.SETVS(double) where { this -> Root : *, R -> Root }
+Tree.stepsystem(int,int) writes Root invokes Tree.computegrav(int,int), Tree.maketree(int), Tree.setRsize(), Tree.vp(int), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.nanoTime() where { this -> Root : * }
+Tree.subindex(int[],int) reads Root
+Tree.vp(int) reads Root, Root : Node.r invokes Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : *, R -> Root, Ru -> Root : [?], Rw -> Root }, Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : Node.r : *, R -> Root : Node.r, Ru -> Root : Node.r, Rw -> Root }, Vector.<>ADDV(Vector<Ru>,Vector<Rw>) where { this -> Root : [?] : *, R -> Root : [?], Ru -> Root, Rw -> Root }, Vector.<>MULVS(Vector<Ru>,double) where { this -> Root : *, R -> Root, Ru -> Root : [?] }, Vector.<>MULVS(Vector<Ru>,double) where { this -> Root : *, R -> Root, Ru -> Root }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.nanoTime() where { this -> Root : * }
+Util.Util() invokes java.lang.Object.Object()
+Util.chatting(java.lang.String,java.lang.Object...) invokes java.util.Formatter.format(java.lang.String,java.lang.Object...) where { this -> Root : * }
+Util.printResults(java.lang.String) pure
+Util.rand(double) invokes java.lang.Math.floor(double) where { this -> Root : * }
+Util.xrand(double,double,double) pure
+Vector.<>ADDV(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.<>ADDVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>CROSSVP(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.<>DISTV(double,Vector<Ru>) reads R, Ru invokes java.lang.Math.sqrt(double) where { this -> Root : * }
+Vector.<>DIVVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>DOTVP(Vector<Ru>) reads R, Ru
+Vector.<>EQUAL(Vector<Rv>) reads R, Rv
+Vector.<>INCADDV(Vector<Ru>) reads Ru writes R
+Vector.<>INCSUBV(Vector<Ru>) reads Ru writes R
+Vector.<>MULVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>SETV(Vector<Ru>) reads Ru writes R
+Vector.<>SUBV(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.ABSV(double) reads R invokes java.lang.Math.sqrt(double) where { this -> Root : * }
+Vector.CLRV() writes R
+Vector.INCDIVVS(double) writes R
+Vector.INCMULVS(double) writes R
+Vector.SETVS(double) writes R
+Vector.UNITV(int) writes R
+Vector.Vector() invokes java.lang.Object.Object()
+Vector.toString() reads R invokes java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * }, java.util.Formatter.format(java.lang.String,java.lang.Object...) where { this -> Root : * } overrides java.lang.Object.toString()

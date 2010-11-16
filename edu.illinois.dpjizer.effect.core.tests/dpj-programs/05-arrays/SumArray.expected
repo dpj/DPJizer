@@ -1,0 +1,3 @@
+arrays.ArraySummer.ArraySummer(int[]<R1 : [i]>#i) invokes java.lang.Object.Object()
+arrays.ArraySummer.main(java.lang.String[]) writes Root : arrays.ArraySummer.r1 : [0], Root : arrays.ArraySummer.r1 : [1], Root : arrays.ArraySummer.r1 : [2], Root : arrays.ArraySummer.r1 : [3], Root : arrays.ArraySummer.r1 : [4], Root : arrays.ArraySummer.r2 invokes arrays.ArraySummer.sumArray() where { this -> Root : arrays.ArraySummer.r1 : *, R1 -> Root : arrays.ArraySummer.r1, R2 -> Root : arrays.ArraySummer.r2 }, java.io.PrintStream.println(int) where { this -> Root : * }
+arrays.ArraySummer.sumArray() reads R1 : [?], R2

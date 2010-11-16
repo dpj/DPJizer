@@ -1,0 +1,3 @@
+flatregion.twofield.TwoFields.TwoFields() pure
+flatregion.twofield.TwoFields.m1(java.util.Date) reads Root : flatregion.twofield.TwoFields.r2 writes Root : flatregion.twofield.TwoFields.r1
+flatregion.twofield.TwoFields.m2(java.util.Date) reads Root : flatregion.twofield.TwoFields.r2 writes Root : flatregion.twofield.TwoFields.r1

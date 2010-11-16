@@ -1,0 +1,3 @@
+oopsla2009.Tree.Tree() pure
+oopsla2009.Tree.updateNode() reads Root : * : oopsla2009.Tree.Y, Root : oopsla2009.Tree.Links writes P : oopsla2009.Tree.X
+oopsla2009.Tree.updateTree() reads Root : * : oopsla2009.Tree.Y, Root : oopsla2009.Tree.Links writes P : oopsla2009.Tree.L : *, P : oopsla2009.Tree.R : *, P : oopsla2009.Tree.X

@@ -1,0 +1,2 @@
+C.C() writes Root : C.R1 invokes java.lang.Object.Object()
+C.m() reads Root : C.R1 invokes C.m() where { this -> Root : * }

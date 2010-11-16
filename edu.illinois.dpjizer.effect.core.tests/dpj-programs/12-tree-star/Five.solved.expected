@@ -1,0 +1,3 @@
+five.C.C() pure
+five.C.m1() writes X
+five.C.m2() writes X

@@ -1,0 +1,4 @@
+multifiles.C1.C1() writes Root : multifiles.C1.r1 invokes java.lang.Object.Object()
+multifiles.C1.m1() writes Root : multifiles.C1.r1 invokes multifiles.C2.m2() where { this -> Root : * }
+multifiles.C2.C2(int) writes Root : multifiles.C2.r2 invokes java.lang.Object.Object()
+multifiles.C2.m2() writes Root : multifiles.C2.r2 invokes multifiles.C1.m1() where { this -> Root : * }

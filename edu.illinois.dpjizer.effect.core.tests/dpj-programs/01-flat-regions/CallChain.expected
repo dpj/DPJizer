@@ -1,0 +1,6 @@
+flatregion.callchain.C1.C1() invokes java.lang.Object.Object()
+flatregion.callchain.C1.m1() writes Root : flatregion.callchain.C1.r1, Root : flatregion.callchain.C1.r3
+flatregion.callchain.C2.C2() invokes java.lang.Object.Object()
+flatregion.callchain.C2.m2() writes Root : flatregion.callchain.C2.r2
+flatregion.callchain.C3.C3() invokes java.lang.Object.Object()
+flatregion.callchain.C3.m3() invokes flatregion.callchain.C1.m1() where { this -> Root : * }, flatregion.callchain.C2.m2() where { this -> Root : * }

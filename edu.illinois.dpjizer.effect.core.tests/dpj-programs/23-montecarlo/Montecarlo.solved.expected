@@ -1,0 +1,197 @@
+AppDemo.AppDemo(java.lang.String,java.lang.String,int,int) writes Root
+AppDemo.get_dataDirname() reads Root
+AppDemo.get_dataFilename() reads Root
+AppDemo.get_nRunsMC() reads Root
+AppDemo.get_nTimeStepsMC() reads Root
+AppDemo.get_results() reads Root : AppDemo.resultR
+AppDemo.get_tasks() reads Root : AppDemo.taskR
+AppDemo.initParallel() writes Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?]
+AppDemo.initTasks(int) writes Root : AppDemo.taskR, Root : AppDemo.taskR : [?]
+AppDemo.processParallel() reads Root : AppDemo.resultR, Root : AppDemo.resultR : [?] writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?]
+AppDemo.processResults() reads Root : AppDemo.resultR, Root : AppDemo.resultR : [?] writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?]
+AppDemo.runParallel() reads Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?] writes Root : AppDemo.resultR, Root : AppDemo.resultR : [?], Root : [?]
+AppDemo.set_dataDirname(java.lang.String) writes Root
+AppDemo.set_dataFilename(java.lang.String) writes Root
+AppDemo.set_nRunsMC(int) writes Root
+AppDemo.set_nTimeStepsMC(int) writes Root
+AppDemo.set_results(ToResult<Root : [i]>[]<Root : AppDemo.resultR : [i]>#i) writes Root : AppDemo.resultR
+AppDemo.set_tasks(ToTask<Root : [i]>[]<Root : AppDemo.taskR : [i]>#i) writes Root : AppDemo.taskR
+AppDemo.sumReduction(int,double,double) reads Root, Root : AppDemo.reductionR : [index] writes Root : AppDemo.reductionR
+CallAppDemo.CallAppDemo() pure
+CallAppDemo.initialise() writes Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?]
+CallAppDemo.presults() reads Root : AppDemo.resultR, Root : AppDemo.resultR : [?] writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?]
+CallAppDemo.runiters() reads Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?] writes Root : AppDemo.resultR, Root : AppDemo.resultR : [?], Root : [?]
+DemoException.DemoException() reads Root
+DemoException.DemoException(int) reads Root
+DemoException.DemoException(java.lang.String) reads Root
+JGFInstrumentor.JGFInstrumentor() pure
+JGFInstrumentor.addOpsToTimer(java.lang.String,double) writes Root
+JGFInstrumentor.addTimer(java.lang.String) reads Root
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String) reads Root
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) reads Root
+JGFInstrumentor.printHeader(int,int) pure
+JGFInstrumentor.printTimer(java.lang.String) reads Root
+JGFInstrumentor.printperfTimer(java.lang.String) reads Root
+JGFInstrumentor.readTimer(java.lang.String) reads Root
+JGFInstrumentor.resetTimer(java.lang.String) writes Root
+JGFInstrumentor.retrieveData(java.lang.String,java.lang.Object) reads Root
+JGFInstrumentor.startTimer(java.lang.String) writes Root
+JGFInstrumentor.stopTimer(java.lang.String) writes Root
+JGFInstrumentor.storeData(java.lang.String,java.lang.Object) reads Root
+JGFMonteCarloBench.JGFMonteCarloBench() pure
+JGFMonteCarloBench.JGFapplication() reads Root : AppDemo.taskR, Root : AppDemo.taskR : [?] writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?], Root : AppDemo.resultR, Root : AppDemo.resultR : [?], Root : [?]
+JGFMonteCarloBench.JGFinitialise() writes Root, Root : AppDemo.taskR, Root : AppDemo.taskR : [?]
+JGFMonteCarloBench.JGFrun(int) writes Root, Root : AppDemo.reductionR, Root : AppDemo.reductionR : [?], Root : AppDemo.resultR, Root : AppDemo.resultR : [?], Root : AppDemo.taskR, Root : AppDemo.taskR : [?], Root : [?]
+JGFMonteCarloBench.JGFsetsize(int) writes Root
+JGFMonteCarloBench.JGFtidyup() pure
+JGFMonteCarloBench.JGFvalidate() reads Root
+JGFTimer.JGFTimer(java.lang.String) writes Root
+JGFTimer.JGFTimer(java.lang.String,java.lang.String) writes Root
+JGFTimer.JGFTimer(java.lang.String,java.lang.String,int) writes Root
+JGFTimer.addops(double) writes Root
+JGFTimer.longprint() reads Root
+JGFTimer.perf() reads Root
+JGFTimer.print() reads Root
+JGFTimer.printperf() reads Root
+JGFTimer.reset() writes Root
+JGFTimer.start() writes Root
+JGFTimer.stop() writes Root
+MonteCarloPath.MonteCarloPath() reads Root writes P
+MonteCarloPath.MonteCarloPath(PathId<P>,int,double,double,int) reads Root writes P
+MonteCarloPath.MonteCarloPath(ReturnPath<Root>,int) reads Root writes P
+MonteCarloPath.MonteCarloPath(java.lang.String,int,int,double,int,double,double,int) reads Root writes P
+MonteCarloPath.computeFluctuationsGaussian() writes P
+MonteCarloPath.computeFluctuationsGaussian(long) writes P
+MonteCarloPath.computePathValue(double) reads Root writes P
+MonteCarloPath.copyInstanceVariables(ReturnPath<Root>) reads Root writes P
+MonteCarloPath.getRatePath() pure
+MonteCarloPath.get_expectedReturnRate() reads P
+MonteCarloPath.get_fluctuations() reads P
+MonteCarloPath.get_nTimeSteps() reads P
+MonteCarloPath.get_pathStartValue() reads P
+MonteCarloPath.get_pathValue() reads P
+MonteCarloPath.get_returnDefinition() reads P
+MonteCarloPath.get_volatility() reads P
+MonteCarloPath.set_expectedReturnRate(double) writes P
+MonteCarloPath.set_fluctuations(double[]<P>) writes P
+MonteCarloPath.set_nTimeSteps(int) writes P
+MonteCarloPath.set_pathStartValue(double) writes P
+MonteCarloPath.set_pathValue(double[]<P>) writes P
+MonteCarloPath.set_returnDefinition(int) writes P
+MonteCarloPath.set_volatility(double) writes P
+MonteCarloPath.writeFile(java.lang.String,java.lang.String) reads P, Root
+PathId.PathId() reads Root writes P
+PathId.PathId(java.lang.String) reads Root writes P
+PathId.copyInstanceVariables(PathId<P>) writes P
+PathId.dbgDumpFields() pure
+PathId.get_dTime() reads P
+PathId.get_endDate() reads P
+PathId.get_name() reads P
+PathId.get_startDate() reads P
+PathId.set_dTime(double) writes P
+PathId.set_endDate(int) writes P
+PathId.set_name(java.lang.String) writes P
+PathId.set_startDate(int) writes P
+PriceStock.<>setTask(ToTask<R>) reads R writes P
+PriceStock.PriceStock() reads Root writes P
+PriceStock.getResult() reads P
+PriceStock.run() reads Root writes P
+PriceStock.setInitAllTasks(ToInitAllTasks) reads Root writes P
+RatePath.<>inc_pathValue2(double[]<R>) reads R writes P
+RatePath.RatePath(MonteCarloPath<P>) reads Root writes P
+RatePath.RatePath(double[]<P>,java.lang.String,int,int,double) reads Root writes P
+RatePath.RatePath(int,java.lang.String,int,int,double) reads Root writes P
+RatePath.RatePath(java.lang.String) writes P, Root
+RatePath.RatePath(java.lang.String,java.lang.String) writes P, Root
+RatePath.getEndPathValue() reads P
+RatePath.getPathValue(int) reads P
+RatePath.getReturnCompounded() reads Root writes P
+RatePath.getReturnNonCompounded() reads Root writes P
+RatePath.get_pathDate() reads P
+RatePath.get_pathValue() reads P
+RatePath.inc_pathValue(double) writes P
+RatePath.inc_pathValue(double[]<P>) writes P
+RatePath.readRatesFile(java.lang.String,java.lang.String) writes P, Root
+RatePath.set_pathDate(int[]) writes P
+RatePath.set_pathValue(double[]<P>) writes P
+ReturnPath.ReturnPath() reads Root writes P
+ReturnPath.ReturnPath(double[]<P>,int,int) reads Root writes P
+ReturnPath.computeExpectedReturnRate() writes P
+ReturnPath.computeMean() writes P
+ReturnPath.computeVariance() writes P
+ReturnPath.computeVolatility() writes P
+ReturnPath.dbgDumpFields() pure
+ReturnPath.estimatePath() writes P
+ReturnPath.get_expectedReturnRate() reads P
+ReturnPath.get_mean() reads P
+ReturnPath.get_nPathValue() reads P
+ReturnPath.get_pathValue() reads P
+ReturnPath.get_returnDefinition() reads P
+ReturnPath.get_variance() reads P
+ReturnPath.get_volatility() reads P
+ReturnPath.get_volatility2() reads P
+ReturnPath.set_expectedReturnRate(double) writes P
+ReturnPath.set_mean(double) writes P
+ReturnPath.set_nPathValue(int) writes P
+ReturnPath.set_pathValue(double[]<P>) writes P
+ReturnPath.set_returnDefinition(int) writes P
+ReturnPath.set_variance(double) writes P
+ReturnPath.set_volatility(double) writes P
+ReturnPath.set_volatility2(double) writes P
+ToInitAllTasks.ToInitAllTasks(ReturnPath<Root>,int,double) writes Root
+ToInitAllTasks.ToInitAllTasks(java.lang.String,java.lang.String,int,int,double,int,double,double,double) writes Root
+ToInitAllTasks.get_dTime() reads Root
+ToInitAllTasks.get_endDate() reads Root
+ToInitAllTasks.get_expectedReturnRate() reads Root
+ToInitAllTasks.get_header() reads Root
+ToInitAllTasks.get_nTimeSteps() reads Root
+ToInitAllTasks.get_name() reads Root
+ToInitAllTasks.get_pathStartValue() reads Root
+ToInitAllTasks.get_returnDefinition() reads Root
+ToInitAllTasks.get_startDate() reads Root
+ToInitAllTasks.get_volatility() reads Root
+ToInitAllTasks.set_dTime(double) writes Root
+ToInitAllTasks.set_endDate(int) writes Root
+ToInitAllTasks.set_expectedReturnRate(double) writes Root
+ToInitAllTasks.set_header(java.lang.String) writes Root
+ToInitAllTasks.set_nTimeSteps(int) writes Root
+ToInitAllTasks.set_name(java.lang.String) writes Root
+ToInitAllTasks.set_pathStartValue(double) writes Root
+ToInitAllTasks.set_returnDefinition(int) writes Root
+ToInitAllTasks.set_startDate(int) writes Root
+ToInitAllTasks.set_volatility(double) writes Root
+ToResult.ToResult(java.lang.String,double,double,double,double,double[]<P>) writes P
+ToResult.get_expectedReturnRate() reads P
+ToResult.get_finalStockPrice() reads P
+ToResult.get_header() reads P
+ToResult.get_pathValue() reads P
+ToResult.get_volatility() reads P
+ToResult.get_volatility2() reads P
+ToResult.set_expectedReturnRate(double) writes P
+ToResult.set_finalStockPrice(double) writes P
+ToResult.set_header(java.lang.String) writes P
+ToResult.set_pathValue(double[]<P>) writes P
+ToResult.set_volatility(double) writes P
+ToResult.set_volatility2(double) writes P
+ToResult.toString() reads P
+ToTask.ToTask(java.lang.String,long) writes P
+ToTask.get_header() reads P
+ToTask.get_randomSeed() reads P
+ToTask.set_header(java.lang.String) writes P
+ToTask.set_randomSeed(long) writes P
+Universal.Universal() writes P
+Universal.dbgPrint(java.lang.String) reads P
+Universal.dbgPrintln(java.lang.String) reads P
+Universal.errPrint(java.lang.String) reads P
+Universal.errPrintln(java.lang.String) reads P
+Universal.get_DEBUG() reads P
+Universal.get_UNIVERSAL_DEBUG() reads P
+Universal.get_prompt() reads P
+Universal.set_DEBUG(boolean) writes P
+Universal.set_UNIVERSAL_DEBUG(boolean) writes P
+Universal.set_prompt(java.lang.String) writes P
+Utilities.Utilities() pure
+Utilities.joinString(java.lang.String,java.lang.String[]) reads Root
+Utilities.joinString(java.lang.String,java.lang.String[],int) reads Root
+Utilities.splitString(java.lang.String,java.lang.String) writes Root
+Utilities.which(java.lang.String,java.lang.String) writes Root

@@ -1,0 +1,4 @@
+six.C.C() invokes java.lang.Object.Object()
+six.C.m1() writes X invokes six.C.m2() where { this -> Root : six.C.Q : *, X -> Root : six.C.Q }
+six.C.m2() writes X invokes six.C.m3() where { this -> X : six.C.L : *, X -> X : six.C.L }
+six.C.m3() writes X invokes six.C.m1() where { X -> X }

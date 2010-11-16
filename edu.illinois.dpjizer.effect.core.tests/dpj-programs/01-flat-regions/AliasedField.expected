@@ -1,0 +1,3 @@
+flatregion.aliased.AliasedField.AliasedField() invokes java.lang.Object.Object()
+flatregion.aliased.AliasedField.m() reads Root : flatregion.aliased.AliasedField.r1 writes Root
+flatregion.aliased.MyPair.MyPair() invokes java.lang.Object.Object()

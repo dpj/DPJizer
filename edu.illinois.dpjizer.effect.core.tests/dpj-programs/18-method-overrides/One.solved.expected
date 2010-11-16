@@ -1,0 +1,4 @@
+methodoverrides.A.A() pure
+methodoverrides.A.m1() writes R1
+methodoverrides.B.B() pure
+methodoverrides.B.m1() writes R3

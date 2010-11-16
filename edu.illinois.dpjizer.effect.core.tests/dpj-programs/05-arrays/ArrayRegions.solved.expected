@@ -1,0 +1,6 @@
+C1.C1() pure
+C1.m1(C3<R1>) writes R1
+C2.C2() pure
+C2.m2() reads Root writes Root : [0]
+C3.C3() pure
+C3.m3() writes R3

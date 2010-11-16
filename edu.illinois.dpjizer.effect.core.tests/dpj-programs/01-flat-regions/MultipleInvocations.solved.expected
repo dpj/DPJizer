@@ -1,0 +1,4 @@
+multipleinvocations.C.C() pure
+multipleinvocations.C.m1() writes Root : multipleinvocations.C.r1
+multipleinvocations.C.m2() writes Root : multipleinvocations.C.r2
+multipleinvocations.C.m3() writes Root : multipleinvocations.C.r1, Root : multipleinvocations.C.r2

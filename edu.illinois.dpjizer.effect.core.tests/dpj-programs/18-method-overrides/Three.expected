@@ -1,0 +1,4 @@
+A.A() invokes java.lang.Object.Object()
+A.m() pure
+B.B() invokes A.A() where { R1 -> R2 }
+B.m() writes R2 overrides A.m() where { R1 -> R2 }

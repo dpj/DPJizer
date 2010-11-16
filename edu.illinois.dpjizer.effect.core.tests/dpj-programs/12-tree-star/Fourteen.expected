@@ -1,0 +1,4 @@
+C1.C1() invokes java.lang.Object.Object()
+C1.m1() writes P1 invokes C1.m1() where { this -> P1 : C1.R3 : *, P1 -> P1 : C1.R3 }, C2.m2() where { this -> P1 : C1.R1 : *, P2 -> P1 : C1.R1 }
+C2.C2() invokes java.lang.Object.Object()
+C2.m2() writes P2 invokes C1.m1() where { this -> P2 : C2.R2 : *, P1 -> P2 : C2.R2 }

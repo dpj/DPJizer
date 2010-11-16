@@ -1,0 +1,4 @@
+six.C.C() pure
+six.C.m1() writes Root : six.C.Q, Root : six.C.Q : six.C.L, X
+six.C.m2() writes Root : six.C.Q, Root : six.C.Q : six.C.L, X, X : six.C.L
+six.C.m3() writes Root : six.C.Q, Root : six.C.Q : six.C.L, X

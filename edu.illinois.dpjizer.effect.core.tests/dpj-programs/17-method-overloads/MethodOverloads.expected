@@ -1,0 +1,6 @@
+methodregionparams.C1.C1() invokes java.lang.Object.Object()
+methodregionparams.C1.C1(methodregionparams.C1<R1>) writes R1 invokes java.lang.Object.Object()
+methodregionparams.C1.m1() writes R1
+methodregionparams.C2.<>m2(methodregionparams.C1<R2>,int) writes R2
+methodregionparams.C2.<>m2(methodregionparams.C1<R3>) invokes methodregionparams.C2.<>m2(methodregionparams.C1<R2>,int) where { R2 -> R3 }
+methodregionparams.C2.C2() invokes java.lang.Object.Object()

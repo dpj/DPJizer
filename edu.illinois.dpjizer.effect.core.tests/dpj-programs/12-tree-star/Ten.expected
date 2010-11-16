@@ -1,0 +1,4 @@
+ten.C.C() invokes java.lang.Object.Object()
+ten.C.m1() reads X invokes ten.C.m2() where { X -> X }
+ten.C.m2() reads X : ten.C.L invokes ten.C.m1() where { this -> X : ten.C.L : *, X -> X : ten.C.L }, ten.C.m3() where { X -> X }
+ten.C.m3() pure

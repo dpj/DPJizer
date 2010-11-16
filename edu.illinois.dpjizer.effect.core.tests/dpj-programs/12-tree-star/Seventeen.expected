@@ -1,0 +1,11 @@
+DPJArrayInt.DPJArrayInt() invokes java.lang.Object.Object()
+DPJArrayInt.get(int) reads R5
+DPJArrayInt.put(int,int) writes R5
+DPJArrayInt.swap(int,int) writes R5
+DPJPartitionInt.DPJPartitionInt() invokes java.lang.Object.Object()
+DPJPartitionInt.DPJPartitionInt(DPJArrayInt<R4>,int) writes this : [0], this : [1] invokes java.lang.Object.Object()
+DPJPartitionInt.get(int) reads this : [idx]
+Partition.<>partition(DPJArrayInt<R2>) invokes DPJPartitionInt.get(int) where { this -> R2 : *, R4 -> R2 }, Partition.<>partitionHelperRight(DPJArrayInt<R3>,int) where { R3 -> R2 : * : [1] }, Partition.<>sequentialPartition(DPJArrayInt<R1>) where { R1 -> R2 }
+Partition.<>partitionHelperRight(DPJArrayInt<R3>,int) invokes DPJArrayInt.get(int) where { this -> R3 : *, R5 -> R3 }, DPJArrayInt.put(int,int) where { this -> R3 : *, R5 -> R3 }, Partition.<>partition(DPJArrayInt<R2>) where { R2 -> R3 }
+Partition.<>sequentialPartition(DPJArrayInt<R1>) invokes DPJArrayInt.swap(int,int) where { this -> R1 : *, R5 -> R1 }
+Partition.Partition() invokes java.lang.Object.Object()

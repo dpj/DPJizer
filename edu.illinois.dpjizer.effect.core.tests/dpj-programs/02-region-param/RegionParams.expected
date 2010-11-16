@@ -1,0 +1,4 @@
+regionparam.regionparams.C1.C1() invokes java.lang.Object.Object()
+regionparam.regionparams.C1.m() writes R1 invokes regionparam.regionparams.C2.m() where { this -> Root : regionparam.regionparams.C1.r1 : *, R2 -> Root : regionparam.regionparams.C1.r1 }
+regionparam.regionparams.C2.C2() invokes java.lang.Object.Object()
+regionparam.regionparams.C2.m() writes R2 invokes regionparam.regionparams.C1.m() where { this -> Root : regionparam.regionparams.C2.r2 : *, R1 -> Root : regionparam.regionparams.C2.r2 }

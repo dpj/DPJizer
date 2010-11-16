@@ -1,0 +1,4 @@
+A.A() invokes java.lang.Object.Object()
+A.m() writes Root : A.Rx
+B.B() invokes A.A()
+B.m() writes Root : A.Ry overrides A.m()

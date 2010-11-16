@@ -1,0 +1,4 @@
+seven.C.C() invokes java.lang.Object.Object()
+seven.C.m1() writes X invokes seven.C.m2() where { this -> X : *, X -> X }
+seven.C.m2() writes X invokes seven.C.m3() where { this -> X : seven.C.L : *, X -> X : seven.C.L }
+seven.C.m3() writes X invokes seven.C.m1() where { this -> Root : seven.C.Q : *, X -> Root : seven.C.Q }

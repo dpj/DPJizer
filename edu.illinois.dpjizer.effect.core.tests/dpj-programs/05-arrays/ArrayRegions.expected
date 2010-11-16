@@ -1,0 +1,6 @@
+C1.C1() invokes java.lang.Object.Object()
+C1.m1(C3<R1>) invokes C3.m3() where { this -> R1 : *, R3 -> R1 }
+C2.C2() invokes java.lang.Object.Object()
+C2.m2() reads Root invokes C1.m1(C3<R1>) where { this -> Root : [0] : *, R1 -> Root : [0] }
+C3.C3() invokes java.lang.Object.Object()
+C3.m3() writes R3

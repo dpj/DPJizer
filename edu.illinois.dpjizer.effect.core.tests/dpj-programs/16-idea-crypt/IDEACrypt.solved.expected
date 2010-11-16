@@ -1,0 +1,64 @@
+DPJRuntime.DPJArrayByte.DPJArrayByte(byte[]<R>) pure
+DPJRuntime.DPJArrayByte.DPJArrayByte(byte[]<R>,int,int) pure
+DPJRuntime.DPJArrayByte.DPJArrayByte(int) pure
+DPJRuntime.DPJArrayByte.get(int) reads R
+DPJRuntime.DPJArrayByte.put(int,byte) writes R
+DPJRuntime.DPJArrayByte.subarray(int,int) pure
+DPJRuntime.DPJArrayByte.swap(int,int) writes R
+DPJRuntime.DPJArrayByte.toArray() pure
+DPJRuntime.DPJArrayByte.toString() reads R
+DPJRuntime.DPJPartitionByte.<>DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int[]<RA>) reads RA writes this : [?]
+DPJRuntime.DPJPartitionByte.<>stridedPartition(DPJRuntime.DPJArrayByte<R>,int) pure
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int,boolean) writes this : [0], this : [1]
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int,double) pure
+DPJRuntime.DPJPartitionByte.get(int) reads this : [idx]
+IDEATest.<>run1(int,int,DPJRuntime.DPJArrayByte<R1>,DPJRuntime.DPJArrayByte<R2>,int[]<R3>) reads R1, R3 writes R2
+IDEATest.Do() reads Root : IDEATest.R1 : *, Root : IDEATest.R4, Root : IDEATest.R5 writes Root, Root : IDEATest.R2 : *, Root : IDEATest.R3 : *
+IDEATest.IDEATest() pure
+IDEATest.buildTestData() writes Root, Root : IDEATest.R1, Root : IDEATest.R4, Root : IDEATest.R5
+IDEATest.calcDecryptKey() reads Root, Root : IDEATest.R4 writes Root : IDEATest.R5
+IDEATest.calcEncryptKey() reads Root writes Root : IDEATest.R4
+IDEATest.freeTestData() writes Root
+IDEATest.inv(int) pure
+IDEATest.mul(int,int) pure
+JGFCryptBench.JGFCryptBench(int) writes Root
+JGFCryptBench.JGFinitialise() writes Root, Root : IDEATest.R1, Root : IDEATest.R4, Root : IDEATest.R5
+JGFCryptBench.JGFkernel() reads Root : IDEATest.R1 : *, Root : IDEATest.R4, Root : IDEATest.R5 writes Root, Root : IDEATest.R2 : *, Root : IDEATest.R3 : *
+JGFCryptBench.JGFrun(int) reads Root : IDEATest.R1 : * writes Root, Root : IDEATest.R1, Root : IDEATest.R2 : *, Root : IDEATest.R3 : *, Root : IDEATest.R4, Root : IDEATest.R5
+JGFCryptBench.JGFsetsize(int) writes Root
+JGFCryptBench.JGFtidyup() writes Root
+JGFCryptBench.JGFvalidate() reads Root, Root : IDEATest.R1, Root : IDEATest.R2, Root : IDEATest.R3
+JGFInstrumentor.JGFInstrumentor() pure
+JGFInstrumentor.addOpsToTimer(java.lang.String,double) writes Root
+JGFInstrumentor.addTimeToTimer(java.lang.String,double) writes Root
+JGFInstrumentor.addTimer(java.lang.String) reads Root
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String) reads Root
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) reads Root
+JGFInstrumentor.printHeader(int,int,int) pure
+JGFInstrumentor.printTimer(java.lang.String) reads Root
+JGFInstrumentor.printperfTimer(java.lang.String) reads Root
+JGFInstrumentor.readTimer(java.lang.String) reads Root
+JGFInstrumentor.resetTimer(java.lang.String) writes Root
+JGFInstrumentor.retrieveData(java.lang.String,java.lang.Object) reads Root
+JGFInstrumentor.startTimer(java.lang.String) writes Root
+JGFInstrumentor.stopTimer(java.lang.String) writes Root
+JGFInstrumentor.storeData(java.lang.String,java.lang.Object) reads Root
+JGFSection2.JGFinitialise() writes Root, Root : IDEATest.R1, Root : IDEATest.R4, Root : IDEATest.R5
+JGFSection2.JGFkernel() reads Root : IDEATest.R1 : *, Root : IDEATest.R4, Root : IDEATest.R5 writes Root, Root : IDEATest.R2 : *, Root : IDEATest.R3 : *
+JGFSection2.JGFrun(int) reads Root : IDEATest.R1 : * writes Root, Root : IDEATest.R1, Root : IDEATest.R2 : *, Root : IDEATest.R3 : *, Root : IDEATest.R4, Root : IDEATest.R5
+JGFSection2.JGFsetsize(int) writes Root
+JGFSection2.JGFtidyup() writes Root
+JGFSection2.JGFvalidate() reads Root, Root : IDEATest.R1, Root : IDEATest.R2, Root : IDEATest.R3
+JGFTimer.JGFTimer(java.lang.String) writes Root
+JGFTimer.JGFTimer(java.lang.String,java.lang.String) writes Root
+JGFTimer.JGFTimer(java.lang.String,java.lang.String,int) writes Root
+JGFTimer.addops(double) writes Root
+JGFTimer.addtime(double) writes Root
+JGFTimer.longprint() reads Root
+JGFTimer.perf() reads Root
+JGFTimer.print() reads Root
+JGFTimer.printperf() reads Root
+JGFTimer.reset() writes Root
+JGFTimer.start() writes Root
+JGFTimer.stop() writes Root

@@ -1,0 +1,2 @@
+CT.<>intersect(CT<R>) reads P : CT.L invokes CT.<>intersect(CT<R>) where { this -> R : *, P -> R, R -> P : CT.L }
+CT.CT() invokes java.lang.Object.Object()

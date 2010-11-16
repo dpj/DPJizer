@@ -1,0 +1,3 @@
+flatregion.usebefore.C.C() pure
+flatregion.usebefore.C.m() reads Root : flatregion.usebefore.C.r1 writes Root
+flatregion.usebefore.MyPair.MyPair() pure

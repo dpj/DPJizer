@@ -1,0 +1,2 @@
+directrecursion.C.C() invokes java.lang.Object.Object()
+directrecursion.C.m() writes Root : directrecursion.C.r invokes directrecursion.C.m()

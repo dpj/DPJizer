@@ -1,0 +1,64 @@
+DPJRuntime.DPJArrayByte.DPJArrayByte(byte[]<R>) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayByte.DPJArrayByte(byte[]<R>,int,int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayByte.DPJArrayByte(int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayByte.get(int) reads R
+DPJRuntime.DPJArrayByte.put(int,byte) writes R
+DPJRuntime.DPJArrayByte.subarray(int,int) pure
+DPJRuntime.DPJArrayByte.swap(int,int) writes R
+DPJRuntime.DPJArrayByte.toArray() pure
+DPJRuntime.DPJArrayByte.toString() invokes DPJRuntime.DPJArrayByte.get(int) where { R -> R }, java.lang.StringBuffer.append(int) where { this -> Root : * }, java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * } overrides java.lang.Object.toString()
+DPJRuntime.DPJPartitionByte.<>DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int[]<RA>) reads RA writes this : [?] invokes DPJRuntime.DPJArrayByte.subarray(int,int) where { this -> R : *, R -> R }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionByte.<>stridedPartition(DPJRuntime.DPJArrayByte<R>,int) pure
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int) writes this : [0], this : [1] invokes DPJRuntime.DPJArrayByte.subarray(int,int) where { this -> R : *, R -> R }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int,boolean) writes this : [0], this : [1] invokes DPJRuntime.DPJArrayByte.subarray(int,int) where { this -> R : *, R -> R }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionByte.DPJPartitionByte(DPJRuntime.DPJArrayByte<R>,int,double) invokes java.lang.Object.Object()
+DPJRuntime.DPJPartitionByte.get(int) reads this : [idx] invokes DPJRuntime.DPJArrayByte.subarray(int,int) where { this -> R : *, R -> R }
+IDEATest.<>run1(int,int,DPJRuntime.DPJArrayByte<R1>,DPJRuntime.DPJArrayByte<R2>,int[]<R3>) reads R3 invokes DPJRuntime.DPJArrayByte.get(int) where { this -> R1 : *, R -> R1 }, DPJRuntime.DPJArrayByte.put(int,byte) where { this -> R2 : *, R -> R2 }
+IDEATest.Do() reads Root invokes DPJRuntime.DPJPartitionByte.<>stridedPartition(DPJRuntime.DPJArrayByte<R>,int) where { this -> Root : *, R -> Root, R -> Root : IDEATest.R1 }, DPJRuntime.DPJPartitionByte.<>stridedPartition(DPJRuntime.DPJArrayByte<R>,int) where { this -> Root : *, R -> Root, R -> Root : IDEATest.R2 }, DPJRuntime.DPJPartitionByte.<>stridedPartition(DPJRuntime.DPJArrayByte<R>,int) where { this -> Root : *, R -> Root, R -> Root : IDEATest.R3 }, DPJRuntime.DPJPartitionByte.get(int) where { this -> Root : IDEATest.R1 : *, R -> Root : IDEATest.R1 }, DPJRuntime.DPJPartitionByte.get(int) where { this -> Root : IDEATest.R2 : *, R -> Root : IDEATest.R2 }, DPJRuntime.DPJPartitionByte.get(int) where { this -> Root : IDEATest.R3 : *, R -> Root : IDEATest.R3 }, IDEATest.<>run1(int,int,DPJRuntime.DPJArrayByte<R1>,DPJRuntime.DPJArrayByte<R2>,int[]<R3>) where { R1 -> Root : IDEATest.R1 : *, R2 -> Root : IDEATest.R2 : *, R3 -> Root : IDEATest.R4 }, IDEATest.<>run1(int,int,DPJRuntime.DPJArrayByte<R1>,DPJRuntime.DPJArrayByte<R2>,int[]<R3>) where { R1 -> Root : IDEATest.R2 : *, R2 -> Root : IDEATest.R3 : *, R3 -> Root : IDEATest.R5 }, JGFInstrumentor.startTimer(java.lang.String) where { this -> Root : * }, JGFInstrumentor.stopTimer(java.lang.String) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+IDEATest.IDEATest() invokes java.lang.Object.Object()
+IDEATest.buildTestData() writes Root invokes DPJRuntime.DPJArrayByte.put(int,byte) where { this -> Root : IDEATest.R1 : *, R -> Root : IDEATest.R1 }, IDEATest.calcDecryptKey(), IDEATest.calcEncryptKey(), java.util.Random.nextInt() where { this -> Root : * }
+IDEATest.calcDecryptKey() reads Root, Root : IDEATest.R4 writes Root : IDEATest.R5 invokes IDEATest.inv(int)
+IDEATest.calcEncryptKey() reads Root writes Root : IDEATest.R4
+IDEATest.freeTestData() writes Root invokes java.lang.System.gc() where { this -> Root : * }
+IDEATest.inv(int) pure
+IDEATest.mul(int,int) pure
+JGFCryptBench.JGFCryptBench(int) writes Root invokes IDEATest.IDEATest()
+JGFCryptBench.JGFinitialise() writes Root invokes IDEATest.buildTestData() overrides JGFSection2.JGFinitialise()
+JGFCryptBench.JGFkernel() invokes IDEATest.Do() overrides JGFSection2.JGFkernel()
+JGFCryptBench.JGFrun(int) reads Root invokes JGFCryptBench.JGFinitialise(), JGFCryptBench.JGFkernel(), JGFCryptBench.JGFsetsize(int), JGFCryptBench.JGFtidyup(), JGFCryptBench.JGFvalidate(), JGFInstrumentor.addOpsToTimer(java.lang.String,double) where { this -> Root : * }, JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) where { this -> Root : * }, JGFInstrumentor.printTimer(java.lang.String) where { this -> Root : * } overrides JGFSection2.JGFrun(int)
+JGFCryptBench.JGFsetsize(int) writes Root overrides JGFSection2.JGFsetsize(int)
+JGFCryptBench.JGFtidyup() invokes IDEATest.freeTestData() overrides JGFSection2.JGFtidyup()
+JGFCryptBench.JGFvalidate() reads Root invokes DPJRuntime.DPJArrayByte.get(int) where { this -> Root : IDEATest.R1 : *, R -> Root : IDEATest.R1 }, DPJRuntime.DPJArrayByte.get(int) where { this -> Root : IDEATest.R2 : *, R -> Root : IDEATest.R2 }, DPJRuntime.DPJArrayByte.get(int) where { this -> Root : IDEATest.R3 : *, R -> Root : IDEATest.R3 }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * } overrides JGFSection2.JGFvalidate()
+JGFInstrumentor.JGFInstrumentor() invokes java.lang.Object.Object()
+JGFInstrumentor.addOpsToTimer(java.lang.String,double) reads Root invokes JGFTimer.addops(double) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.addTimeToTimer(java.lang.String,double) reads Root invokes JGFTimer.addtime(double) where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.addTimer(java.lang.String,java.lang.String,int) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFInstrumentor.printHeader(int,int,int) invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+JGFInstrumentor.printTimer(java.lang.String) reads Root invokes JGFTimer.print() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.printperfTimer(java.lang.String) reads Root invokes JGFTimer.printperf() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.readTimer(java.lang.String) reads Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.resetTimer(java.lang.String) reads Root invokes JGFTimer.reset() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.retrieveData(java.lang.String,java.lang.Object) reads Root invokes java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.startTimer(java.lang.String) reads Root invokes JGFTimer.start() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.stopTimer(java.lang.String) reads Root invokes JGFTimer.stop() where { this -> Root : * }, java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.util.Hashtable.containsKey(java.lang.Object) where { this -> Root : * }, java.util.Hashtable.get(java.lang.Object) where { this -> Root : * }
+JGFInstrumentor.storeData(java.lang.String,java.lang.Object) reads Root invokes java.util.Hashtable.put(K,V) where { this -> Root : * }
+JGFSection2.JGFinitialise() pure
+JGFSection2.JGFkernel() pure
+JGFSection2.JGFrun(int) pure
+JGFSection2.JGFsetsize(int) pure
+JGFSection2.JGFtidyup() pure
+JGFSection2.JGFvalidate() pure
+JGFTimer.JGFTimer(java.lang.String) invokes JGFTimer.JGFTimer(java.lang.String,java.lang.String)
+JGFTimer.JGFTimer(java.lang.String,java.lang.String) writes Root invokes JGFTimer.reset(), java.lang.Object.Object()
+JGFTimer.JGFTimer(java.lang.String,java.lang.String,int) writes Root invokes JGFTimer.reset(), java.lang.Object.Object()
+JGFTimer.addops(double) writes Root
+JGFTimer.addtime(double) writes Root
+JGFTimer.longprint() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }
+JGFTimer.perf() reads Root
+JGFTimer.print() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.equals(java.lang.Object) where { this -> Root : * }
+JGFTimer.printperf() reads Root invokes JGFTimer.perf(), java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.String.length() where { this -> Root : * }
+JGFTimer.reset() writes Root
+JGFTimer.start() writes Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.currentTimeMillis() where { this -> Root : * }
+JGFTimer.stop() writes Root invokes java.io.PrintStream.println(java.lang.String) where { this -> Root : * }, java.lang.System.currentTimeMillis() where { this -> Root : * }

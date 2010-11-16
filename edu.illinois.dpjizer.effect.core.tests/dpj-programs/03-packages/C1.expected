@@ -1,0 +1,4 @@
+packages.C1.C1() invokes java.lang.Object.Object()
+packages.C1.m1() writes Root : packages.C1.r1 invokes packages.C2.m2() where { this -> Root : * }
+packages.C2.C2() invokes java.lang.Object.Object()
+packages.C2.m2() reads Root : packages.C2.r2 invokes packages.C1.m1() where { this -> Root : * }

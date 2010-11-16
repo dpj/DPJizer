@@ -1,0 +1,48 @@
+DPJRuntime.DPJIndexedSet.DPJIndexedSet(int) writes R
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.DPJIndexedSetIterator() pure
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.get(int) reads R
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.hasNext() reads R
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.next() reads R
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.remove() writes R
+DPJRuntime.DPJIndexedSet.DPJIndexedSetIterator.size() reads R
+DPJRuntime.DPJIndexedSet.add(E) writes R
+DPJRuntime.DPJIndexedSet.clear() writes R
+DPJRuntime.DPJIndexedSet.get(int) reads R
+DPJRuntime.DPJIndexedSet.iterator() pure
+DPJRuntime.DPJIndexedSet.remove(int) writes R
+DPJRuntime.DPJIndexedSet.size() reads R
+DPJRuntime.DPJIterator.get(int) reads R
+DPJRuntime.DPJIterator.hasNext() reads R
+DPJRuntime.DPJIterator.next() reads R
+DPJRuntime.DPJIterator.remove() writes R
+DPJRuntime.DPJIterator.size() reads R
+Harness.Harness(java.lang.String,java.lang.String[]) writes Root
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root
+Harness.initialize() writes Root
+Harness.run() writes Root, Root : [?] : *
+Harness.runCleanup() pure
+Harness.runTest() reads Root, Root : [?] : *
+Harness.runWork() writes Root, Root : [?] : *
+Harness.usage() reads Root
+Quadtree.<>checkTree(Quadtree.Node<R1>,java.util.Set<Quadtree.Body<R2>>) reads R1, R1 : [?] : *
+Quadtree.<>makeTree(DPJRuntime.DPJIndexedSet<Quadtree.Body<R1>, R2>,Quadtree.Box,int) reads R2 writes R2 : [?] : *
+Quadtree.Body.<>copy() pure
+Quadtree.Body.Body(int,int) pure
+Quadtree.Body.equals(java.lang.Object) pure
+Quadtree.Body.hashCode() pure
+Quadtree.Body.toString() pure
+Quadtree.Box.<>quadrant(Quadtree.Body<R>) pure
+Quadtree.Box.Box(int,int,int,int) pure
+Quadtree.Box.makeQuadrant(int) pure
+Quadtree.Box.toString() pure
+Quadtree.InnerNode.<>copy() pure
+Quadtree.InnerNode.InnerNode(Quadtree.Box) pure
+Quadtree.Node.<>copy() pure
+Quadtree.Node.Node() pure
+Quadtree.Quadtree(java.lang.String[]) writes Root
+Quadtree.initialize() writes Root
+Quadtree.main(java.lang.String[]) writes Root, Root : [?] : *
+Quadtree.randomBody() pure
+Quadtree.randomCoord() pure
+Quadtree.runTest() reads Root, Root : [?] : *
+Quadtree.runWork() writes Root, Root : [?] : *

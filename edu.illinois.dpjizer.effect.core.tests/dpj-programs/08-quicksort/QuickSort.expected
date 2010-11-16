@@ -1,0 +1,35 @@
+DPJRuntime.DPJArrayInt.DPJArrayInt(int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R1>) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.DPJArrayInt(int[]<R1>,int,int) invokes java.lang.Object.Object()
+DPJRuntime.DPJArrayInt.get(int) reads R1
+DPJRuntime.DPJArrayInt.put(int,int) writes R1
+DPJRuntime.DPJArrayInt.subarray(int,int) pure
+DPJRuntime.DPJArrayInt.swap(int,int) writes R1
+DPJRuntime.DPJArrayInt.toArray() pure
+DPJRuntime.DPJArrayInt.toString() invokes DPJRuntime.DPJArrayInt.get(int) where { R1 -> R1 }, java.lang.StringBuffer.append(int) where { this -> Root : * }, java.lang.StringBuffer.append(java.lang.String) where { this -> Root : * }, java.lang.StringBuffer.toString() where { this -> Root : * } overrides java.lang.Object.toString()
+DPJRuntime.DPJPartitionInt.<>DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int[]<RA>) reads RA writes this : [?] invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R2 : *, R1 -> R2 }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionInt.<>stridedPartition(DPJRuntime.DPJArrayInt<R3>,int) pure
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int) writes this : [0], this : [1] invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R2 : *, R1 -> R2 }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int,boolean) writes this : [0], this : [1] invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R2 : *, R1 -> R2 }, java.lang.Object.Object()
+DPJRuntime.DPJPartitionInt.DPJPartitionInt(DPJRuntime.DPJArrayInt<R2>,int,double) invokes java.lang.Object.Object()
+DPJRuntime.DPJPartitionInt.get(int) reads this : [idx] invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R2 : *, R1 -> R2 }
+DPJRuntime.DPJUtils.<>permuteInt(int[]<R6>) writes R6 invokes java.lang.Math.random() where { this -> Root : * }
+DPJRuntime.DPJUtils.<>print(int[]<R8>) invokes java.io.PrintStream.print(java.lang.String) where { this -> Root : * }
+DPJRuntime.DPJUtils.<T>permute(T[]<R5>) invokes DPJRuntime.DPJUtils.<T>swap(T[]<R4>,int,int) where { this -> Root : *, R4 -> R5 }, java.lang.Math.random() where { this -> Root : * }
+DPJRuntime.DPJUtils.<T>print(T[]<R7>) invokes java.io.PrintStream.print(java.lang.String) where { this -> Root : * }
+DPJRuntime.DPJUtils.<T>swap(T[]<R4>,int,int) writes R4
+DPJRuntime.DPJUtils.DPJUtils() invokes java.lang.Object.Object()
+DPJRuntime.DPJUtils.log2(int) pure
+Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) invokes DPJRuntime.DPJArrayInt.get(int) where { this -> R10 : *, R1 -> R10 : * }, DPJRuntime.DPJArrayInt.put(int,int) where { this -> R10 : *, R1 -> R10 : * }, DPJRuntime.DPJPartitionInt.get(int) where { this -> R10 : *, R2 -> R10 : * }, Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) where { R10 -> R10 : * }, Partition.<>partitionHelperRight(DPJRuntime.DPJArrayInt<R11>,int) where { R11 -> R10 : * }, Partition.<>sequentialPartition(DPJRuntime.DPJArrayInt<R9>) where { R9 -> R10 }
+Partition.<>partitionHelperRight(DPJRuntime.DPJArrayInt<R11>,int) invokes DPJRuntime.DPJArrayInt.get(int) where { this -> R11 : *, R1 -> R11 }, DPJRuntime.DPJArrayInt.put(int,int) where { this -> R11 : *, R1 -> R11 }, Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) where { R10 -> R11 }
+Partition.<>sequentialPartition(DPJRuntime.DPJArrayInt<R9>) invokes DPJRuntime.DPJArrayInt.get(int) where { this -> R9 : *, R1 -> R9 }, DPJRuntime.DPJArrayInt.swap(int,int) where { this -> R9 : *, R1 -> R9 }
+Partition.Partition(int) invokes java.lang.Object.Object()
+Quicksort.<>median(DPJRuntime.DPJArrayInt<R12>,int) invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R12 : *, R1 -> R12 }, Quicksort.<>median(DPJRuntime.DPJArrayInt<R12>,int) where { R12 -> R12 }, Quicksort.<>seqPartitionFirst(DPJRuntime.DPJArrayInt<R14>) where { R14 -> R12 }
+Quicksort.<>median(int[]<R13>) invokes Quicksort.<>median(DPJRuntime.DPJArrayInt<R12>,int) where { R12 -> R13 }
+Quicksort.<>partitionFirst(DPJRuntime.DPJArrayInt<R15>) invokes Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) where { this -> Root : *, R10 -> R15 }, Quicksort.<>seqPartitionFirst(DPJRuntime.DPJArrayInt<R14>) where { R14 -> R15 }
+Quicksort.<>partitionMedian(DPJRuntime.DPJArrayInt<R16>) invokes DPJRuntime.DPJArrayInt.subarray(int,int) where { this -> R16 : *, R1 -> R16 }, DPJRuntime.DPJArrayInt.swap(int,int) where { this -> R16 : *, R1 -> R16 }, DPJRuntime.DPJUtils.log2(int) where { this -> Root : * }, Quicksort.<>median(DPJRuntime.DPJArrayInt<R12>,int) where { R12 -> R16 }, Quicksort.<>partitionFirst(DPJRuntime.DPJArrayInt<R15>) where { R15 -> R16 }
+Quicksort.<>seqPartitionFirst(DPJRuntime.DPJArrayInt<R14>) invokes DPJRuntime.DPJArrayInt.get(int) where { this -> R14 : *, R1 -> R14 }, DPJRuntime.DPJArrayInt.swap(int,int) where { this -> R14 : *, R1 -> R14 }
+Quicksort.<>seqSort(DPJRuntime.DPJArrayInt<R17>) invokes DPJRuntime.DPJPartitionInt.get(int) where { this -> R17 : *, R2 -> R17 }, Quicksort.<>seqPartitionFirst(DPJRuntime.DPJArrayInt<R14>) where { R14 -> R17 }, Quicksort.<>seqSort(DPJRuntime.DPJArrayInt<R17>) where { R17 -> R17 : * }
+Quicksort.<>sort(DPJRuntime.DPJArrayInt<R18>) invokes DPJRuntime.DPJPartitionInt.get(int) where { this -> R18 : *, R2 -> R18 }, Partition.<>partition(DPJRuntime.DPJArrayInt<R10>) where { this -> Root : *, R10 -> R18 }, Quicksort.<>seqSort(DPJRuntime.DPJArrayInt<R17>) where { R17 -> R18 }, Quicksort.<>sort(DPJRuntime.DPJArrayInt<R18>) where { R18 -> R18 : * }
+Quicksort.<>sort(int[]<R19>) invokes Quicksort.<>sort(DPJRuntime.DPJArrayInt<R18>) where { R18 -> R19 }
+Quicksort.Quicksort(int) invokes java.lang.Object.Object()

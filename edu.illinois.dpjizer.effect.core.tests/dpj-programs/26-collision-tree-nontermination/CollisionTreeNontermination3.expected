@@ -1,0 +1,3 @@
+CT.<>intersect1(CT<Q,Q>) invokes CT.<>intersect2(CT<S1,S2>) where { P1 -> P1, P2 -> P2, S1 -> Q, S2 -> Q }
+CT.<>intersect2(CT<S1,S2>) writes P1 : CT.L, P1 : CT.R invokes CT.<>intersect2(CT<S1,S2>) where { this -> S1 : *, P1 -> S1, P2 -> S2, S1 -> P1 : CT.L, S2 -> P2 }, CT.<>intersect2(CT<S1,S2>) where { this -> S1 : *, P1 -> S1, P2 -> S2, S1 -> P1 : CT.R, S2 -> P2 }
+CT.CT() invokes java.lang.Object.Object()

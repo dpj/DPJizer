@@ -1,0 +1,61 @@
+BarnesHut.BarnesHut(int) writes Root
+BarnesHut.BarnesHut(int,int,boolean) writes Root
+BarnesHut.doSimulation() writes Root, Root : Node.r, Root : [?]
+BarnesHut.initSystem(int) writes Root : *
+BarnesHut.main(java.lang.String[]) writes Root : *
+BarnesHut.printUsage() pure
+BarnesHut.uniformTestdata(int,Vector<Root>,Vector<Root>) writes Root : *
+Body.<>subdivp(Node,double,double,HGStruct<R>) pure
+Body.Body() pure
+Body.Body(Body<Root : *>) reads Root : * writes R, Root, Root : Node.r
+Body.gravsub(Node,HGStruct<R>) reads Root : Node.r writes R
+Body.hackcofm() reads Root : Node.r
+Body.hackgrav(HGStruct<R>,double,Node) reads Root : Node.r writes R
+Body.toString() reads Root : Node.r
+Body.walksub(Node,double,double,HGStruct<R>,int) reads Root : Node.r writes R
+Cell.<>subdivp(Node,double,double,HGStruct<R>) reads Root : Node.r writes R
+Cell.Cell() pure
+Cell.hackcofm() writes Root, Root : Node.r
+Constants.Constants() pure
+HGStruct.HGStruct() writes R
+Node.<>subdivp(Node,double,double,HGStruct<R>) reads Root : Node.r writes R
+Node.Node() pure
+Node.Node(Node) writes Root : Node.r
+Node.hackcofm() writes Root, Root : Node.r
+SlaveStart.SlaveStart(int,Tree,double) writes Root
+SlaveStart.run() writes Root, Root : Node.r, Root : [?]
+Tree.Tree() pure
+Tree.computegrav(int,int) reads Root, Root : Node.r writes Root : [?]
+Tree.intcoord(Body<Root : *>) reads Root : Node.r writes Root
+Tree.loadtree(Body<Root : *>,int[],Node,int,int) writes Root, Root : Node.r
+Tree.maketree(int) writes Root, Root : Node.r
+Tree.reOrderBodies(Node,int) writes Root, Root : Node.r
+Tree.setRsize() reads Root : Node.r writes Root
+Tree.stepsystem(int,int) writes Root, Root : Node.r, Root : [?]
+Tree.subindex(int[],int) reads Root
+Tree.vp(int) writes Root, Root : Node.r, Root : [?]
+Util.Util() pure
+Util.chatting(java.lang.String,java.lang.Object...) pure
+Util.printResults(java.lang.String) pure
+Util.rand(double) pure
+Util.xrand(double,double,double) pure
+Vector.<>ADDV(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.<>ADDVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>CROSSVP(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.<>DISTV(double,Vector<Ru>) reads R, Ru
+Vector.<>DIVVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>DOTVP(Vector<Ru>) reads R, Ru
+Vector.<>EQUAL(Vector<Rv>) reads R, Rv
+Vector.<>INCADDV(Vector<Ru>) reads Ru writes R
+Vector.<>INCSUBV(Vector<Ru>) reads Ru writes R
+Vector.<>MULVS(Vector<Ru>,double) reads Ru writes R
+Vector.<>SETV(Vector<Ru>) reads Ru writes R
+Vector.<>SUBV(Vector<Ru>,Vector<Rw>) reads Ru, Rw writes R
+Vector.ABSV(double) reads R
+Vector.CLRV() writes R
+Vector.INCDIVVS(double) writes R
+Vector.INCMULVS(double) writes R
+Vector.SETVS(double) writes R
+Vector.UNITV(int) writes R
+Vector.Vector() pure
+Vector.toString() reads R

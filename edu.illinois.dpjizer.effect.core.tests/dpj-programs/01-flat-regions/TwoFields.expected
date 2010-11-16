@@ -1,0 +1,3 @@
+flatregion.twofield.TwoFields.TwoFields() invokes java.lang.Object.Object()
+flatregion.twofield.TwoFields.m1(java.util.Date) invokes flatregion.twofield.TwoFields.m2(java.util.Date)
+flatregion.twofield.TwoFields.m2(java.util.Date) reads Root : flatregion.twofield.TwoFields.r2 writes Root : flatregion.twofield.TwoFields.r1

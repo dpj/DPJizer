@@ -1,0 +1,4 @@
+ten.C.C() pure
+ten.C.m1() reads X, X : ten.C.L : *
+ten.C.m2() reads X : ten.C.L : *
+ten.C.m3() pure

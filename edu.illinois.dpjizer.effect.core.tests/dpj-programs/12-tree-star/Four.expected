@@ -1,0 +1,3 @@
+four.C.C() invokes java.lang.Object.Object()
+four.C.m1() reads X : four.C.L invokes four.C.m2() where { this -> X : four.C.L : *, X -> X : four.C.L }
+four.C.m2() writes X invokes four.C.m1() where { this -> X : *, X -> X }

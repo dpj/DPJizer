@@ -1,0 +1,3 @@
+regionparam.readnestedregion.C1.C1() invokes java.lang.Object.Object()
+regionparam.readnestedregion.C1.m() reads Root : regionparam.readnestedregion.C1.r1 writes Root invokes java.io.PrintStream.println(int) where { this -> Root : * }
+regionparam.readnestedregion.C2.C2() invokes java.lang.Object.Object()

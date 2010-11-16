@@ -1,0 +1,4 @@
+localregions.C1.C1() invokes java.lang.Object.Object()
+localregions.C1.m1() invokes localregions.C2.m2() where { this -> Local : *, R2 -> Local : * }
+localregions.C2.C2() invokes java.lang.Object.Object()
+localregions.C2.m2() writes R2

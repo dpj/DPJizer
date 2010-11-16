@@ -1,0 +1,29 @@
+DPJRuntime.DPJUtils.<>permuteInt(int[]<R>) writes R
+DPJRuntime.DPJUtils.<>print(int[]<R>) pure
+DPJRuntime.DPJUtils.<T>permute(T[]<R>) writes R
+DPJRuntime.DPJUtils.<T>print(T[]<R>) pure
+DPJRuntime.DPJUtils.<T>swap(T[]<R>,int,int) writes R
+DPJRuntime.DPJUtils.DPJUtils() pure
+DPJRuntime.DPJUtils.log2(int) pure
+Harness.Harness(java.lang.String,java.lang.String[]) writes Root
+Harness.Harness(java.lang.String,java.lang.String[],int,int) writes Root
+Harness.initialize() reads Root : [?] writes Root, Root : [?] : ListNode.Rank
+Harness.run() reads Root : * : ListNode.Rank, Root : [?] writes Root, Root : [?] : ListNode.NbrRank, Root : [?] : ListNode.Rank
+Harness.runCleanup() pure
+Harness.runTest() reads Root, Root : [?], Root : [?] : ListNode.Rank
+Harness.runWork() reads Root, Root : * : ListNode.Rank, Root : [?] writes Root : [?] : ListNode.NbrRank, Root : [?] : ListNode.Rank
+Harness.usage() reads Root
+List.List(int) writes Root, Root : [?]
+List.rank() reads Root, Root : * : ListNode.Rank, Root : [?] writes Root : [?] : ListNode.NbrRank, Root : [?] : ListNode.Rank
+ListNode.ListNode() pure
+ListNode.initRank() writes Parent : ListNode.Rank
+ListNode.updateNbrRank() reads Root : * : ListNode.Rank writes Parent : ListNode.NbrRank
+ListNode.updateRank() reads Parent : ListNode.NbrRank writes Parent : ListNode.Rank
+ListRanking.ListRanking(java.lang.String[]) writes Root
+ListRanking.initialize() reads Root : [?] writes Root, Root : [?] : ListNode.Rank
+ListRanking.main(java.lang.String[]) reads Root : * : ListNode.Rank, Root : [?] writes Root, Root : [?] : ListNode.NbrRank, Root : [?] : ListNode.Rank
+ListRanking.permutation(int) writes Root
+ListRanking.runTest() reads Root, Root : [?], Root : [?] : ListNode.Rank
+ListRanking.runWork() reads Root, Root : * : ListNode.Rank, Root : [?] writes Root : [?] : ListNode.NbrRank, Root : [?] : ListNode.Rank
+ListRanking.swap(int[],int,int) writes Root
+ListRanking.usage() reads Root

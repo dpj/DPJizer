@@ -1,0 +1,3 @@
+Node.Node() pure
+Node.setMass(double) writes P
+Node.setMassOfChildren(double) writes Root : Node.L, Root : Node.R

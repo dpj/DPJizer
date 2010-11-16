@@ -1,0 +1,3 @@
+flatregion.simplemethodeffects.SimpleMethodEffects.SimpleMethodEffects() pure
+flatregion.simplemethodeffects.SimpleMethodEffects.m1(java.util.Date) writes Root : flatregion.simplemethodeffects.SimpleMethodEffects.r1
+flatregion.simplemethodeffects.SimpleMethodEffects.m2(java.util.Date) writes Root : flatregion.simplemethodeffects.SimpleMethodEffects.r1

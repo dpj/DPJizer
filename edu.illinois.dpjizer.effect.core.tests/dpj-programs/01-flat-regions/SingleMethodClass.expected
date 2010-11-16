@@ -1,0 +1,2 @@
+flatregion.singlemethodclass.SingleMethodClass.SingleMethodClass() invokes java.lang.Object.Object()
+flatregion.singlemethodclass.SingleMethodClass.m1(java.util.Date) writes Root : flatregion.singlemethodclass.SingleMethodClass.r1

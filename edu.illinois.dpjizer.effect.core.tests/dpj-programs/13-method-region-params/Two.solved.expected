@@ -1,0 +1,5 @@
+two.C1.C1() pure
+two.C1.m1(two.C2<Root : *>) writes Root : *
+two.C1.m2() writes Root : *
+two.C2.C2() pure
+two.C2.m3() writes Y

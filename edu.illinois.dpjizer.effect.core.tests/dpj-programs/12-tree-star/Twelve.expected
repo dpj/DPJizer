@@ -1,0 +1,3 @@
+oopsla2009.Tree.Tree() invokes java.lang.Object.Object()
+oopsla2009.Tree.updateNode() reads Root : * : oopsla2009.Tree.Y, Root : oopsla2009.Tree.Links writes P : oopsla2009.Tree.X
+oopsla2009.Tree.updateTree() reads Root : oopsla2009.Tree.Links invokes oopsla2009.Tree.updateNode() where { P -> P }, oopsla2009.Tree.updateTree() where { this -> P : oopsla2009.Tree.L : *, P -> P : oopsla2009.Tree.L }, oopsla2009.Tree.updateTree() where { this -> P : oopsla2009.Tree.R : *, P -> P : oopsla2009.Tree.R }

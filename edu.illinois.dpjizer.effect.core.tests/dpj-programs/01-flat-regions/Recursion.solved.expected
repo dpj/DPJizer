@@ -1,0 +1,3 @@
+flatregion.recursion.C.C() pure
+flatregion.recursion.C.m1() writes Root : flatregion.recursion.C.r1, Root : flatregion.recursion.C.r2
+flatregion.recursion.C.m2() writes Root : flatregion.recursion.C.r1, Root : flatregion.recursion.C.r2

@@ -1,0 +1,11 @@
+DPJArrayInt.DPJArrayInt() pure
+DPJArrayInt.get(int) reads R5
+DPJArrayInt.put(int,int) writes R5
+DPJArrayInt.swap(int,int) writes R5
+DPJPartitionInt.DPJPartitionInt() pure
+DPJPartitionInt.DPJPartitionInt(DPJArrayInt<R4>,int) writes this : [0], this : [1]
+DPJPartitionInt.get(int) reads this : [idx]
+Partition.<>partition(DPJArrayInt<R2>) writes R2 : *
+Partition.<>partitionHelperRight(DPJArrayInt<R3>,int) writes R3 : *
+Partition.<>sequentialPartition(DPJArrayInt<R1>) writes R1
+Partition.Partition() pure

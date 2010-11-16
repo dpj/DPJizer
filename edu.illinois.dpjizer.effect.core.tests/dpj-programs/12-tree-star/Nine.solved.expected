@@ -1,0 +1,4 @@
+nine.C1.C1() pure
+nine.C1.m1() writes X, X : nine.C1.L : *
+nine.C2.C2() pure
+nine.C2.m2() writes Y, Y : nine.C1.L : *

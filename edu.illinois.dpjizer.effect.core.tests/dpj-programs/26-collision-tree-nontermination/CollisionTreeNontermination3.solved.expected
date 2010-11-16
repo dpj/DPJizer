@@ -1,0 +1,3 @@
+CT.<>intersect1(CT<Q,Q>) writes P1 : CT.L : *, P1 : CT.R : *, Q : CT.L : *, Q : CT.R : *
+CT.<>intersect2(CT<S1,S2>) writes P1 : CT.L : *, P1 : CT.R : *, S1 : CT.L : *, S1 : CT.R : *
+CT.CT() pure

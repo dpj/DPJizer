@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <category-def name="DPJizer" label="DPJizer">
+      <description>
+         The DPJizer feature contains the DPJ refactoring tools for the Eclipse IDE.
+      </description>
+   </category-def>
+</site>
