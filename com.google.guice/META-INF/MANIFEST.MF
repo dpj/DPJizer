@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: 0
+Bundle-SymbolicName: com.google.guice
+Bundle-Version: 1.0.0
+Bundle-ClassPath: guice-2.0.jar,
+ aopalliance.jar
+Export-Package: com.google.inject;
+  uses:="com.google.inject.internal.cglib.proxy,
+   new com.google.inject,
+   org.aopalliance.intercept,
+   com.google.inject.internal.cglib.reflect,
+   com.google.inject.matcher,
+   com.google.inject.internal,
+   com.google.inject.binder,
+   com.google.inject.spi",
+ com.google.inject.binder;uses:="com.google.inject",
+ com.google.inject.internal;
+  uses:="com.google.inject.internal.cglib.core,
+   com.google.inject.internal.cglib.proxy,
+   com.google.inject.internal.cglib.reflect,
+   com.google.inject.matcher,
+   new com.google.inject.internal,
+   com.google.inject.binder,
+   com.google.inject.spi,
+   com.google.inject",
+ com.google.inject.internal.asm,
+ com.google.inject.internal.cglib.core;uses:="com.google.inject.internal.asm",
+ com.google.inject.internal.cglib.proxy;uses:="com.google.inject.internal.cglib.core,com.google.inject.internal.asm,com.google.inject.internal.cglib.reflect",
+ com.google.inject.internal.cglib.reflect;uses:="com.google.inject.internal.cglib.core,com.google.inject.internal.asm",
+ com.google.inject.matcher,
+ com.google.inject.name;uses:="com.google.inject",
+ com.google.inject.spi;
+  uses:="org.aopalliance.intercept,
+   com.google.inject.binder,
+   com.google.inject.matcher,
+   com.google.inject,
+   com.google.inject.internal",
+ com.google.inject.util;uses:="new com.google.inject.util,com.google.inject.spi,com.google.inject",
+ org.aopalliance.aop,
+ org.aopalliance.intercept;uses:="org.aopalliance.aop"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

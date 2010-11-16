@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.illinois.dpjizer.region.core.tests
+Bundle-SymbolicName: edu.illinois.dpjizer.region.core.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.illinois.dpjizer.region.core.tests.plugin.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ com.google.guice;bundle-version="1.0.0",
+ org.junit4;bundle-version="4.8.1",
+ edu.illinois.dpjizer.region.core
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
