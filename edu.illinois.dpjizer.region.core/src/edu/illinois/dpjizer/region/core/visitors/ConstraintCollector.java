@@ -60,7 +60,7 @@ public class ConstraintCollector extends EnvScanner {
 	@Override
 	public void visitReturn(JCReturn tree) {
 		super.visitReturn(tree);
-		constraintRepository.add(new SubtypingConstraint(parentEnv.enclMethod.restype.type, tree.type));
+		constraintRepository.add(new SubtypingConstraint(parentEnv.enclMethod.restype.type, tree.expr.type));
 	}
 
 	@Override
