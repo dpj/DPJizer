@@ -42,11 +42,13 @@ public abstract class DPJizerDependencyModule extends AbstractModule {
 		constraintRepository = new ConstraintRepository(constraints, getDirs());
 		context = new Context();
 		JavacFileManager.preRegister(context);
+
 		// Get an instance of Attr through DPJizerAttr so that all calls to
 		// Attr.instance() return an instance of DPJizerAttr instead of Attr.
 		DPJizerAttr.instance(context, constraints);
+
 		// Replace Parser.Factory by DPJizerParser.DPJizerFactory in the same
-		// that Attr was replaced by DPJizerAttr.
+		// way that Attr was replaced by DPJizerAttr.
 		DPJizerParser.DPJizerFactory.instance(context);
 	}
 
