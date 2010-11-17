@@ -15,9 +15,6 @@ import org.junit.rules.TestName;
  */
 public abstract class DPJInferencerTestCase extends DependencyInjector {
 
-	protected static final String NON_TERMINATING = "non-terminating";
-	protected static final String IGNORED = "ignored";
-
 	@Rule
 	public TestName name = new TestName();
 
