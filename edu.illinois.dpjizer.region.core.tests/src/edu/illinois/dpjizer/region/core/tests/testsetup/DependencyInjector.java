@@ -3,6 +3,8 @@
  */
 package edu.illinois.dpjizer.region.core.tests.testsetup;
 
+import org.junit.Before;
+
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -10,6 +12,7 @@ import edu.illinois.dpjizer.region.core.compile.CompilerInvoker;
 import edu.illinois.dpjizer.region.core.tests.dependencies.DPJizerTestDependencyModule;
 import edu.illinois.dpjizer.region.core.tests.dirs.DPJizerTestDirs;
 import edu.illinois.dpjizer.region.core.tests.dirs.FileComparator;
+import edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol;
 
 /**
  * 
@@ -23,12 +26,13 @@ public class DependencyInjector {
 	protected DPJizerTestDirs dpjizerTestDirs;
 	protected FileComparator fileComparator;
 
-	public DependencyInjector() {
-		super();
+	@Before
+	public void setup() {
 		guiceInjector = Guice.createInjector(new DPJizerTestDependencyModule());
 		compilerInvoker = guiceInjector.getInstance(CompilerInvoker.class);
 		dpjizerTestDirs = guiceInjector.getInstance(DPJizerTestDirs.class);
 		fileComparator = guiceInjector.getInstance(FileComparator.class);
+		RegionVarEltSymbol.numIDs = 1;
 	}
 
 }

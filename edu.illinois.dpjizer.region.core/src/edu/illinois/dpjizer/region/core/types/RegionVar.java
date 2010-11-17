@@ -3,6 +3,7 @@
  */
 package edu.illinois.dpjizer.region.core.types;
 
+import com.google.inject.Inject;
 import com.sun.tools.javac.tree.JCTree.DPJRegionPathList;
 
 /**
@@ -14,9 +15,10 @@ public class RegionVar extends DPJRegionPathList {
 
 	String name;
 
-	public RegionVar() {
+	@Inject
+	public RegionVar(RegionVarCounter regionVarCounter) {
 		super(null);
-		name = RegionVarCounter.getNextRegionVarName();
+		name = regionVarCounter.getNextRegionVarName();
 	}
 
 	@Override

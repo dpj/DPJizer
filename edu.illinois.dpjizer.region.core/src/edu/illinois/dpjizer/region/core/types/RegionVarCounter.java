@@ -10,10 +10,18 @@ package edu.illinois.dpjizer.region.core.types;
  */
 public class RegionVarCounter {
 
-	static VariableCounter variableCounter = new VariableCounter();
+	VariableCounter variableCounter;
 
-	static String getNextRegionVarName() {
+	public RegionVarCounter() {
+		this.variableCounter = new VariableCounter();
+	}
+
+	String getNextRegionVarName() {
 		return "Pi" + variableCounter.nextCounter();
+	}
+
+	public void reset() {
+		variableCounter.reset();
 	}
 
 }

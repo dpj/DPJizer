@@ -14,10 +14,11 @@ import edu.illinois.dpjizer.region.core.tests.testsetup.ConstraintCollectorTestC
  */
 public class TestCobegin extends ConstraintCollectorTestCase {
 
-	// @Test
-	// public void testOne() {
-	// collectConstraints();
-	// }
+	@Test
+	public void testOne() {
+		collectConstraints();
+	}
+
 	//
 	// @Test
 	// public void testTwo() {

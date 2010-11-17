@@ -15,4 +15,9 @@ public class VariableCounter {
 	public int nextCounter() {
 		return ++variableCounter;
 	}
+
+	public void reset() {
+		variableCounter = 0;
+	}
+
 }
