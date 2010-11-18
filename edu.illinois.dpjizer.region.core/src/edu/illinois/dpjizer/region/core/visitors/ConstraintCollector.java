@@ -6,6 +6,7 @@ package edu.illinois.dpjizer.region.core.visitors;
 import com.google.inject.Inject;
 import com.sun.tools.javac.code.Symbol.VarSymbol;
 import com.sun.tools.javac.comp.EnvScanner;
+import com.sun.tools.javac.tree.JCTree.DPJCobegin;
 import com.sun.tools.javac.tree.JCTree.JCAssign;
 import com.sun.tools.javac.tree.JCTree.JCExpression;
 import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
@@ -23,44 +24,16 @@ import edu.illinois.dpjizer.region.core.constraints.SubtypingConstraint;
  */
 public class ConstraintCollector extends EnvScanner {
 
-	// protected static final Context.Key<ConstraintCollector>
-	// constraintCollectorKey = new Context.Key<ConstraintCollector>();
-
-	// ConstraintRepository constraintRepository =
-	// ConstraintRepository.instance();
-
 	ConstraintRepository constraintRepository;
-
-	//
-	// public static ConstraintCollector instance(Context context,
-	// ConstraintRepository constraintRepository) {
-	// ConstraintCollector instance = context.get(constraintCollectorKey);
-	// if (instance == null)
-	// instance = new ConstraintCollector(context, constraintRepository);
-	// return instance;
-	// }
 
 	@Inject
 	public ConstraintCollector(Context context, ConstraintRepository constraintRepository) {
 		super(context);
 		this.constraintRepository = constraintRepository;
-		// context.put(constraintCollectorKey, this);
 	}
 
 	public ConstraintRepository getConstraintRepository() {
 		return constraintRepository;
-	}
-
-	@Override
-	public void visitAssign(JCAssign tree) {
-		super.visitAssign(tree);
-		constraintRepository.add(new SubtypingConstraint(tree.lhs.type, tree.rhs.type));
-	}
-
-	@Override
-	public void visitReturn(JCReturn tree) {
-		super.visitReturn(tree);
-		constraintRepository.add(new SubtypingConstraint(parentEnv.enclMethod.restype.type, tree.expr.type));
 	}
 
 	@Override
@@ -74,4 +47,23 @@ public class ConstraintCollector extends EnvScanner {
 
 		}
 	}
+
+	@Override
+	public void visitAssign(JCAssign tree) {
+		super.visitAssign(tree);
+		constraintRepository.add(new SubtypingConstraint(tree.lhs.type, tree.rhs.type));
+	}
+
+	@Override
+	public void visitCobegin(DPJCobegin tree) {
+		super.visitCobegin(tree);
+		// TODO: Generate the disjointness constraints.
+	}
+
+	@Override
+	public void visitReturn(JCReturn tree) {
+		super.visitReturn(tree);
+		constraintRepository.add(new SubtypingConstraint(parentEnv.enclMethod.restype.type, tree.expr.type));
+	}
+
 }
