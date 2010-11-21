@@ -16,6 +16,7 @@ import com.sun.tools.javac.util.List;
 
 import edu.illinois.dpjizer.region.core.constraints.ConstraintRepository;
 import edu.illinois.dpjizer.region.core.constraints.SubtypingConstraint;
+import edu.illinois.dpjizer.utils.Logger;
 
 /**
  * 
@@ -58,6 +59,7 @@ public class ConstraintCollector extends EnvScanner {
 	public void visitCobegin(DPJCobegin tree) {
 		super.visitCobegin(tree);
 		// TODO: Generate the disjointness constraints.
+		Logger.log(tree.effects.toString());
 	}
 
 	@Override
