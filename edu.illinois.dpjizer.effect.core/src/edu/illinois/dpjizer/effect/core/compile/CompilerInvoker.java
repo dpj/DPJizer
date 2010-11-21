@@ -28,8 +28,8 @@ import com.sun.tools.javac.util.Options;
 import com.sun.tools.javac.util.Pair;
 
 import edu.illinois.dpjizer.effect.core.constraint.Method;
-import edu.illinois.dpjizer.effect.core.log.Modes;
-import edu.illinois.dpjizer.effect.core.log.NullOutputStream;
+import edu.illinois.dpjizer.utils.Modes;
+import edu.illinois.dpjizer.utils.NullOutputStream;
 
 /**
  * 

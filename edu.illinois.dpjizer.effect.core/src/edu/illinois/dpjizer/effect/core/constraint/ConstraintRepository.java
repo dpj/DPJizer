@@ -21,7 +21,7 @@ import com.sun.tools.javac.util.List;
 
 import edu.illinois.dpjizer.effect.core.constraint.ConstraintsWriter.WhatToSerialize;
 import edu.illinois.dpjizer.effect.core.log.Dirs;
-import edu.illinois.dpjizer.effect.core.log.Logger;
+import edu.illinois.dpjizer.utils.Logger;
 
 /**
  * 

@@ -96,6 +96,13 @@ are subject to their licenses.]]>
          unpack="false"/>
 
    <plugin
+         id="edu.illinois.dpjizer.utils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="edu.illinois.dpjizer.effect.core"
          download-size="0"
          install-size="0"

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: edu.illinois.dpjizer.utils
+Bundle-SymbolicName: edu.illinois.dpjizer.utils
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: edu.illinois.dpjizer.utils.Activator
+Bundle-Vendor: University of Illinois
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: edu.illinois.dpjizer.utils

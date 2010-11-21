@@ -7,8 +7,8 @@ import com.sun.tools.javac.code.RPL;
 import com.sun.tools.javac.code.Symbol.RegionParameterSymbol;
 import com.sun.tools.javac.util.List;
 
-import edu.illinois.dpjizer.effect.core.log.Logger;
 import edu.illinois.dpjizer.effect.core.rpl.RPLUtils;
+import edu.illinois.dpjizer.utils.Logger;
 
 /**
  * 
