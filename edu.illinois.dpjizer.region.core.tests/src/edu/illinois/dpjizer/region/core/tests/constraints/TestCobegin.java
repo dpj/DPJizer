@@ -19,11 +19,11 @@ public class TestCobegin extends ConstraintCollectorTestCase {
 		collectConstraints();
 	}
 
-	//
-	// @Test
-	// public void testTwo() {
-	// collectConstraints();
-	// }
+	@Test
+	public void testTwo() {
+		collectConstraints();
+	}
+
 	//
 	// @Test
 	// public void testThree() {

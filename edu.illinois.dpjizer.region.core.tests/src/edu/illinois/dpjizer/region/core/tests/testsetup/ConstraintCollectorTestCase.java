@@ -3,6 +3,8 @@
  */
 package edu.illinois.dpjizer.region.core.tests.testsetup;
 
+import edu.illinois.dpjizer.utils.Logger;
+
 /**
  * 
  * @author Mohsen Vakilian
@@ -16,6 +18,7 @@ public abstract class ConstraintCollectorTestCase extends DPJInferencerTestCase 
 
 	protected void collectConstraints() {
 		String name = convertTestNameToFileName();
+		Logger.log("Running test " + name + " of " + getTestDir() + "...");
 		String[] inputFiles = new String[] { name };
 		collectConstraints(inputFiles);
 		compareRegionVarFiles(inputFiles);
