@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import edu.illinois.dpjizer.utils.Logger;
+
 /**
  * 
  * @author Mohsen Vakilian
@@ -24,7 +26,7 @@ public class ConstraintsSet implements Constraints {
 
 	@Override
 	public boolean add(Constraint constraint) {
-		System.out.println("Adding the constraint " + constraint.toString());
+		Logger.log("Adding the constraint " + constraint.toString());
 		return constraints.add(constraint);
 	}
 

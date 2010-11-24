@@ -3,9 +3,12 @@
  */
 package edu.illinois.dpjizer.region.core.dependencies;
 
+import java.io.PrintWriter;
+
 import com.google.inject.AbstractModule;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.JavacFileManager;
+import com.sun.tools.javac.util.Log;
 
 import edu.illinois.dpjizer.region.core.constraints.ConstraintRepository;
 import edu.illinois.dpjizer.region.core.constraints.Constraints;
@@ -14,6 +17,8 @@ import edu.illinois.dpjizer.region.core.dirs.Dirs;
 import edu.illinois.dpjizer.region.core.parser.DPJizerParser;
 import edu.illinois.dpjizer.region.core.visitors.ConstraintCollector;
 import edu.illinois.dpjizer.region.core.visitors.DPJizerAttr;
+import edu.illinois.dpjizer.utils.Modes;
+import edu.illinois.dpjizer.utils.NullOutputStream;
 
 /**
  * 
@@ -37,10 +42,18 @@ public abstract class DPJizerDependencyModule extends AbstractModule {
 
 	abstract protected Dirs getDirs();
 
+	private void redirectCompilerMessages() {
+		if (!Modes.isInDebugMode()) {
+			context.put(Log.outKey, new PrintWriter(new NullOutputStream()));
+		}
+	}
+
 	private void createInstances() {
 		constraints = new ConstraintsSet();
 		constraintRepository = new ConstraintRepository(constraints, getDirs());
 		context = new Context();
+
+		redirectCompilerMessages();
 		JavacFileManager.preRegister(context);
 
 		// Get an instance of Attr through DPJizerAttr so that all calls to

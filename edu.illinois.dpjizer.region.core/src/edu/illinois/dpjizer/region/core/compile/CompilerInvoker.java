@@ -53,20 +53,6 @@ public class CompilerInvoker {
 	}
 
 	protected List<JCCompilationUnit> parseFiles(String[] filepaths) {
-		// context = new Context();
-
-		// JavacFileManager.preRegister(context);
-		// ConstraintCollector.preRegister(context);
-
-		// Get an instance of Attr through DPJizerAttr so that all calls to
-		// Attr.instance() return an instance of DPJizerAttr instead of Attr.
-		// Attr attr = DPJizerAttr.instance(context, constraints);
-
-		// Replace Parser.Factory by DPJizerParser.DPJizerFactory in the same
-		// that Attr was replaced by DPJizerAttr.
-		// Parser.Factory parserFactory =
-		// DPJizerParser.DPJizerFactory.instance(context);
-
 		// Force Java 1.5 parsing and code generation
 		Options.instance(context).put(OptionName.SOURCE, Source.JDK1_5.name);
 		Options.instance(context).put(OptionName.TARGET, Target.JDK1_5.name);
