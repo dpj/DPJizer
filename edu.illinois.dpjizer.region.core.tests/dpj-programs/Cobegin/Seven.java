@@ -1,4 +1,4 @@
-package one;
+package seven;
 
 class C<region P> {
 	int a in P;

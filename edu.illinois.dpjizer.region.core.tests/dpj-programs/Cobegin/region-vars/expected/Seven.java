@@ -1,4 +1,4 @@
-package one;
+package seven;
 
 class C<region P> {
     
@@ -11,9 +11,9 @@ class C<region P> {
         a = 0;
     }
     
-    <region P_c>void m2(C c) {
-        C c1 = new C();
-        C c2 = new C();
+    void m2(seven.C<Pi1> c) {
+        seven.C<Pi2> c1 = new seven.C<Pi3>();
+        seven.C<Pi4> c2 = new seven.C<Pi5>();
         c.m1();
         cobegin {
             c1.m1();

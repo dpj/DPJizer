@@ -12,7 +12,7 @@ class C<region P> {
     }
     
     void m2() {
-        C c2 = new C();
+        one.C<Pi1> c2 = new one.C<Pi2>();
         c2.m1();
     }
 }

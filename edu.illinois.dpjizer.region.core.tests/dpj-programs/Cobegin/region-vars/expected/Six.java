@@ -1,4 +1,4 @@
-package three;
+package six;
 
 class C1<region P1, P2> {
     
@@ -13,7 +13,7 @@ class C1<region P1, P2> {
         b = 0;
     }
     
-    <region P1_c1, P2_c1, P1_c2, P2_c2>void m2(C1 c1, C2 c2) {
+    void m2(six.C1<Pi1,Pi2> c1, six.C2<Pi3,Pi4> c2) {
         cobegin {
             c1.m1();
             c2.m1();
