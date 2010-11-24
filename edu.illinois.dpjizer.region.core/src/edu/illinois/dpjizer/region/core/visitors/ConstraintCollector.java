@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 import com.sun.tools.javac.code.Symbol.VarSymbol;
 import com.sun.tools.javac.comp.EnvScanner;
 import com.sun.tools.javac.tree.JCTree.DPJCobegin;
+import com.sun.tools.javac.tree.JCTree.DPJForLoop;
 import com.sun.tools.javac.tree.JCTree.JCAssign;
 import com.sun.tools.javac.tree.JCTree.JCExpression;
 import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
@@ -59,7 +60,14 @@ public class ConstraintCollector extends EnvScanner {
 	public void visitCobegin(DPJCobegin tree) {
 		super.visitCobegin(tree);
 		// TODO: Generate the disjointness constraints.
-		Logger.log(tree.effects.toString());
+		Logger.log("Effects of the body of Cobegin:" + tree.effects);
+	}
+
+	@Override
+	public void visitDPJForLoop(DPJForLoop tree) {
+		super.visitDPJForLoop(tree);
+		// TODO: Generate the disjointness constraints.
+		Logger.log("Effects of DPJ for loop:" + tree.effects);
 	}
 
 	@Override
