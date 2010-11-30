@@ -47,7 +47,7 @@ import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Name;
 
 import edu.illinois.dpjizer.region.core.constraints.Constraints;
-import edu.illinois.dpjizer.region.core.types.RPLSubstitution;
+import edu.illinois.dpjizer.region.core.types.RPLWithSubstitution;
 import edu.illinois.dpjizer.region.core.types.RegionVarElt;
 import edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol;
 
@@ -83,7 +83,7 @@ public class DPJizerAttr extends Attr {
 		RegionVarEltSymbol regionVarSym = new RegionVarEltSymbol(STATIC, Name.fromString(names, new String("Pi" + RegionVarEltSymbol.numIDs)),
 				topLevelEnv.info.scope.owner);
 
-		return new RPLSubstitution(new RegionVarElt(regionVarSym), constraints);
+		return new RPLWithSubstitution(new RegionVarElt(regionVarSym), constraints);
 	}
 
 	// protected IndexVarSymbol getNewIndexVar(Scope scope) {

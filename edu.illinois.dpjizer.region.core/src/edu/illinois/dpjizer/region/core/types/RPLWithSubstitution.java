@@ -19,26 +19,26 @@ import edu.illinois.dpjizer.region.core.constraints.InclusionConstraint;
  * @author Mohsen Vakilian
  * 
  */
-public class RPLSubstitution extends RPL {
+public class RPLWithSubstitution extends RPL {
 
 	SubstitutionChain substitution = SubstitutionChain.EMPTY;
 
 	Constraints constraints;
 
 	@Inject
-	public RPLSubstitution(List<RPLElement> elts, Constraints constraints) {
+	public RPLWithSubstitution(List<RPLElement> elts, Constraints constraints) {
 		super(elts);
 		this.constraints = constraints;
 	}
 
 	@Inject
-	public RPLSubstitution(RPLElement singletonElement, Constraints constraints) {
+	public RPLWithSubstitution(RPLElement singletonElement, Constraints constraints) {
 		super(singletonElement);
 		this.constraints = constraints;
 	}
 
 	@Inject
-	public RPLSubstitution(List<RPLElement> elts, SubstitutionChain substitution, Constraints constraints) {
+	public RPLWithSubstitution(List<RPLElement> elts, SubstitutionChain substitution, Constraints constraints) {
 		this(elts, constraints);
 		this.substitution = substitution;
 	}
@@ -47,7 +47,7 @@ public class RPLSubstitution extends RPL {
 		// if (!this.elts.head.equals(param)) {
 		// return this;
 		// }
-		return new RPLSubstitution(elts, substitution.followedBy(new RegionSubstitution(param, rpl)), constraints);
+		return new RPLWithSubstitution(elts, substitution.followedBy(new RegionSubstitution(param, rpl)), constraints);
 	}
 
 	// TODO: This is a hack to make every RPL included in RPLs that contain
@@ -90,10 +90,9 @@ public class RPLSubstitution extends RPL {
 		return sb.toString();
 	}
 
-	// FIXME: substIndex creates a substitution for the index.
 	@Override
 	public RPL substIndex(VarSymbol from, JCExpression to) {
-		return this;
+		return new RPLWithSubstitution(elts, substitution.followedBy(new IndexSubstitution(from, to)), constraints);
 	}
 
 }
