@@ -1,0 +1,3 @@
+[submodule "dpj-for-regions"]
+	path = dpj-for-regions
+	url = git@github.com:reprogrammer/DPJ.git
