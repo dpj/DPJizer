@@ -21,6 +21,8 @@ import edu.illinois.dpjizer.region.core.constraints.InclusionConstraint;
  */
 public class RPLWithSubstitution extends RPL {
 
+	public static boolean isCapturingConstraints = true;
+
 	SubstitutionChain substitution = SubstitutionChain.EMPTY;
 
 	Constraints constraints;
@@ -61,8 +63,12 @@ public class RPLWithSubstitution extends RPL {
 	// region variables.
 	@Override
 	public boolean isIncludedIn(RPL that) {
-		constraints.add(new InclusionConstraint(this, that));
-		return true;
+		if (isCapturingConstraints) {
+			constraints.add(new InclusionConstraint(this, that));
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// TODO: I need to figure out the nesting rules for RPLs that contain region
@@ -72,6 +78,7 @@ public class RPLWithSubstitution extends RPL {
 		return true;
 	}
 
+	// TODO: I probably need a proper equals method.
 	@Override
 	public boolean equals(Object other) {
 		return (other instanceof RPL);

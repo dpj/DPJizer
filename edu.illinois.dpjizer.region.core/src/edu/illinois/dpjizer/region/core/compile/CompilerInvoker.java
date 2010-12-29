@@ -27,6 +27,7 @@ import com.sun.tools.javac.util.Pair;
 
 import edu.illinois.dpjizer.region.core.change.Changes;
 import edu.illinois.dpjizer.region.core.constraints.Constraints;
+import edu.illinois.dpjizer.region.core.types.RPLWithSubstitution;
 
 /**
  * 
@@ -99,7 +100,10 @@ public class CompilerInvoker {
 
 		List<Pair<Env<AttrContext>, JCClassDecl>> result = null;
 
-		result = comp.desugar(comp.flow(additionalPhase.analyze(comp.checkEffects(comp.attribute(comp.todo)), context)));
+		RPLWithSubstitution.isCapturingConstraints = true;
+		List<Env<AttrContext>> attributed = comp.attribute(comp.todo);
+		RPLWithSubstitution.isCapturingConstraints = false;
+		result = comp.desugar(comp.flow(additionalPhase.analyze(comp.checkEffects(attributed), context)));
 
 		if (!expectErrors)
 			if (result.isEmpty())
