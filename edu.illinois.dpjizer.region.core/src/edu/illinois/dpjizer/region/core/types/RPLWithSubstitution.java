@@ -56,7 +56,7 @@ public class RPLWithSubstitution extends RPL {
 	// region variables.
 	@Override
 	protected boolean endsWithStar() {
-		return true;
+		return isCapturingConstraints;
 	}
 
 	// TODO: I need to figure out the rules for inclusion of RPLs that contain
@@ -75,10 +75,12 @@ public class RPLWithSubstitution extends RPL {
 	// variables.
 	@Override
 	public boolean isNestedUnder(RPL that) {
-		return true;
+		return isCapturingConstraints;
 	}
 
-	// TODO: I probably need a proper equals method.
+	// TODO: I probably need a proper equals method. If I change the body of
+	// this method to "isCapturingConstraints && (other instanceof RPL)", I get
+	// and stack over flow exception.
 	@Override
 	public boolean equals(Object other) {
 		return (other instanceof RPL);
