@@ -14,7 +14,7 @@ class Vector<region VR> {
     }
     double[]<Pi2>#idx1 elts in VR = new double[3]<Pi8>#idx2;
     
-    void SETV(simplifiedbarneshut.Vector<Pi3> u) {
+    <region SR>void SETV(simplifiedbarneshut.Vector<Pi3> u) {
         for (int m = 0; m < 3; m++) {
             elts[m] = u.elts[m];
         }

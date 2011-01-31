@@ -5,6 +5,10 @@ package edu.illinois.dpjizer.region.core.types;
 
 /**
  * 
+ * TODO: I need to replace
+ * {@link edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol.numIDs} by
+ * an instance of this class.
+ * 
  * @author Mohsen Vakilian
  * 
  */

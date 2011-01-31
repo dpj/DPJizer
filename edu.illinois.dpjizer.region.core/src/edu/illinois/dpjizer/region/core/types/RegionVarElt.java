@@ -14,10 +14,6 @@ public class RegionVarElt extends RPLElement {
 
 	public RegionVarEltSymbol sym;
 
-	@Deprecated
-	public RegionVarElt() {
-	}
-
 	public RegionVarElt(RegionVarEltSymbol sym) {
 		super();
 		this.sym = sym;

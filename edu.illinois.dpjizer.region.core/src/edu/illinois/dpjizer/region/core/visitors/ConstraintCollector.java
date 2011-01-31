@@ -44,9 +44,12 @@ public class ConstraintCollector extends EnvScanner {
 		List<VarSymbol> formalParameters = tree.getMethodSymbol().getParameters();
 		List<JCExpression> actualArguments = tree.getArguments();
 		List<JCExpression> remainingActualArguments = actualArguments;
-		for (List<VarSymbol> remainingFormalParameters = formalParameters; remainingFormalParameters.nonEmpty(); remainingFormalParameters = remainingFormalParameters.tail) {
-			constraintRepository.add(new SubtypingConstraint(remainingFormalParameters.head.type, remainingActualArguments.head.type));
+		List<VarSymbol> remainingFormalParameters = formalParameters;
 
+		while (remainingFormalParameters.nonEmpty()) {
+			constraintRepository.add(new SubtypingConstraint(remainingFormalParameters.head.type, remainingActualArguments.head.type));
+			remainingActualArguments = remainingActualArguments.tail;
+			remainingFormalParameters = remainingFormalParameters.tail;
 		}
 	}
 

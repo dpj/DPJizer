@@ -47,7 +47,6 @@ import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Name;
 
 import edu.illinois.dpjizer.region.core.constraints.Constraints;
-import edu.illinois.dpjizer.region.core.types.RPLWithSubstitution;
 import edu.illinois.dpjizer.region.core.types.RegionVarElt;
 import edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol;
 
@@ -83,7 +82,7 @@ public class DPJizerAttr extends Attr {
 		RegionVarEltSymbol regionVarSym = new RegionVarEltSymbol(STATIC, Name.fromString(names, new String("Pi" + RegionVarEltSymbol.numIDs)),
 				topLevelEnv.info.scope.owner);
 
-		return new RPLWithSubstitution(new RegionVarElt(regionVarSym), constraints);
+		return new RPL(new RegionVarElt(regionVarSym)/* , constraints */);
 	}
 
 	// protected IndexVarSymbol getNewIndexVar(Scope scope) {
@@ -139,10 +138,10 @@ public class DPJizerAttr extends Attr {
 					owntype = eraseType(owntype);
 					// Don't erase the region params!
 					((ClassType) owntype).rgnparams_field = regionParams;
-					/* Begin modification */
+					/* DPJIZER:Begin modification */
 					List<RPL> defaultRegions = insertDefaultRegions(env, numParams);
 					((ClassType) owntype).rgnactuals_field = defaultRegions;
-					/* End modification */
+					/* DPJIZER:End modification */
 				}
 
 				// (b) If the symbol's type is an inner class, then
@@ -288,11 +287,11 @@ public class DPJizerAttr extends Attr {
 		if (tree.rpl != null) {
 			((ArrayType) tree.type).rpl = tree.rpl.rpl;
 		}
-		/* Begin modification */
+		/* DPJIZER:Begin modification */
 		else {
 			((ArrayType) tree.type).rpl = getNewRPL();
 		}
-		/* End modification */
+		/* DPJIZER:End modification */
 	}
 
 	@Override
@@ -312,22 +311,22 @@ public class DPJizerAttr extends Attr {
 			while (!rpls.isEmpty()) {
 				RPL rpl = null;
 				VarSymbol indexVar = null;
-				/* Begin modification */
+				/* DPJIZER:Begin modification */
 				if (indexVars.head != null) {
 					indexVar = new VarSymbol(0, indexVars.head.name, syms.intType, scope.owner);
 					indexVars.head.sym = indexVar;
 					scope.enter(indexVar);
 				}
-				/* End modification */
+				/* DPJZIER:End modification */
 				if (rpls.head != null) {
 					attribTree(rpls.head, localEnv, NIL, Type.noType);
 					rpl = rpls.head.rpl;
 				}
-				/* Begin modification */
+				/* DPJIZER:Begin modification */
 				else {
 					rpl = getNewRPL();
 				}
-				/* End modification */
+				/* DPJIZER:End modification */
 				rplBuf.append(rpl);
 				indexBuf.append(indexVar);
 				rpls = rpls.tail;
@@ -359,9 +358,9 @@ public class DPJizerAttr extends Attr {
 		}
 		if (tree.elems != null) {
 			attribExprs(tree.elems, env, elemtype);
-			/* Begin modification */
+			/* DPJIZER:Begin modification */
 			owntype = new ArrayType(elemtype, getNewRPL(), null, syms.arrayClass);
-			/* End modification */
+			/* DPJZIER:End modification */
 		}
 		if (!types.isReifiable(elemtype))
 			log.error(tree.pos(), "generic.array.creation");

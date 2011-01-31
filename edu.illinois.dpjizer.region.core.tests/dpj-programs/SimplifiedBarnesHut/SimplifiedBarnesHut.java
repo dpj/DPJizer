@@ -7,7 +7,7 @@ class HGStruct<region HR> {
 class Vector<region VR> {
 	double[] elts in VR = new double[3];
 
-	void SETV(Vector u) {
+	<region SR>void SETV(Vector u) {
 		for (int m = 0; m < 3; m++) {
 			elts[m] = u.elts[m];
 		}

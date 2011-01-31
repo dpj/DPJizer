@@ -10,6 +10,7 @@ import javax.tools.JavaFileManager;
 import javax.tools.JavaFileObject;
 
 import com.google.inject.Inject;
+import com.sun.tools.javac.code.RPL;
 import com.sun.tools.javac.code.Source;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
@@ -27,7 +28,6 @@ import com.sun.tools.javac.util.Pair;
 
 import edu.illinois.dpjizer.region.core.change.Changes;
 import edu.illinois.dpjizer.region.core.constraints.Constraints;
-import edu.illinois.dpjizer.region.core.types.RPLWithSubstitution;
 
 /**
  * 
@@ -100,9 +100,9 @@ public class CompilerInvoker {
 
 		List<Pair<Env<AttrContext>, JCClassDecl>> result = null;
 
-		RPLWithSubstitution.isCapturingConstraints = true;
+		RPL.isCapturingConstraints = true;
 		List<Env<AttrContext>> attributed = comp.attribute(comp.todo);
-		RPLWithSubstitution.isCapturingConstraints = false;
+		RPL.isCapturingConstraints = false;
 		result = comp.desugar(comp.flow(additionalPhase.analyze(comp.checkEffects(attributed), context)));
 
 		if (!expectErrors)
