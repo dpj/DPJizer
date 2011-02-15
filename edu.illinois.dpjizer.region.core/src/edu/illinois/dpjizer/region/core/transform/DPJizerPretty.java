@@ -6,13 +6,18 @@ package edu.illinois.dpjizer.region.core.transform;
 import java.io.IOException;
 import java.io.Writer;
 
+import com.sun.tools.javac.code.RPL;
 import com.sun.tools.javac.code.Symbol;
 import com.sun.tools.javac.code.Type;
 import com.sun.tools.javac.code.Type.ArrayType;
+import com.sun.tools.javac.code.Type.MethodType;
 import com.sun.tools.javac.code.Types;
+import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.JCTree.JCArrayTypeTree;
 import com.sun.tools.javac.tree.JCTree.JCExpression;
+import com.sun.tools.javac.tree.JCTree.JCFieldAccess;
 import com.sun.tools.javac.tree.JCTree.JCIdent;
+import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
 import com.sun.tools.javac.tree.JCTree.JCNewArray;
 import com.sun.tools.javac.tree.Pretty;
 import com.sun.tools.javac.util.List;
@@ -26,6 +31,63 @@ public class DPJizerPretty extends Pretty {
 
 	public DPJizerPretty(Writer out, boolean sourceOutput, int codeGenMode) {
 		super(out, sourceOutput, codeGenMode);
+	}
+
+	public <T extends RPL> void printRPLs(List<T> trees, String sep)
+			throws IOException {
+		if (trees.nonEmpty()) {
+			print(trees.head.toString());
+			for (List<T> l = trees.tail; l.nonEmpty(); l = l.tail) {
+				print(sep);
+				print(l.head.toString());
+			}
+		}
+	}
+
+	public <T extends RPL> void printRPLs(List<T> trees) throws IOException {
+		printRPLs(trees, ", ");
+	}
+
+	public void printArguments(List<JCExpression> typeargs, List<RPL> rplargs,
+			boolean printKeyword) throws IOException {
+		boolean rplsToPrint = ((codeGenMode == NONE) && rplargs.nonEmpty());
+		if (!typeargs.isEmpty() || rplsToPrint) {
+			print("<");
+			printExprs(typeargs);
+			if (typeargs.nonEmpty() && rplsToPrint)
+				print(", ");
+			if (rplsToPrint && printKeyword)
+				print("region ");
+			printRPLs(rplargs);
+			print(">");
+		}
+	}
+
+	@Override
+	public void visitApply(JCMethodInvocation tree) {
+		try {
+			MethodType methodType = (MethodType) tree.meth.type;
+			List<RPL> regionActuals = methodType.regionActuals;
+			if (!tree.typeargs.isEmpty() || !regionActuals.isEmpty()) {
+				if (tree.meth.getTag() == JCTree.SELECT) {
+					JCFieldAccess left = (JCFieldAccess) tree.meth;
+					printExpr(left.selected);
+					print(".");
+					printArguments(tree.typeargs, regionActuals, true);
+					print(left.name);
+				} else {
+					printArguments(tree.typeargs, regionActuals, true);
+					printExpr(tree.meth);
+				}
+			} else {
+				printExpr(tree.meth);
+			}
+			print("(");
+			printExprs(tree.args);
+			print(")");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
