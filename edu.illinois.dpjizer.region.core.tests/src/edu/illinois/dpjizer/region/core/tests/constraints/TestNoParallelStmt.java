@@ -19,4 +19,9 @@ public class TestNoParallelStmt extends ConstraintCollectorTestCase {
 		collectConstraints();
 	}
 
+	@Test
+	public void testTwo() {
+		collectConstraints();
+	}
+
 }
