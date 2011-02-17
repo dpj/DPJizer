@@ -27,13 +27,12 @@ public class TestSimplifiedBarnesHut extends ConstraintCollectorTestCase {
 	 * 
 	 * computegrav reads Pi7[idx3 <- ?], invokes
 	 * hackgrav(simplifiedbarneshut.HGStruct<Pi5>) with [reads BR[BR <- Pi6[idx3
-	 * <- ?]][hg <- ?], reads HR[HR <- Pi5][HR <- Pi5][BR <- Pi6[idx3 <- ?]][hg
-	 * <- ?], invokes <>SETV(simplifiedbarneshut.Vector<Pi3>) with [reads VR[VR
-	 * <- Pi3][VR <- Pi3][VR <- Pi4][SR <- SPi1][u <- ?][BR <- Pi6[idx3 <-
-	 * ?]][hg <- ?], reads VR[VR <- Pi4][SR <- SPi1][u <- ?][BR <- Pi6[idx3 <-
-	 * ?]][hg <- ?], writes Pi2[idx1 <- ?][VR <- Pi4][SR <- SPi1][u <-
-	 * ?][BR <- Pi6[idx3 <- ?]][hg <- ?], reads Pi2[VR <- Pi3][idx1 <- ?][VR <-
-	 * Pi4][SR <- SPi1][u <- ?][BR <- Pi6[idx3 <- ?]][hg <- ?]]], reads Root
+	 * <- ?]], reads HR[HR <- Pi5][HR <- Pi5][BR <- Pi6[idx3 <- ?]], invokes
+	 * <>SETV(simplifiedbarneshut.Vector<Pi3>) with [reads VR[VR <- Pi3][VR <-
+	 * Pi3][VR <- Pi4][SR <- SPi1][BR <- Pi6[idx3 <- ?]], reads VR[VR <- Pi4][SR
+	 * <- SPi1][BR <- Pi6[idx3 <- ?]], writes Pi2[idx1 <- ?][VR <- Pi4][SR <-
+	 * SPi1][BR <- Pi6[idx3 <- ?]], reads Pi2[VR <- Pi3][idx1 <- ?][VR <-
+	 * Pi4][SR <- SPi1][BR <- Pi6[idx3 <- ?]]]], reads Root
 	 * 
 	 */
 	@Test
