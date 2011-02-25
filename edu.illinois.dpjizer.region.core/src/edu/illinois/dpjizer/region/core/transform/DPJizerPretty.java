@@ -33,8 +33,7 @@ public class DPJizerPretty extends Pretty {
 		super(out, sourceOutput, codeGenMode);
 	}
 
-	public <T extends RPL> void printRPLs(List<T> trees, String sep)
-			throws IOException {
+	public <T extends RPL> void printRPLs(List<T> trees, String sep) throws IOException {
 		if (trees.nonEmpty()) {
 			print(trees.head.toString());
 			for (List<T> l = trees.tail; l.nonEmpty(); l = l.tail) {
@@ -48,8 +47,7 @@ public class DPJizerPretty extends Pretty {
 		printRPLs(trees, ", ");
 	}
 
-	public void printArguments(List<JCExpression> typeargs, List<RPL> rplargs,
-			boolean printKeyword) throws IOException {
+	public void printArguments(List<JCExpression> typeargs, List<RPL> rplargs, boolean printKeyword) throws IOException {
 		boolean rplsToPrint = ((codeGenMode == NONE) && rplargs.nonEmpty());
 		if (!typeargs.isEmpty() || rplsToPrint) {
 			print("<");

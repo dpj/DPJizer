@@ -38,20 +38,20 @@ public class ConstraintCollector extends EnvScanner {
 		return constraintRepository;
 	}
 
-	@Override
-	public void visitApply(JCMethodInvocation tree) {
-		super.visitApply(tree);
-		List<VarSymbol> formalParameters = tree.getMethodSymbol().getParameters();
-		List<JCExpression> actualArguments = tree.getArguments();
-		List<JCExpression> remainingActualArguments = actualArguments;
-		List<VarSymbol> remainingFormalParameters = formalParameters;
-
-		while (remainingFormalParameters.nonEmpty()) {
-			constraintRepository.add(new SubtypingConstraint(remainingFormalParameters.head.type, remainingActualArguments.head.type));
-			remainingActualArguments = remainingActualArguments.tail;
-			remainingFormalParameters = remainingFormalParameters.tail;
-		}
-	}
+//	@Override
+//	public void visitApply(JCMethodInvocation tree) {
+//		super.visitApply(tree);
+//		List<VarSymbol> formalParameters = tree.getMethodSymbol().getParameters();
+//		List<JCExpression> actualArguments = tree.getArguments();
+//		List<JCExpression> remainingActualArguments = actualArguments;
+//		List<VarSymbol> remainingFormalParameters = formalParameters;
+//
+//		while (remainingFormalParameters.nonEmpty()) {
+//			constraintRepository.add(new SubtypingConstraint(remainingFormalParameters.head.type, remainingActualArguments.head.type));
+//			remainingActualArguments = remainingActualArguments.tail;
+//			remainingFormalParameters = remainingFormalParameters.tail;
+//		}
+//	}
 
 	@Override
 	public void visitAssign(JCAssign tree) {

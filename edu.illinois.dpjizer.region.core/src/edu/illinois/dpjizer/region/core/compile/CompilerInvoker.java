@@ -100,9 +100,9 @@ public class CompilerInvoker {
 
 		List<Pair<Env<AttrContext>, JCClassDecl>> result = null;
 
-		RPL.isCapturingConstraints = true;
+		RPL.resultOfIsIncludedIn = true;
 		List<Env<AttrContext>> attributed = comp.attribute(comp.todo);
-		RPL.isCapturingConstraints = false;
+		RPL.resultOfIsIncludedIn = false;
 		result = comp.desugar(comp.flow(additionalPhase.analyze(comp.checkEffects(attributed), context)));
 
 		if (!expectErrors)
