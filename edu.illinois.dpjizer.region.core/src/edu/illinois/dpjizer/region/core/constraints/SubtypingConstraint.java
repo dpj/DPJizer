@@ -4,6 +4,7 @@
 package edu.illinois.dpjizer.region.core.constraints;
 
 import com.sun.tools.javac.code.Type;
+import com.sun.tools.javac.code.dpjizer.constraints.Constraint;
 
 /**
  * 

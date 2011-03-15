@@ -5,7 +5,8 @@ package edu.illinois.dpjizer.region.core.tests.dirs;
 
 import java.io.File;
 
-import edu.illinois.dpjizer.region.core.dirs.Dirs;
+import com.sun.tools.javac.code.dpjizer.dirs.Dirs;
+
 
 /**
  * 

@@ -27,7 +27,6 @@ import com.sun.tools.javac.util.Options;
 import com.sun.tools.javac.util.Pair;
 
 import edu.illinois.dpjizer.region.core.change.Changes;
-import edu.illinois.dpjizer.region.core.constraints.Constraints;
 
 /**
  * 
@@ -42,15 +41,12 @@ public class CompilerInvoker {
 
 	Context context;
 
-	Constraints constraints;
-
 	ConstraintCollectionPhase constraintCollectionPhase;
 
 	@Inject
-	public CompilerInvoker(Context context, ConstraintCollectionPhase constraintCollectionPhase, Constraints constraints) {
+	public CompilerInvoker(Context context, ConstraintCollectionPhase constraintCollectionPhase) {
 		this.context = context;
 		this.constraintCollectionPhase = constraintCollectionPhase;
-		this.constraints = constraints;
 	}
 
 	protected List<JCCompilationUnit> parseFiles(String[] filepaths) {

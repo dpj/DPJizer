@@ -3,8 +3,9 @@
  */
 package edu.illinois.dpjizer.region.core.tests.dependencies;
 
+import com.sun.tools.javac.code.dpjizer.dirs.Dirs;
+
 import edu.illinois.dpjizer.region.core.dependencies.DPJizerDependencyModule;
-import edu.illinois.dpjizer.region.core.dirs.Dirs;
 import edu.illinois.dpjizer.region.core.tests.dirs.DPJizerDirs;
 
 /**

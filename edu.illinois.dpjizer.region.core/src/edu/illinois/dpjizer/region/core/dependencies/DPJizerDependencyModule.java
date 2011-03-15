@@ -6,14 +6,14 @@ package edu.illinois.dpjizer.region.core.dependencies;
 import java.io.PrintWriter;
 
 import com.google.inject.AbstractModule;
+import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
+import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
+import com.sun.tools.javac.code.dpjizer.dirs.Dirs;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.JavacFileManager;
 import com.sun.tools.javac.util.Log;
 
-import edu.illinois.dpjizer.region.core.constraints.ConstraintRepository;
-import edu.illinois.dpjizer.region.core.constraints.Constraints;
 import edu.illinois.dpjizer.region.core.constraints.ConstraintsSet;
-import edu.illinois.dpjizer.region.core.dirs.Dirs;
 import edu.illinois.dpjizer.region.core.parser.DPJizerParser;
 import edu.illinois.dpjizer.region.core.visitors.ConstraintCollector;
 import edu.illinois.dpjizer.region.core.visitors.DPJizerAttr;

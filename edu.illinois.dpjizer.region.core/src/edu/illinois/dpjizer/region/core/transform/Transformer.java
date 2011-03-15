@@ -6,10 +6,10 @@ package edu.illinois.dpjizer.region.core.transform;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.sun.tools.javac.code.dpjizer.dirs.FileUtils;
 import com.sun.tools.javac.tree.JCTree.JCCompilationUnit;
 import com.sun.tools.javac.tree.Pretty;
 
-import edu.illinois.dpjizer.region.core.dirs.FileUtils;
 
 /**
  * 

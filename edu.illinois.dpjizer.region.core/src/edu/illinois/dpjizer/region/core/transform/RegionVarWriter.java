@@ -6,9 +6,9 @@ package edu.illinois.dpjizer.region.core.transform;
 import java.io.PrintWriter;
 
 import com.google.inject.Inject;
+import com.sun.tools.javac.code.dpjizer.dirs.Dirs;
 import com.sun.tools.javac.tree.Pretty;
 
-import edu.illinois.dpjizer.region.core.dirs.Dirs;
 
 /**
  * 

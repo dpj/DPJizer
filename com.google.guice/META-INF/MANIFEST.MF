@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: 0
+Bundle-Name: com.google.guice
 Bundle-SymbolicName: com.google.guice
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: guice-2.0.jar,
  aopalliance.jar
 Export-Package: com.google.inject;
@@ -40,3 +40,4 @@ Export-Package: com.google.inject;
  org.aopalliance.aop,
  org.aopalliance.intercept;uses:="org.aopalliance.aop"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: Google

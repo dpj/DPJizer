@@ -4,8 +4,8 @@
 package edu.illinois.dpjizer.region.core.transform;
 
 import com.google.inject.Inject;
+import com.sun.tools.javac.code.dpjizer.dirs.Dirs;
 
-import edu.illinois.dpjizer.region.core.dirs.Dirs;
 
 /**
  * 
