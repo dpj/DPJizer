@@ -22,12 +22,17 @@ public abstract class ConstraintCollectorTestCase extends DPJInferencerTestCase 
 		String[] inputFiles = new String[] { name };
 		collectConstraints(inputFiles);
 		compareRegionVarFiles(inputFiles);
+		compareConstraints(inputFiles);
 	}
 
 	protected void compareRegionVarFiles(String[] filePaths) {
 		String[] actualFiles = dpjizerTestDirs.actualRegionVarPaths(filePaths, getTestDir());
 		String[] expectedFiles = dpjizerTestDirs.expectedRegionVarPaths(filePaths, getTestDir());
 		fileComparator.compareFiles(actualFiles, expectedFiles);
+	}
+
+	protected void compareConstraints(String[] filePaths) {
+		fileComparator.compareFiles(new String[] { dpjizerTestDirs.getConstraintsFileName() }, dpjizerTestDirs.getExpectedConstraintPath(filePaths, getTestDir()));
 	}
 
 }

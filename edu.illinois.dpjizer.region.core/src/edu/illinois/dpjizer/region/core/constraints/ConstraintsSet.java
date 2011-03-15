@@ -3,9 +3,13 @@
  */
 package edu.illinois.dpjizer.region.core.constraints;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import com.sun.tools.javac.code.dpjizer.constraints.Constraint;
@@ -91,6 +95,19 @@ public class ConstraintsSet implements Constraints {
 	@Override
 	public <T> T[] toArray(T[] arg0) {
 		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Constraint> sortedConstraints() {
+		List<Constraint> sortedListOfConstraints = new ArrayList<Constraint>(constraints);
+		Collections.sort(sortedListOfConstraints, new Comparator<Constraint>() {
+
+			@Override
+			public int compare(Constraint c1, Constraint c2) {
+				return c1.toString().compareTo(c2.toString());
+			}
+		});
+		return Collections.unmodifiableList(sortedListOfConstraints);
 	}
 
 }

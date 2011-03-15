@@ -74,4 +74,16 @@ public class DPJizerTestDirs extends DPJizerDirs {
 		return testFilesPaths(filePaths, testDir + File.separator + EXPECTED_REGION_VARS_DIR);
 	}
 
+	public String[] getExpectedConstraintPath(String[] filePaths, String testDir) {
+		if (filePaths.length != 1) {
+			throw new RuntimeException("Expected one Java file per test.");
+		}
+		String[] absoluteFilePaths = new String[filePaths.length];
+		for (int i = 0; i < absoluteFilePaths.length; i++) {
+			String relativePath = testDir + File.separator + "constraints" + File.separator + filePaths[i] + ".expected.constraints"; //$NON-NLS-1$
+			absoluteFilePaths[i] = absoultePathOf(relativePath);
+		}
+		return absoluteFilePaths;
+	}
+
 }

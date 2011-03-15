@@ -1,0 +1,3 @@
+P is in Pi3
+Pi3[P <- Pi1[P <- P]] is in Pi2[P <- P]
+Pi4 is in Pi1[P <- P]
