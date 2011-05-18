@@ -4,10 +4,22 @@
 package edu.illinois.dpjizer.region.core.visitors;
 
 import com.google.inject.Inject;
+import com.sun.tools.javac.code.Effect;
+import com.sun.tools.javac.code.Effect.InvocationEffect;
+import com.sun.tools.javac.code.Effect.WriteEffect;
+import com.sun.tools.javac.code.Effects;
+import com.sun.tools.javac.code.RPLElement;
+import com.sun.tools.javac.code.dpjizer.constraints.ConjunctiveConstraint;
+import com.sun.tools.javac.code.dpjizer.constraints.Constraint;
 import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
+import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
+import com.sun.tools.javac.code.dpjizer.constraints.ConstraintsSet;
 import com.sun.tools.javac.comp.EnvScanner;
+import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.JCTree.DPJCobegin;
 import com.sun.tools.javac.tree.JCTree.DPJForLoop;
+import com.sun.tools.javac.tree.JCTree.JCVariableDecl;
+import com.sun.tools.javac.tree.TreeMaker;
 import com.sun.tools.javac.util.Context;
 
 import edu.illinois.dpjizer.utils.Logger;
@@ -20,11 +32,13 @@ import edu.illinois.dpjizer.utils.Logger;
 public class ConstraintCollector extends EnvScanner {
 
 	ConstraintRepository constraintRepository;
+	TreeMaker treeMaker;
 
 	@Inject
 	public ConstraintCollector(Context context, ConstraintRepository constraintRepository) {
 		super(context);
 		this.constraintRepository = constraintRepository;
+		treeMaker = TreeMaker.instance(context);
 	}
 
 	public ConstraintRepository getConstraintRepository() {
@@ -68,6 +82,27 @@ public class ConstraintCollector extends EnvScanner {
 		super.visitDPJForLoop(tree);
 		// TODO: Generate the disjointness constraints.
 		Logger.log("Effects of DPJ for loop:" + tree.effects);
+		// Turn the loop index variable v into an RPL element [v].
+		JCVariableDecl loopVariable = tree.var;
+		JCTree.JCIdent indexIdentifier = treeMaker.Ident(loopVariable.name);
+		indexIdentifier.sym = loopVariable.sym;
+		indexIdentifier.setPos(loopVariable.sym.pos);
+		indexIdentifier.setType(loopVariable.sym.type);
+		RPLElement rplElement = new RPLElement.ArrayIndexRPLElement(indexIdentifier);
+		Constraint constraint = writeEffectsShouldContainRPLElement(tree.effects, rplElement);
+		Logger.log(constraint.toString());
+	}
+
+	private Constraint writeEffectsShouldContainRPLElement(Effects effects, RPLElement rplElement) {
+		Constraints result = new ConstraintsSet();
+		for (Effect effect : effects) {
+			if (effect instanceof WriteEffect) {
+				result.add(((WriteEffect) effect).rpl.shouldContainRPLElement(rplElement));
+			} else if (effect instanceof InvocationEffect) {
+				result.add(writeEffectsShouldContainRPLElement(((InvocationEffect) effect).withEffects, rplElement));
+			}
+		}
+		return ConjunctiveConstraint.newConjunctiveConstraint(result);
 	}
 
 	// @Override

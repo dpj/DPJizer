@@ -31,6 +31,8 @@ import com.sun.tools.javac.code.Type.ArrayType;
 import com.sun.tools.javac.code.Type.ClassType;
 import com.sun.tools.javac.code.Type.ForAll;
 import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
+import com.sun.tools.javac.code.dpjizer.constraints.RegionVarElt;
+import com.sun.tools.javac.code.dpjizer.constraints.RegionVarEltSymbol;
 import com.sun.tools.javac.comp.Attr;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
@@ -47,8 +49,6 @@ import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.ListBuffer;
 import com.sun.tools.javac.util.Name;
 
-import edu.illinois.dpjizer.region.core.types.RegionVarElt;
-import edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol;
 
 /**
  * 

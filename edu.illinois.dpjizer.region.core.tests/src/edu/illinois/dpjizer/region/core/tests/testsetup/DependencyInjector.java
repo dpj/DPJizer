@@ -7,12 +7,12 @@ import org.junit.Before;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.sun.tools.javac.code.dpjizer.constraints.RegionVarEltSymbol;
 
 import edu.illinois.dpjizer.region.core.compile.CompilerInvoker;
 import edu.illinois.dpjizer.region.core.tests.dependencies.DPJizerTestDependencyModule;
 import edu.illinois.dpjizer.region.core.tests.dirs.DPJizerTestDirs;
 import edu.illinois.dpjizer.region.core.tests.dirs.FileComparator;
-import edu.illinois.dpjizer.region.core.types.RegionVarEltSymbol;
 
 /**
  * 

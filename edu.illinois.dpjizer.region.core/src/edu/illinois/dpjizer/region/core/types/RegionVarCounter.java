@@ -3,6 +3,8 @@
  */
 package edu.illinois.dpjizer.region.core.types;
 
+import com.sun.tools.javac.code.dpjizer.constraints.RegionVarEltSymbol;
+
 /**
  * 
  * TODO: I need to replace
