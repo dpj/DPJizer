@@ -32,7 +32,6 @@ import com.sun.tools.javac.code.Type.ClassType;
 import com.sun.tools.javac.code.Type.ForAll;
 import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
 import com.sun.tools.javac.code.dpjizer.constraints.RegionVarElt;
-import com.sun.tools.javac.code.dpjizer.constraints.RegionVarEltSymbol;
 import com.sun.tools.javac.comp.Attr;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
@@ -47,8 +46,6 @@ import com.sun.tools.javac.tree.JCTree.JCNewArray;
 import com.sun.tools.javac.util.Context;
 import com.sun.tools.javac.util.List;
 import com.sun.tools.javac.util.ListBuffer;
-import com.sun.tools.javac.util.Name;
-
 
 /**
  * 
@@ -76,19 +73,9 @@ public class DPJizerAttr extends Attr {
 		return (indexVar != null) && (!indexVar.toString().equals("_"));
 	}
 
-	protected RPL getNewRPL() {
-		Env<AttrContext> topLevelEnv = enter.getTopLevelEnv(env.toplevel);
-
-		RegionVarEltSymbol regionVarSym = new RegionVarEltSymbol(STATIC, Name.fromString(names, new String("Pi" + RegionVarEltSymbol.numIDs)),
-				topLevelEnv.info.scope.owner);
-
-		return new RPL(new RegionVarElt(regionVarSym)/* , constraints */);
+	protected RPL getNewRPL(Env<AttrContext> env) {
+		return new RPL(RegionVarElt.getFreshRegionVarElt(names, env));
 	}
-
-	// protected IndexVarSymbol getNewIndexVar(Scope scope) {
-	// return new IndexVarSymbol(0, Name.fromString(names, IndexVarCounter
-	// .getNextIndexVarName()), syms.intType, scope.owner);
-	// }
 
 	/**
 	 * Determine type of identifier or select expression and check that (1) the
@@ -260,7 +247,7 @@ public class DPJizerAttr extends Attr {
 		// Java "raw type."
 		ListBuffer<RPL> buf = ListBuffer.lb();
 		for (int i = 0; i < numParams; ++i) {
-			buf.append(getNewRPL());
+			buf.append(getNewRPL(env));
 		}
 		return buf.toList();
 	}
@@ -283,14 +270,14 @@ public class DPJizerAttr extends Attr {
 		Type etype = attribType(tree.elemtype, localEnv);
 		Type type = new ArrayType(etype, null, indexVar, syms.arrayClass);
 		result = check(tree, type, TYP, pkind, pt);
-		localEnv.info.scope.leave();
 		if (tree.rpl != null) {
 			((ArrayType) tree.type).rpl = tree.rpl.rpl;
 		}
 		/* DPJIZER:Begin modification */
 		else {
-			((ArrayType) tree.type).rpl = getNewRPL();
+			((ArrayType) tree.type).rpl = getNewRPL(localEnv);
 		}
+		localEnv.info.scope.leave();
 		/* DPJIZER:End modification */
 	}
 
@@ -324,7 +311,7 @@ public class DPJizerAttr extends Attr {
 				}
 				/* DPJIZER:Begin modification */
 				else {
-					rpl = getNewRPL();
+					rpl = getNewRPL(localEnv);
 				}
 				/* DPJIZER:End modification */
 				rplBuf.append(rpl);
@@ -359,7 +346,9 @@ public class DPJizerAttr extends Attr {
 		if (tree.elems != null) {
 			attribExprs(tree.elems, env, elemtype);
 			/* DPJIZER:Begin modification */
-			owntype = new ArrayType(elemtype, getNewRPL(), null, syms.arrayClass);
+			// TODO: This code doesn't look right because it ignores the owntype
+			// computed previously.
+			owntype = new ArrayType(elemtype, getNewRPL(env), null, syms.arrayClass);
 			/* DPJZIER:End modification */
 		}
 		if (!types.isReifiable(elemtype))

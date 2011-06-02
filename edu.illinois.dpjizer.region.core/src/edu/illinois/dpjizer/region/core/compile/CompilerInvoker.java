@@ -12,6 +12,7 @@ import javax.tools.JavaFileObject;
 import com.google.inject.Inject;
 import com.sun.tools.javac.code.RPL;
 import com.sun.tools.javac.code.Source;
+import com.sun.tools.javac.code.dpjizer.constraints.RPLElementEqualityConstraint;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
 import com.sun.tools.javac.jvm.Target;
@@ -39,13 +40,14 @@ public class CompilerInvoker {
 		YES, NO
 	}
 
-	Context context;
+	public Context context;
 
 	ConstraintCollectionPhase constraintCollectionPhase;
 
 	@Inject
 	public CompilerInvoker(Context context, ConstraintCollectionPhase constraintCollectionPhase) {
 		this.context = context;
+		RPLElementEqualityConstraint.context= context;
 		this.constraintCollectionPhase = constraintCollectionPhase;
 	}
 

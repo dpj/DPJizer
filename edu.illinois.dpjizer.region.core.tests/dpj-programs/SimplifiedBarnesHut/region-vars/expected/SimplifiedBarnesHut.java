@@ -28,7 +28,7 @@ class Body<region BR> {
     simplifiedbarneshut.Vector<Pi4> vel in BR = new simplifiedbarneshut.Vector<Pi9>();
     
     void hackgrav(simplifiedbarneshut.HGStruct<Pi5> hg) {
-        vel.<region SPi1>SETV(hg.acc0);
+        vel.<region Pi10>SETV(hg.acc0);
     }
 }
 class Tree {
@@ -40,7 +40,7 @@ class Tree {
     
     void computegrav() {
         foreach (int j in 0, bodies.length) {
-            simplifiedbarneshut.HGStruct<Pi10> hg = new simplifiedbarneshut.HGStruct<Pi11>();
+            simplifiedbarneshut.HGStruct<Pi11> hg = new simplifiedbarneshut.HGStruct<Pi12>();
             bodies[j].hackgrav(hg);
         }
     }
