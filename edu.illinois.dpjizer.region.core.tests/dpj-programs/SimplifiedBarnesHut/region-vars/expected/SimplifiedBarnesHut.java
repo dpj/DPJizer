@@ -39,9 +39,13 @@ class Tree {
     simplifiedbarneshut.Body<Pi6>[]<Pi7>#idx3 bodies;
     
     void computegrav() {
+        simplifiedbarneshut.Vector<Pi11> v = new simplifiedbarneshut.Vector<Pi12>();
         foreach (int j in 0, bodies.length) {
-            simplifiedbarneshut.HGStruct<Pi11> hg = new simplifiedbarneshut.HGStruct<Pi12>();
+            simplifiedbarneshut.HGStruct<Pi13> hg = new simplifiedbarneshut.HGStruct<Pi14>();
             bodies[j].hackgrav(hg);
+            if (v.elts != null) {
+                return;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
-Pi11 is in Pi5[BR <- Pi6[idx3 <- j]]
 Pi12 is in Pi11
+Pi13 is in Pi5[BR <- Pi6[idx3 <- j]]
+Pi14 is in Pi13
 Pi1[HR <- Pi5] is in Pi3[VR <- Pi4[BR <- BR]][SR <- SR][SR <- Pi10]
 Pi8[idx2 <- ?] is in Pi2[idx1 <- ?]
 Pi9 is in Pi4

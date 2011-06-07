@@ -26,9 +26,13 @@ class Tree {
 	Body[] bodies;
 
 	void computegrav() {
+		Vector v = new Vector();
 		foreach (int j in 0, bodies.length) {
 			HGStruct hg = new HGStruct();
 			bodies[j].hackgrav(hg);
+			if (v.elts != null) {
+				return;
+			}
 		}
 	}
 }
