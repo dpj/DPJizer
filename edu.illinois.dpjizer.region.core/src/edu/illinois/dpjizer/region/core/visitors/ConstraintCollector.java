@@ -6,9 +6,11 @@ package edu.illinois.dpjizer.region.core.visitors;
 import com.google.inject.Inject;
 import com.sun.tools.javac.code.Effect;
 import com.sun.tools.javac.code.Effect.InvocationEffect;
+import com.sun.tools.javac.code.Effect.ReadEffect;
 import com.sun.tools.javac.code.Effect.WriteEffect;
 import com.sun.tools.javac.code.Effects;
 import com.sun.tools.javac.code.RPLElement;
+import com.sun.tools.javac.code.dpjizer.constraints.CompositeConstraint;
 import com.sun.tools.javac.code.dpjizer.constraints.ConjunctiveConstraint;
 import com.sun.tools.javac.code.dpjizer.constraints.Constraint;
 import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
@@ -83,23 +85,54 @@ public class ConstraintCollector extends EnvScanner {
 		// TODO: Generate the disjointness constraints.
 		Logger.log("Effects of DPJ for loop:" + tree.effects);
 		// Turn the loop index variable v into an RPL element [v].
+		RPLElement rplElement = getLoopIndexVarAsRPLElement(tree);
+		Constraint constraintsToMakeWriteEffectsContainLoopIndexVariable = makeWriteEffectsContainRPLElement(tree.effects, rplElement);
+		Logger.log("Constraints to make the write effects contain the loop index variable are:\n"
+				+ constraintsToMakeWriteEffectsContainLoopIndexVariable.toString());
+		Constraint constraintsToMakeReadEffectsContainLoopIndexVariable = tryToMakeReadEffectsContainRPLElement(tree.effects, rplElement);
+		Logger.log("Constraints to make the read effects contain the loop index variable are:\n"
+				+ constraintsToMakeReadEffectsContainLoopIndexVariable.toString());
+	}
+
+	private RPLElement getLoopIndexVarAsRPLElement(DPJForLoop tree) {
 		JCVariableDecl loopVariable = tree.var;
 		JCTree.JCIdent indexIdentifier = treeMaker.Ident(loopVariable.name);
 		indexIdentifier.sym = loopVariable.sym;
 		indexIdentifier.setPos(loopVariable.sym.pos);
 		indexIdentifier.setType(loopVariable.sym.type);
 		RPLElement rplElement = new RPLElement.ArrayIndexRPLElement(indexIdentifier);
-		Constraint constraint = writeEffectsShouldContainRPLElement(tree.effects, rplElement);
-		Logger.log(constraint.toString());
+		return rplElement;
 	}
 
-	private Constraint writeEffectsShouldContainRPLElement(Effects effects, RPLElement rplElement) {
+	private Constraint makeWriteEffectsContainRPLElement(Effects effects, RPLElement rplElement) {
 		Constraints result = new ConstraintsSet();
 		for (Effect effect : effects) {
 			if (effect instanceof WriteEffect) {
 				result.add(((WriteEffect) effect).rpl.shouldContainRPLElement(rplElement));
 			} else if (effect instanceof InvocationEffect) {
-				result.add(writeEffectsShouldContainRPLElement(((InvocationEffect) effect).withEffects, rplElement));
+				result.add(makeWriteEffectsContainRPLElement(((InvocationEffect) effect).withEffects, rplElement));
+			}
+		}
+		return ConjunctiveConstraint.newConjunctiveConstraint(result);
+	}
+
+	private Constraint tryToMakeReadEffectsContainRPLElement(Effects effects, RPLElement rplElement) {
+		Constraints result = new ConstraintsSet();
+		for (Effect effect : effects) {
+			if (effect instanceof ReadEffect) {
+				Constraint readEffectConstraint = ((ReadEffect) effect).rpl.shouldContainRPLElement(rplElement);
+				if (readEffectConstraint instanceof CompositeConstraint && ((CompositeConstraint) readEffectConstraint).isAlwaysFalse()) {
+					//If it the read effect does not accept the loop index variable, we have to move under a region dedicated to reads.
+				} else {
+					result.add(readEffectConstraint);
+				}
+			} else if (effect instanceof InvocationEffect) {
+				Constraint invocationEffectConstraint = tryToMakeReadEffectsContainRPLElement(((InvocationEffect) effect).withEffects, rplElement);
+				if (invocationEffectConstraint instanceof CompositeConstraint && ((CompositeConstraint) invocationEffectConstraint).isAlwaysFalse()) {
+					//If it the read effect does not accept the loop index variable, we have to move under a region dedicated to reads.
+				} else {
+					result.add(invocationEffectConstraint);
+				}
 			}
 		}
 		return ConjunctiveConstraint.newConjunctiveConstraint(result);
