@@ -9,6 +9,7 @@ import edu.illinois.dpjizer.region.core.tests.testsetup.ConstraintCollectorTestC
 
 /**
  * 
+ * @author Stephen Heumann
  * @author Mohsen Vakilian
  * 
  */
@@ -16,6 +17,16 @@ public class TestReadWriteDisjointness extends ConstraintCollectorTestCase {
 
 	@Test
 	public void testOne() {
+		collectConstraints();
+	}
+
+	@Test
+	public void testTwo() {
+		collectConstraints();
+	}
+
+	@Test
+	public void testThree() {
 		collectConstraints();
 	}
 
