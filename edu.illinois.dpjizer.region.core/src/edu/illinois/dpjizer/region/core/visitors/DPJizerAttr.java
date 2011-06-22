@@ -30,6 +30,7 @@ import com.sun.tools.javac.code.Type;
 import com.sun.tools.javac.code.Type.ArrayType;
 import com.sun.tools.javac.code.Type.ClassType;
 import com.sun.tools.javac.code.Type.ForAll;
+import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
 import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
 import com.sun.tools.javac.code.dpjizer.constraints.RegionVarElt;
 import com.sun.tools.javac.comp.Attr;
@@ -38,9 +39,12 @@ import com.sun.tools.javac.comp.Env;
 import com.sun.tools.javac.tree.JCTree;
 import com.sun.tools.javac.tree.JCTree.DPJRegionPathList;
 import com.sun.tools.javac.tree.JCTree.JCArrayTypeTree;
+import com.sun.tools.javac.tree.JCTree.JCClassDecl;
+import com.sun.tools.javac.tree.JCTree.JCCompilationUnit;
 import com.sun.tools.javac.tree.JCTree.JCExpression;
 import com.sun.tools.javac.tree.JCTree.JCFieldAccess;
 import com.sun.tools.javac.tree.JCTree.JCIdent;
+import com.sun.tools.javac.tree.JCTree.JCMethodDecl;
 import com.sun.tools.javac.tree.JCTree.JCMethodInvocation;
 import com.sun.tools.javac.tree.JCTree.JCNewArray;
 import com.sun.tools.javac.util.Context;
@@ -54,7 +58,7 @@ import com.sun.tools.javac.util.ListBuffer;
  */
 public class DPJizerAttr extends Attr {
 
-	Constraints constraints;
+	// Constraints constraints;
 
 	public static Attr instance(Context context, Constraints constraints) {
 		Attr instance = context.get(attrKey);
@@ -66,7 +70,7 @@ public class DPJizerAttr extends Attr {
 	protected DPJizerAttr(Context context, Constraints constraints) {
 		super(context);
 		context.put(attrKey, this);
-		this.constraints = constraints;
+		// this.constraints = constraints;
 	}
 
 	protected boolean hasNonDefaultValue(JCIdent indexVar) {
@@ -355,6 +359,17 @@ public class DPJizerAttr extends Attr {
 			log.error(tree.pos(), "generic.array.creation");
 		result = check(tree, owntype, VAL, pkind, pt);
 		env = oldEnv;
+	}
+
+	@Override
+	public void visitMethodDef(JCMethodDecl tree) {
+		super.visitMethodDef(tree);
+		Env<AttrContext> currentEnv = env;
+		while (currentEnv.outer != null) {
+			currentEnv = currentEnv.outer;
+		}
+		ConstraintRepository.getInstance().setFreshNameRPLElementEnvIfIsUnknown(currentEnv);
+		ConstraintRepository.getInstance().setNames(names);
 	}
 
 }

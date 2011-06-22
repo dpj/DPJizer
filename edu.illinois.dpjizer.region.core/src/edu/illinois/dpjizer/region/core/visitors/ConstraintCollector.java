@@ -14,6 +14,7 @@ import com.sun.tools.javac.code.Effect.ReadEffect;
 import com.sun.tools.javac.code.Effect.WriteEffect;
 import com.sun.tools.javac.code.Effects;
 import com.sun.tools.javac.code.RPLElement;
+import com.sun.tools.javac.code.dpjizer.FreshRPLElementFactory;
 import com.sun.tools.javac.code.dpjizer.constraints.BeginWithConstraint;
 import com.sun.tools.javac.code.dpjizer.constraints.CompositeConstraint;
 import com.sun.tools.javac.code.dpjizer.constraints.ConjunctiveConstraint;
@@ -22,6 +23,7 @@ import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
 import com.sun.tools.javac.code.dpjizer.constraints.Constraints;
 import com.sun.tools.javac.code.dpjizer.constraints.ConstraintsSet;
 import com.sun.tools.javac.code.dpjizer.constraints.DisjointnessConstraint;
+import com.sun.tools.javac.code.dpjizer.constraints.RPLElementDistinctnessConstraint;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
 import com.sun.tools.javac.comp.EnvScanner;
@@ -111,12 +113,25 @@ public class ConstraintCollector extends EnvScanner {
 			return satisfiedDisjointnessConstraints;
 		} else if (disjointnessConstraints instanceof DisjointnessConstraint) {
 			DisjointnessConstraint disjointnessConstraint = (DisjointnessConstraint) disjointnessConstraints;
-			if (!constraintRepository.doesBeginWithAnything(disjointnessConstraint.getFirstRPL())) {
-				constraintRepository.add(new BeginWithConstraint(disjointnessConstraint.getFirstRPL(), getFreshBeginningRPLElement()));
+
+			RPLElement firstRPLElement = null;
+			if (constraintRepository.doesBeginWithAnything(disjointnessConstraint.getFirstRPL())) {
+				firstRPLElement = constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL());
+			} else {
+				firstRPLElement = getFreshBeginningRPLElement();
+				constraintRepository.add(new BeginWithConstraint(disjointnessConstraint.getFirstRPL(), firstRPLElement));
 			}
 
-			if (!constraintRepository.doesBeginWithAnything(disjointnessConstraint.getSecondRPL())) {
-				constraintRepository.add(new BeginWithConstraint(disjointnessConstraint.getSecondRPL(), getFreshBeginningRPLElement()));
+			RPLElement secondRPLElement = null;
+			if (constraintRepository.doesBeginWithAnything(disjointnessConstraint.getSecondRPL())) {
+				secondRPLElement = constraintRepository.getBeginning(disjointnessConstraint.getSecondRPL());
+			} else {
+				secondRPLElement = getFreshBeginningRPLElement();
+				constraintRepository.add(new BeginWithConstraint(disjointnessConstraint.getSecondRPL(), secondRPLElement));
+			}
+
+			if (firstRPLElement != null && secondRPLElement != null) {
+				constraintRepository.add(new RPLElementDistinctnessConstraint(firstRPLElement, secondRPLElement));
 			}
 
 			if (constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL()).equals(

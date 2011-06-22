@@ -30,4 +30,24 @@ public class TestReadWriteDisjointness extends ConstraintCollectorTestCase {
 		collectConstraints();
 	}
 
+	@Test
+	public void testFour() {
+		collectConstraints();
+	}
+
+	@Test
+	public void testFive() {
+		collectConstraints();
+	}
+
+	@Test
+	public void testSix() {
+		collectConstraints();
+	}
+
+	@Test
+	public void testSeven() {
+		collectConstraints();
+	}
+
 }

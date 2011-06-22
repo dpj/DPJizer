@@ -1,0 +1,8 @@
+P[P <- Pi4[idx4 <- 0]][P <- Pi4[idx4 <- 0]] begins with fr5
+Pi1[idx1 <- 0] begins with fr3
+Pi2[idx2 <- 0] begins with fr1
+Pi2[idx2 <- ?] is in Pi1[idx1 <- ?]
+Pi3[idx3 <- i] begins with fr2
+Pi5[idx4 <- 0] begins with fr7
+R[R <- Pi6[P <- Pi4[idx4 <- 0]]][R <- Pi6[P <- Pi4[idx4 <- 0]]] begins with fr6
+Root begins with fr4

@@ -1,0 +1,17 @@
+((Pi1 contains fr1 ^ Pi7 contains P) v Pi7 contains fr1)
+((Pi3 contains fr1 ^ Pi7 contains P) v Pi7 contains fr1)
+P[P <- Pi1[idx1 <- 0]][P <- Pi1[idx1 <- 0]] begins with fr4
+P[P <- Pi3[idx2 <- 0]][P <- Pi3[idx2 <- 0]] begins with fr8
+Pi2[idx1 <- 0] begins with fr7
+Pi4[idx2 <- 0] begins with fr9
+R[R <- Pi7[P <- Pi1[idx1 <- 0]]][R <- Pi7[P <- Pi1[idx1 <- 0]]] begins with fr2
+R[R <- Pi7[P <- Pi3[idx2 <- 0]]][R <- Pi7[P <- Pi3[idx2 <- 0]]] begins with fr6
+R[R <- Pi7[P <- Pi5[idx3 <- i]]][R <- Pi7[P <- Pi5[idx3 <- i]]] begins with fr3
+Root begins with fr5
+fr2 should be distinct from fr3
+fr4 should be distinct from fr3
+fr5 should be distinct from fr3
+fr6 should be distinct from fr3
+fr7 should be distinct from fr3
+fr8 should be distinct from fr3
+fr9 should be distinct from fr3
