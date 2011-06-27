@@ -4,6 +4,7 @@
 package edu.illinois.dpjizer.region.core.compile;
 
 import com.google.inject.Inject;
+import com.sun.tools.javac.code.dpjizer.constraints.ConstraintRepository;
 import com.sun.tools.javac.comp.AttrContext;
 import com.sun.tools.javac.comp.Env;
 import com.sun.tools.javac.util.Context;
@@ -32,7 +33,9 @@ public class ConstraintCollectionPhase extends Phase {
 	public List<Env<AttrContext>> analyze(List<Env<AttrContext>> envs, Context context) {
 		visit(envs, constraintCollector);
 		prettyPrint(envs, regionVarWriter);
-		constraintCollector.getConstraintRepository().writeToFile();
+		ConstraintRepository constraintRepository = constraintCollector.getConstraintRepository();
+		constraintRepository.writeToFile();
+		constraintRepository.solve();
 		return envs;
 	}
 

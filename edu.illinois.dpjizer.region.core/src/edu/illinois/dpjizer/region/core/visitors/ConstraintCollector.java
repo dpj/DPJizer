@@ -78,26 +78,29 @@ public class ConstraintCollector extends EnvScanner {
 		Constraint constraintsToMakeWriteEffectsContainLoopIndexVariable = makeWriteEffectsContainRPLElement(tree.effects, indexVarRPLElement);
 		Logger.log("Constraints to make the write effects contain the loop index variable are:\n"
 				+ constraintsToMakeWriteEffectsContainLoopIndexVariable.toString());
+		constraintRepository.add(constraintsToMakeWriteEffectsContainLoopIndexVariable);
 		Collection<WriteEffect> writeEffects = getWriteEffects(tree.effects);
 		Collection<ReadEffect> readEffects = getReadEffects(tree.effects);
 		Constraint constraintsToMakeReadEffectsDisjointFromWriteEffects = tryToMakeReadEffectsDisjointFromWriteEffects(readEffects,
 				indexVarRPLElement, writeEffects);
 		Logger.log("Constraints to make the read effects disjoint from the write effects are:\n"
 				+ constraintsToMakeReadEffectsDisjointFromWriteEffects.toString());
+		constraintRepository.add(constraintsToMakeReadEffectsDisjointFromWriteEffects);
 		boolean satisfiedDisjointnessConstraints = beginRPLsWithFreshRPLElements(constraintsToMakeReadEffectsDisjointFromWriteEffects);
 		Logger.log((satisfiedDisjointnessConstraints ? "Succeeded" : "Failed") + " to satisfy disjointness constaints.");
 		Constraint constraintsToSatisfyBeginWithConstraints = satisfyBeginWithConstraints(constraintRepository.getBeginWithConstraints());
 		Logger.log("Constraints to satisfy the begin-with constraints are:\n" + constraintsToSatisfyBeginWithConstraints.toString());
+		constraintRepository.add(constraintsToSatisfyBeginWithConstraints);
 	}
 
 	private Constraint satisfyBeginWithConstraints(Collection<BeginWithConstraint> beginWithConstraints) {
 		Constraints constraints = new ConstraintsSet();
 		for (BeginWithConstraint constraint : beginWithConstraints) {
-			Constraint shouldContainRPLElement = constraint.getRPL().shouldContainRPLElement(constraint.getBeginning());
-			if (shouldContainRPLElement instanceof CompositeConstraint && ((CompositeConstraint) shouldContainRPLElement).isAlwaysFalse()) {
+			Constraint shouldBeginWithRPLElement = constraint.getRPL().shouldBeginWithRPLElement(constraint.getBeginning());
+			if (shouldBeginWithRPLElement instanceof CompositeConstraint && ((CompositeConstraint) shouldBeginWithRPLElement).isAlwaysFalse()) {
 				Logger.log("Failed to satisfy the begin-with constraint: " + constraint);
 			} else {
-				constraints.add(shouldContainRPLElement);
+				constraints.add(shouldBeginWithRPLElement);
 			}
 		}
 		return ConjunctiveConstraint.newConjunctiveConstraint(constraints);
