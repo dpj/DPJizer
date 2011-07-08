@@ -13,6 +13,7 @@ import com.sun.tools.javac.code.Effect.InvocationEffect;
 import com.sun.tools.javac.code.Effect.ReadEffect;
 import com.sun.tools.javac.code.Effect.WriteEffect;
 import com.sun.tools.javac.code.Effects;
+import com.sun.tools.javac.code.RPL;
 import com.sun.tools.javac.code.RPLElement;
 import com.sun.tools.javac.code.dpjizer.FreshRPLElementFactory;
 import com.sun.tools.javac.code.dpjizer.constraints.BeginWithConstraint;
@@ -73,18 +74,22 @@ public class ConstraintCollector extends EnvScanner {
 	public void visitDPJForLoop(DPJForLoop tree) {
 		super.visitDPJForLoop(tree);
 		Logger.log("Effects of DPJ for loop:" + tree.effects);
-		// Turn the loop index variable v into an RPL element [v].
 		RPLElement indexVarRPLElement = getLoopIndexVarAsRPLElement(tree);
-		Constraint constraintsToMakeWriteEffectsContainLoopIndexVariable = makeWriteEffectsContainRPLElement(tree.effects, indexVarRPLElement);
-		Logger.log("Constraints to make the write effects contain the loop index variable are:\n" + constraintsToMakeWriteEffectsContainLoopIndexVariable.toString());
+		Constraint constraintsToMakeWriteEffectsContainLoopIndexVariable = makeWriteEffectsContainRPLElement(tree.effects,
+				new RPL(indexVarRPLElement));
+		Logger.log("Constraints to make the write effects contain the loop index variable are:\n"
+				+ constraintsToMakeWriteEffectsContainLoopIndexVariable.toString());
 		constraintRepository.add(constraintsToMakeWriteEffectsContainLoopIndexVariable);
 		Collection<WriteEffect> writeEffects = getWriteEffects(tree.effects);
 		Collection<ReadEffect> readEffects = getReadEffects(tree.effects);
-		Constraint constraintsToMakeReadEffectsDisjointFromWriteEffects = tryToMakeReadEffectsDisjointFromWriteEffects(readEffects, indexVarRPLElement, writeEffects);
-		Logger.log("Constraints to make the read effects disjoint from the write effects are:\n" + constraintsToMakeReadEffectsDisjointFromWriteEffects.toString());
-		//Since simpler constraints replace the following constraint, we don't add the big constraint to the repository for the time being.
-		//constraintRepository.add(constraintsToMakeReadEffectsDisjointFromWriteEffects);
-		boolean satisfiedDisjointnessConstraints = beginRPLsWithFreshRPLElements(constraintsToMakeReadEffectsDisjointFromWriteEffects);
+		Constraint constraintsToMakeReadEffectsDisjointFromWriteEffects = tryToMakeReadEffectsDisjointFromWriteEffects(readEffects, new RPL(
+				indexVarRPLElement), writeEffects);
+		Logger.log("Constraints to make the read effects disjoint from the write effects are:\n"
+				+ constraintsToMakeReadEffectsDisjointFromWriteEffects.toString());
+		// Since simpler constraints replace the following constraint, we don't
+		// add the big constraint to the repository for the time being.
+		// constraintRepository.add(constraintsToMakeReadEffectsDisjointFromWriteEffects);
+		boolean satisfiedDisjointnessConstraints = beginRPLsWithFreshRPLs(constraintsToMakeReadEffectsDisjointFromWriteEffects);
 		Logger.log((satisfiedDisjointnessConstraints ? "Succeeded" : "Failed") + " to satisfy disjointness constaints.");
 		Collection<BeginWithConstraint> beginWithConstraints = constraintRepository.getBeginWithConstraints();
 		for (BeginWithConstraint beginWithConstraint : beginWithConstraints) {
@@ -108,44 +113,50 @@ public class ConstraintCollector extends EnvScanner {
 		return ConjunctiveConstraint.newConjunctiveConstraint(constraints);
 	}
 
-	private boolean beginRPLsWithFreshRPLElements(Constraint disjointnessConstraints) {
+	private boolean beginRPLsWithFreshRPLs(Constraint disjointnessConstraints) {
 		if (disjointnessConstraints instanceof ConjunctiveConstraint) {
 			Iterator<Constraint> iterator = ((ConjunctiveConstraint) disjointnessConstraints).iterator();
 			boolean satisfiedDisjointnessConstraints = true;
 			while (iterator.hasNext()) {
-				satisfiedDisjointnessConstraints = satisfiedDisjointnessConstraints & beginRPLsWithFreshRPLElements(iterator.next());
+				satisfiedDisjointnessConstraints = satisfiedDisjointnessConstraints & beginRPLsWithFreshRPLs(iterator.next());
 			}
 			return satisfiedDisjointnessConstraints;
 		} else if (disjointnessConstraints instanceof DisjointnessConstraint) {
 			DisjointnessConstraint disjointnessConstraint = (DisjointnessConstraint) disjointnessConstraints;
 
-			RPLElement firstRPLElement = null;
+			RPL firstRPL = null;
 			if (constraintRepository.doesBeginWithAnything(disjointnessConstraint.getFirstRPL())) {
-				firstRPLElement = constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL());
+				firstRPL = constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL());
 			} else {
-				firstRPLElement = getFreshBeginningRPLElement();
-				BeginWithConstraint beginWithConstraint = new BeginWithConstraint(disjointnessConstraint.getFirstRPL(), firstRPLElement);
+				firstRPL = new RPL(getFreshBeginningRPLElement());
+				BeginWithConstraint beginWithConstraint = new BeginWithConstraint(disjointnessConstraint.getFirstRPL(), firstRPL);
 				Logger.log("Added the following constraint to solve a disjointness constraint:\n" + beginWithConstraint);
 				constraintRepository.add(beginWithConstraint);
 			}
 
-			RPLElement secondRPLElement = null;
+			RPL secondRPL = null;
 			if (constraintRepository.doesBeginWithAnything(disjointnessConstraint.getSecondRPL())) {
-				secondRPLElement = constraintRepository.getBeginning(disjointnessConstraint.getSecondRPL());
+				secondRPL = constraintRepository.getBeginning(disjointnessConstraint.getSecondRPL());
 			} else {
-				secondRPLElement = getFreshBeginningRPLElement();
-				BeginWithConstraint beginWithConstraint = new BeginWithConstraint(disjointnessConstraint.getSecondRPL(), secondRPLElement);
+				secondRPL = new RPL(getFreshBeginningRPLElement());
+				BeginWithConstraint beginWithConstraint = new BeginWithConstraint(disjointnessConstraint.getSecondRPL(), secondRPL);
 				Logger.log("Added the following constraint to solve a disjointness constraint:\n" + beginWithConstraint);
 				constraintRepository.add(beginWithConstraint);
 			}
 
-			if (firstRPLElement != null && secondRPLElement != null) {
-				RPLElementDistinctnessConstraint distinctnessConstraint = new RPLElementDistinctnessConstraint(firstRPLElement, secondRPLElement);
+			if (firstRPL != null && secondRPL != null) {
+				// FIXME: We are making two RPLs begin with different RPLs but
+				// require their first RPL elements to be distinct. We might
+				// have to replace the RPL element distinctness constraint by
+				// RPL disjointness constraint.
+				RPLElementDistinctnessConstraint distinctnessConstraint = new RPLElementDistinctnessConstraint(firstRPL.elts.head,
+						secondRPL.elts.head);
 				Logger.log("Added the following constraint to solve a disjointness constraint:\n" + distinctnessConstraint);
 				constraintRepository.add(distinctnessConstraint);
 			}
 
-			if (constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL()).equals(constraintRepository.getBeginning(disjointnessConstraint.getSecondRPL()))) {
+			if (constraintRepository.getBeginning(disjointnessConstraint.getFirstRPL()).equals(
+					constraintRepository.getBeginning(disjointnessConstraint.getSecondRPL()))) {
 				System.err.println("Failed to satisfy the disjointness constraint: " + disjointnessConstraint);
 				return false;
 			}
@@ -161,6 +172,7 @@ public class ConstraintCollector extends EnvScanner {
 		return FreshRPLElementFactory.getFreshNameRPLElement(names, currentEnv);
 	}
 
+	// Turn the loop index variable v into an RPL element [v].
 	private RPLElement getLoopIndexVarAsRPLElement(DPJForLoop tree) {
 		JCVariableDecl loopVariable = tree.var;
 		JCTree.JCIdent indexIdentifier = treeMaker.Ident(loopVariable.name);
@@ -195,13 +207,13 @@ public class ConstraintCollector extends EnvScanner {
 		return result;
 	}
 
-	private Constraint makeWriteEffectsContainRPLElement(Effects effects, RPLElement rplElement) {
+	private Constraint makeWriteEffectsContainRPLElement(Effects effects, RPL rpl) {
 		Constraints result = new ConstraintsSet();
 		for (Effect effect : effects) {
 			if (effect instanceof WriteEffect) {
-				result.add(((WriteEffect) effect).rpl.shouldContainRPLElement(rplElement));
+				result.add(((WriteEffect) effect).rpl.shouldContainRPLElement(rpl));
 			} else if (effect instanceof InvocationEffect) {
-				result.add(makeWriteEffectsContainRPLElement(((InvocationEffect) effect).withEffects, rplElement));
+				result.add(makeWriteEffectsContainRPLElement(((InvocationEffect) effect).withEffects, rpl));
 			}
 		}
 		return ConjunctiveConstraint.newConjunctiveConstraint(result);
@@ -215,10 +227,10 @@ public class ConstraintCollector extends EnvScanner {
 		return ConjunctiveConstraint.newConjunctiveConstraint(constraints);
 	}
 
-	private Constraint tryToMakeReadEffectsDisjointFromWriteEffects(Collection<ReadEffect> readEffects, RPLElement rplElement, Collection<WriteEffect> writeEffects) {
+	private Constraint tryToMakeReadEffectsDisjointFromWriteEffects(Collection<ReadEffect> readEffects, RPL rpl, Collection<WriteEffect> writeEffects) {
 		Constraints result = new ConstraintsSet();
 		for (ReadEffect readEffect : readEffects) {
-			Constraint readEffectConstraint = readEffect.rpl.shouldContainRPLElement(rplElement);
+			Constraint readEffectConstraint = readEffect.rpl.shouldContainRPLElement(rpl);
 			if (readEffectConstraint instanceof CompositeConstraint && ((CompositeConstraint) readEffectConstraint).isAlwaysFalse()) {
 				// If it the read effect does not accept the loop index
 				// variable, we have to generate the constraint to make the read
