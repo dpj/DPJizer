@@ -94,22 +94,31 @@ public class ConstraintCollector extends EnvScanner {
 		Collection<ReadEffect> readEffects = getReadEffects(tree.effects);
 		Constraint pairwiseEffectDisjointnessConstraints = makeEffectsPairwiseDisjoint(readEffects, writeEffects);
 		Logger.log("Constraints to make the read effects disjoint from the write effects are:\n" + pairwiseEffectDisjointnessConstraints);
-		//		Constraint constraintsToMakeReadEffectsDisjointFromWriteEffects = tryToMakeReadEffectsDisjointFromWriteEffects(readEffects, new RPL(
-		//				indexVarRPLElement), writeEffects);
-		//		Logger.log("Constraints to make the read effects disjoint from the write effects are:\n"
-		//				+ constraintsToMakeReadEffectsDisjointFromWriteEffects.toString());
-		//		// Since simpler constraints replace the following constraint, we don't
-		//		// add the big constraint to the repository for the time being.
-		//		// constraintRepository.add(constraintsToMakeReadEffectsDisjointFromWriteEffects);
-		//		boolean satisfiedDisjointnessConstraints = beginRPLsWithFreshRPLs(constraintsToMakeReadEffectsDisjointFromWriteEffects);
-		//		Logger.log((satisfiedDisjointnessConstraints ? "Succeeded" : "Failed") + " to satisfy disjointness constaints.");
-		//		Collection<BeginWithConstraint> beginWithConstraints = constraintRepository.getBeginWithConstraints();
-		//		for (BeginWithConstraint beginWithConstraint : beginWithConstraints) {
-		//			constraintRepository.markAsReplacedConstraint(beginWithConstraint);
-		//		}
-		//		Constraint constraintsToSatisfyBeginWithConstraints = satisfyBeginWithConstraints(beginWithConstraints);
-		//		Logger.log("Constraints to satisfy the begin-with constraints are:\n" + constraintsToSatisfyBeginWithConstraints.toString());
-		//		constraintRepository.add(constraintsToSatisfyBeginWithConstraints);
+		// Constraint constraintsToMakeReadEffectsDisjointFromWriteEffects =
+		// tryToMakeReadEffectsDisjointFromWriteEffects(readEffects, new RPL(
+		// indexVarRPLElement), writeEffects);
+		// Logger.log("Constraints to make the read effects disjoint from the write effects are:\n"
+		// + constraintsToMakeReadEffectsDisjointFromWriteEffects.toString());
+		// // Since simpler constraints replace the following constraint, we
+		// don't
+		// // add the big constraint to the repository for the time being.
+		// //
+		// constraintRepository.add(constraintsToMakeReadEffectsDisjointFromWriteEffects);
+		// boolean satisfiedDisjointnessConstraints =
+		// beginRPLsWithFreshRPLs(constraintsToMakeReadEffectsDisjointFromWriteEffects);
+		// Logger.log((satisfiedDisjointnessConstraints ? "Succeeded" :
+		// "Failed") + " to satisfy disjointness constaints.");
+		// Collection<BeginWithConstraint> beginWithConstraints =
+		// constraintRepository.getBeginWithConstraints();
+		// for (BeginWithConstraint beginWithConstraint : beginWithConstraints)
+		// {
+		// constraintRepository.markAsReplacedConstraint(beginWithConstraint);
+		// }
+		// Constraint constraintsToSatisfyBeginWithConstraints =
+		// satisfyBeginWithConstraints(beginWithConstraints);
+		// Logger.log("Constraints to satisfy the begin-with constraints are:\n"
+		// + constraintsToSatisfyBeginWithConstraints.toString());
+		// constraintRepository.add(constraintsToSatisfyBeginWithConstraints);
 	}
 
 	private Constraint satisfyBeginWithConstraints(Collection<BeginWithConstraint> beginWithConstraints) {
@@ -294,6 +303,14 @@ public class ConstraintCollector extends EnvScanner {
 			}
 			Substitution lastSubstitution = lastSubstitutions.get(0);
 			if (lastSubstitution instanceof RegionSubstitution) {
+				// rpl1 # rpl2 <=>
+				// (detailedRPL1 # rpl2) v
+				// (regionVarEltForRHS : rpl1Tail # rpl2)
+				// where
+				// rpl1 = detailedRPL1 [parameterRPLElement <- rhs],
+				// regionVarEltForRHS = rhs,
+				// detailedRPL1 = parameterRPLElement : rpl1Tail
+
 				RegionSubstitution regionSubstitution = (RegionSubstitution) lastSubstitution;
 				RPLParameterElement parameterRPLElement = new RPLElement.RPLParameterElement(regionSubstitution.getLHS());
 				RegionVarElt rpl1Tail = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
@@ -303,12 +320,19 @@ public class ConstraintCollector extends EnvScanner {
 				RegionVarElt regionVarEltForRHS = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
 
 				Constraints conjuctiveConstraints = new ConstraintsSet();
-				conjuctiveConstraints.add(new RPLEqualityConstraint(rpl1.withoutLastSubstitutions(), detailedRPL1));
-				conjuctiveConstraints.add(new RPLEqualityConstraint(new RPL(regionVarEltForRHS), rhs));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl1.withoutLastSubstitutions(), detailedRPL1));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(new RPL(regionVarEltForRHS), rhs));
 				conjuctiveConstraints.add(generateConstraintsToMakeRPLsDisjoint(rpl2,
 						new RPL(com.sun.tools.javac.util.List.<RPLElement> of(regionVarEltForRHS, rpl1Tail))));
 				disjunctiveConstraints.add(ConjunctiveConstraint.newConjunctiveConstraint(conjuctiveConstraints));
 			} else if (lastSubstitution instanceof IndexSubstitution) {
+				// rpl1 # rpl2 <=>
+				// (detailedRPL1 # rpl2) v
+				// (rpl1Head : rhsRPLElement : rpl1Tail # rpl2)
+				// where
+				// rpl1 = detailedRPL1 [arrayIndexRPLElement <- rhsRPLElement],
+				// detailedRPL1 = rpl1Head : arrayIndexRPLElement : rpl1Tail
+
 				IndexSubstitution indexSubstitution = (IndexSubstitution) lastSubstitution;
 				ArrayIndexRPLElement arrayIndexRPLElement = new RPLElement.ArrayIndexRPLElement(treeMaker.Ident(indexSubstitution.getLHS()));
 				RegionVarElt rpl1Head = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
@@ -318,7 +342,7 @@ public class ConstraintCollector extends EnvScanner {
 				RPLElement rhsRPLElement = new RPLElement.ArrayIndexRPLElement(indexSubstitution.getRHS());
 
 				Constraints conjuctiveConstraints = new ConstraintsSet();
-				conjuctiveConstraints.add(new RPLEqualityConstraint(rpl1.withoutLastSubstitutions(), detailedRPL1));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl1.withoutLastSubstitutions(), detailedRPL1));
 				conjuctiveConstraints.add(generateConstraintsToMakeRPLsDisjoint(rpl2,
 						new RPL(com.sun.tools.javac.util.List.<RPLElement> of(rpl1Head, rhsRPLElement, rpl1Tail))));
 				disjunctiveConstraints.add(ConjunctiveConstraint.newConjunctiveConstraint(conjuctiveConstraints));
@@ -330,4 +354,67 @@ public class ConstraintCollector extends EnvScanner {
 			return new DisjointnessConstraint(rpl1, rpl2);
 		}
 	}
+
+	private Constraint generateConstraintsToMakeRPLsEqual(RPL rpl1, RPL rpl2) {
+		if (rpl1.hasSubstitutionChain()) {
+			Constraints disjunctiveConstraints = new ConstraintsSet();
+			disjunctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl1.withoutLastSubstitutions(), rpl2));
+			List<Substitution> lastSubstitutions = rpl1.getLastSubstitutions().getSubstitutions();
+			if (lastSubstitutions.size() > 1) {
+				throw new AssertionError("Expected a substitution of length 1.");
+			}
+			Substitution lastSubstitution = lastSubstitutions.get(0);
+			if (lastSubstitution instanceof RegionSubstitution) {
+				// rpl1 = rpl2 <=>
+				// (detailedRPL1 = rpl2) v
+				// (regionVarEltForRHS : rpl1Tail = rpl2)
+				// where
+				// rpl1 = detailedRPL1 [parameterRPLElement <- rhs],
+				// regionVarEltForRHS = rhs,
+				// detailedRPL1 = parameterRPLElement : rpl1Tail
+
+				RegionSubstitution regionSubstitution = (RegionSubstitution) lastSubstitution;
+				RPLParameterElement parameterRPLElement = new RPLElement.RPLParameterElement(regionSubstitution.getLHS());
+				RegionVarElt rpl1Tail = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
+				RPL detailedRPL1 = new RPL(com.sun.tools.javac.util.List.<RPLElement> of(parameterRPLElement, rpl1Tail));
+
+				RPL rhs = regionSubstitution.getRHS();
+				RegionVarElt regionVarEltForRHS = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
+
+				Constraints conjuctiveConstraints = new ConstraintsSet();
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl1.withoutLastSubstitutions(), detailedRPL1));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(new RPL(regionVarEltForRHS), rhs));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl2,
+						new RPL(com.sun.tools.javac.util.List.<RPLElement> of(regionVarEltForRHS, rpl1Tail))));
+				disjunctiveConstraints.add(ConjunctiveConstraint.newConjunctiveConstraint(conjuctiveConstraints));
+			} else if (lastSubstitution instanceof IndexSubstitution) {
+				// rpl1 = rpl2 <=>
+				// (detailedRPL1 = rpl2) v
+				// (rpl1Head : rhsRPLElement : rpl1Tail = rpl2)
+				// where
+				// rpl1 = detailedRPL1 [arrayIndexRPLElement <- rhsRPLElement],
+				// detailedRPL1 = rpl1Head : arrayIndexRPLElement : rpl1Tail
+
+				IndexSubstitution indexSubstitution = (IndexSubstitution) lastSubstitution;
+				ArrayIndexRPLElement arrayIndexRPLElement = new RPLElement.ArrayIndexRPLElement(treeMaker.Ident(indexSubstitution.getLHS()));
+				RegionVarElt rpl1Head = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
+				RegionVarElt rpl1Tail = RegionVarElt.getFreshRegionVarElt(names, getGlobalEnv());
+				RPL detailedRPL1 = new RPL(com.sun.tools.javac.util.List.<RPLElement> of(rpl1Head, arrayIndexRPLElement, rpl1Tail));
+
+				RPLElement rhsRPLElement = new RPLElement.ArrayIndexRPLElement(indexSubstitution.getRHS());
+
+				Constraints conjuctiveConstraints = new ConstraintsSet();
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl1.withoutLastSubstitutions(), detailedRPL1));
+				conjuctiveConstraints.add(generateConstraintsToMakeRPLsEqual(rpl2,
+						new RPL(com.sun.tools.javac.util.List.<RPLElement> of(rpl1Head, rhsRPLElement, rpl1Tail))));
+				disjunctiveConstraints.add(ConjunctiveConstraint.newConjunctiveConstraint(conjuctiveConstraints));
+			}
+			return DisjunctiveConstraint.newDisjunctiveConstraint(disjunctiveConstraints);
+		} else if (rpl2.hasSubstitutionChain()) {
+			return generateConstraintsToMakeRPLsEqual(rpl2, rpl1);
+		} else {
+			return new RPLEqualityConstraint(rpl1, rpl2);
+		}
+	}
+
 }
