@@ -15,60 +15,30 @@
 (declare-sort HeadRPLElement)
 (declare-sort NonHeadRPLElement)
 (declare-sort RPL)
-(declare-sort RPLElements)
 
-(declare-fun cons (RPLElement RPLElements) RPLElements)
-(declare-fun head (RPLElements) RPLElement)
-(declare-fun tail (RPLElements) RPLElements)
-(declare-fun makeRPL (RPLElements) RPL)
 (declare-fun makeRPL (HeadRPLElement) RPL)
 (declare-fun makeRPL (HeadRPLElement NonHeadRPLElement) RPL)
-(declare-fun isFullySpecified (RPLElements) Bool)
+(declare-fun isFullySpecified (NonHeadRPLElement) Bool)
 (declare-fun isFullySpecified (RPL) Bool)
 (declare-fun head (RPL) RPLElement)
 (declare-fun tail (RPL) RPL)
-(declare-fun last (RPLElements) RPLElement)
 (declare-fun last (RPL) RPLElement)
-(declare-fun append (RPLElements RPLElement) RPLElements)
-(declare-fun append (RPL RPLElement) RPL)
+(declare-fun append (RPL NonHeadRPLElement) RPL)
 (declare-fun disjoint (RPL RPL) Bool)
 (declare-fun makeRPLElement (NonHeadRPLElement) RPLElement)
 (declare-fun makeRPLElement (HeadRPLElement) RPLElement)
 (declare-fun isNested (RPL RPL) Bool)
 
-(declare-const nil RPLElements)
 (declare-const Root HeadRPLElement)
 (declare-const Star NonHeadRPLElement)
 
-; Define cons as a one-to-one function.
-
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (iff (= elt1 elt2) (= (cons elt1 nil) (cons elt2 nil)))))
-
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement) (elt3 RPLElement) (elt4 RPLElement)) (iff (and (= elt1 elt3) (= elt2 elt4)) (= (cons elt1 (cons elt2 nil)) (cons elt3 (cons elt4 nil))))))
-
-; Define makeRPLElement as a one-to-one function.
+;; Define makeRPLElement as a one-to-one function.
 
 (assert (forall ((h1 HeadRPLElement) (h2 HeadRPLElement)) (iff (= h1 h2) (= (makeRPLElement h1) (makeRPLElement h2)))))
 
 (assert (forall ((nh1 NonHeadRPLElement) (nh2 NonHeadRPLElement)) (iff (= nh1 nh2) (= (makeRPLElement nh1) (makeRPLElement nh2)))))
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (not (= (makeRPLElement h) (makeRPLElement nh)))))
-
-; head of RPLElements
-
-;;(assert (forall ((elt RPLElement)) (= (head (cons elt nil)) elt)))
-
-;;(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (head (cons elt1 (cons elt2 nil))) elt1)))
-
-; tail of RPLElements
-
-;;(assert (forall ((elt RPLElement)) (= (tail (cons elt nil)) nil)))
-
-;;(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (tail (cons elt1 (cons elt2 nil))) (cons elt2 nil))))
-
-; RPLElements = head + tail
-
-;;(assert (forall ((elts RPLElements)) (= elts (cons (head elts) (tail elts)))))
 
 ; head
 
@@ -82,55 +52,34 @@
 
 ;(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (tail (makeRPL h nh) (makeRPL nh)))))
 
-; append for RPLElements
-
-(assert (forall ((elt RPLElement)) (= (append nil elt) (cons elt nil))))
-
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (append (cons elt1 nil) elt2) (cons elt1 (cons elt2 nil)))))
-
-; isFullySpecified for RPLElements
-
-(assert (forall ((elt RPLElement)) (iff (isFullySpecified (cons elt nil)) (not (= elt (makeRPLElement Star))))))
-
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (iff (isFullySpecified (cons elt1 (cons elt2 nil))) (and (isFullySpecified (cons elt2 nil)) (isFullySpecified (cons elt2 nil))))))
-
-; last for RPLElements
-
-(assert (forall ((elt RPLElement)) (= elt (last (cons elt nil)))))
-
-; Do not use recursion (See http://stackoverflow.com/q/7076960).
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= elt2 (last (cons elt1 (cons elt2 nil))))))
-
-; makeRPL
-
-;TODO: Add formula to ensure that the RPL is of form h:nh:nh...
+;; makeRPL
 
 ; Define makeRPL as a one-to-one function.
 
-(assert (forall ((elts1 RPLElements) (elts2 RPLElements)) (iff (= elts1 elts2) (= (makeRPL elts1) (makeRPL elts2)))))
+(assert (forall ((h1 HeadRPLElement) (h2 HeadRPLElement)) (iff (= h1 h2) (= (makeRPL h1) (makeRPL h2)))))
 
-(assert (forall ((h HeadRPLElement)) (= (makeRPL h) (makeRPL (cons (makeRPLElement h) nil)))))
-
-(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (makeRPL h nh) (makeRPL (cons (makeRPLElement h) (cons (makeRPLElement nh) nil))))))
+(assert (forall ((h1 HeadRPLElement) (nh1 NonHeadRPLElement) (h2 HeadRPLElement) (nh2 NonHeadRPLElement)) (iff (and (= h1 h2) (= nh1 nh2)) (= (makeRPL h1 nh1) (makeRPL h2 nh2)))))
 
 ; Currently, Root is our only HeadRPLElement (See http://stackoverflow.com/q/6932350/130224).
 ;(assert (forall ((h HeadRPLElement)) (= h Root))
 
-; append for RPL
+;; append
 
-(assert (forall ((elts RPLElements) (elt RPLElement)) (= (append (makeRPL elts) elt) (makeRPL (append elts elt)))))
+(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (append (makeRPL h) nh) (makeRPL h nh))))
 
-;;(assert (forall ((elt1 RPLElement) (elt RPLElement)) (= (append (makeRPL (cons elt1 nil)) elt) (makeRPL (cons elt1 (cons elt nil))))))
+; isFullySpecified
 
-;;(assert (forall ((elt1 RPLElement) (elt2 RPLElement) (elt RPLElement)) (= (append (makeRPL (cons elt1 (cons elt2 nil))) elt) (makeRPL (cons elt1 (cons elt2 (cons elt nil)))))))
+(assert (forall ((nh NonHeadRPLElement)) (= (isFullySpecified nh) (not (= nh Star)))))
 
-; isFullySpecified for RPL
+(assert (forall ((h HeadRPLElement)) (isFullySpecified (makeRPL h))))
 
-(assert (forall ((elts RPLElements)) (iff (isFullySpecified elts) (isFullySpecified (makeRPL elts)))))
+(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (iff (isFullySpecified (makeRPL h nh)) (isFullySpecified nh))))
 
-; last for RPL
+;; last
 
-(assert (forall ((elts RPLElements)) (= (last elts) (last (makeRPL elts)))))
+(assert (forall ((h HeadRPLElement)) (= (makeRPLElement h) (last (makeRPL h)))))
+
+(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (makeRPLElement nh) (last (makeRPL h nh)))))
 
 ;; Nesting
 
@@ -198,20 +147,14 @@
 (pop)
 
 (push)
-(assert (= (append (cons (makeRPLElement Root) nil) (makeRPLElement nh1)) (cons (makeRPLElement Root) (cons (makeRPLElement nh1) nil))))
+(assert (= (append (makeRPL Root) nh1) (makeRPL Root nh1)))
 (check-sat) ;sat
 (pop)
 
 (push)
-(assert (= (append (makeRPL Root) (makeRPLElement nh1)) (makeRPL Root nh1)))
-(check-sat) ;sat
+(assert (and (not (= nh1 nh2)) (= (append (makeRPL Root) nh1) (makeRPL Root nh2))))
+(check-sat) ;unsat
 (pop)
-
-;;(push)
-;;(assert (and (not (= nh1 nh2)) (= (append (makeRPL Root) (makeRPLElement nh1)) (makeRPL Root nh2))))
-;;(check-sat) ;unsat
-;;(model)
-;;(pop)
 
 ;;(push)
 ;;(assert (isNested (makeRPL Root nh1) (makeRPL Root)))
