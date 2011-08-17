@@ -1,7 +1,7 @@
 ;This file is licensed under the University of Illinois/NCSA Open Source License. See LICENSE.TXT for details.
 
 ;MBQI has to be set before set-logic.
-(set-option EMATCHING false)
+;(set-option EMATCHING false)
 (set-logic QF_UF)
 ;(set-option MODEL true)
 (set-info :source |
@@ -42,19 +42,19 @@
 
 ; head of RPLElements
 
-(assert (forall ((elt RPLElement)) (= (head (cons elt nil)) elt)))
+;;(assert (forall ((elt RPLElement)) (= (head (cons elt nil)) elt)))
 
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (head (cons elt1 (cons elt2 nil))) elt1)))
+;;(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (head (cons elt1 (cons elt2 nil))) elt1)))
 
 ; tail of RPLElements
 
-(assert (forall ((elt RPLElement)) (= (tail (cons elt nil)) nil)))
+;;(assert (forall ((elt RPLElement)) (= (tail (cons elt nil)) nil)))
 
-(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (tail (cons elt1 (cons elt2 nil))) (cons elt2 nil))))
+;;(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= (tail (cons elt1 (cons elt2 nil))) (cons elt2 nil))))
 
 ; RPLElements = head + tail
 
-(assert (forall ((elts RPLElements)) (= elts (cons (head elts) (tail elts)))))
+;;(assert (forall ((elts RPLElements)) (= elts (cons (head elts) (tail elts)))))
 
 ; head
 
@@ -70,21 +70,22 @@
 
 ; append for RPLElements
 
-(assert (forall ((elt RPLElement)) (= (append nil elt) (cons elt nil))))
+;;(assert (forall ((elt RPLElement)) (= (append nil elt) (cons elt nil))))
 
-(assert (forall ((elts RPLElements) (elt RPLElement)) (= (append elts elt) (cons (head elts) (append (tail elts) elt)))))
+;;(assert (forall ((elts RPLElements) (elt RPLElement)) (= (append elts elt) (cons (head elts) (append (tail elts) elt)))))
 
 ; isFullySpecified for RPLElements
 
 (assert (forall ((elt RPLElement)) (iff (isFullySpecified (cons elt nil)) (not (= elt (makeRPLElement Star))))))
 
-(assert (forall ((elts RPLElements)) (iff (isFullySpecified elts) (and (not (= (head elts) (makeRPLElement Star))) (isFullySpecified (tail elts))))))
+(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (iff (isFullySpecified (cons elt1 (cons elt2 nil))) (and (isFullySpecified (cons elt2 nil)) (isFullySpecified (cons elt2 nil))))))
 
 ; last for RPLElements
 
 (assert (forall ((elt RPLElement)) (= elt (last (cons elt nil)))))
 
-(assert (forall ((elt RPLElement) (elts RPLElements)) (=> (not (= elts nil)) (= (last (cons elt elts)) (last elts)))))
+; Do not use recursion (See http://stackoverflow.com/q/7076960).
+(assert (forall ((elt1 RPLElement) (elt2 RPLElement)) (= elt2 (last (cons elt1 (cons elt2 nil))))))
 
 ; makeRPL
 
@@ -96,12 +97,6 @@
 
 ; Currently, Root is our only HeadRPLElement (See http://stackoverflow.com/q/6932350/130224).
 ;(assert (forall ((h HeadRPLElement)) (= h Root))
-
-; last RPL element of an RPL element of lenght one
-;(assert (forall ((h HeadRPLElement)) (= (last (makeRPL h)) (makeRPLElement h))))
-
-; last RPL element of an RPL element of lenght two
-;(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (last (makeRPL h nh)) (makeRPLElement nh))))
 
 ; append for RPL
 
@@ -126,7 +121,7 @@
 (assert (forall ((R RPL)) (not (disjoint R R))))
 
 ; symmetry
-(assert (forall ((R1 RPL) (R2 RPL)) (=> (disjoint R1 R2) (disjoint R2 R1))))
+(assert (forall ((R1 RPL) (R2 RPL)) (iff (disjoint R1 R2) (disjoint R2 R1))))
 
 ; disjointness from right
 (assert (forall ((R1 RPL) (R2 RPL)) (=> (not (= (last R1) (last R2))) (disjoint R1 R2))))
@@ -136,21 +131,26 @@
 (declare-const h1 HeadRPLElement)
 
 (push)
-(assert (and (= nh1 nh2) (disjoint (makeRPL Root nh1) (makeRPL Root nh2))))
-(check-sat)
-(pop)
-
-(push)
 (assert (= (last (makeRPL Root)) (makeRPLElement Root)))
 (assert (= (last (makeRPL Root nh1)) (makeRPLElement nh1)))
 (assert (= (last (makeRPL Root Star)) (makeRPLElement Star)))
-(check-sat)
+(check-sat) ;sat
 (pop)
 
 (push)
 (assert (isFullySpecified (makeRPL Root nh1)))
 (assert (not (isFullySpecified (makeRPL Root Star))))
-(check-sat)
+(check-sat) ;sat
+(pop)
+
+(push)
+(assert ((isFullySpecified (makeRPL Root Star))))
+(check-sat) ;unsat
+(pop)
+
+(push)
+(assert (and (= nh1 nh2) (disjoint (makeRPL Root nh1) (makeRPL Root nh2))))
+(check-sat) ;unsat
 (pop)
 
 (push)
@@ -158,7 +158,7 @@
 (assert (not (disjoint (makeRPL Root nh1) (makeRPL Root))))
 (assert (not (disjoint (makeRPL Root) (makeRPL Root))))
 (assert (disjoint (makeRPL Root) (makeRPL h1)))
-(check-sat)
+(check-sat) ;sat
 (pop)
 
 ;(model)
