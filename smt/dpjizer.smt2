@@ -2,7 +2,7 @@
 
 ;MBQI has to be set before set-logic.
 ;(set-option EMATCHING false)
-(set-logic QF_UF)
+;(set-logic QF_UF)
 (set-option MODEL true)
 (set-info :source |
   DPJizer
@@ -20,7 +20,8 @@
 (declare-fun makeRPL (HeadRPLElement NonHeadRPLElement) RPL)
 (declare-fun isFullySpecified (NonHeadRPLElement) Bool)
 (declare-fun isFullySpecified (RPL) Bool)
-(declare-fun head (RPL) RPLElement)
+(declare-fun length (RPL) Int)
+(declare-fun head (RPL) HeadRPLElement)
 (declare-fun tail (RPL) RPL)
 (declare-fun last (RPL) RPLElement)
 (declare-fun append (RPL NonHeadRPLElement) RPL)
@@ -40,13 +41,13 @@
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (not (= (makeRPLElement h) (makeRPLElement nh)))))
 
-; head
+;; head
 
-;(assert (forall ((h HeadRPLElement)) (= (head (makeRPL h) h))))
+(assert (forall ((h HeadRPLElement)) (= (head (makeRPL h)) h)))
 
-;(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (head (makeRPL h nh) h))))
+(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (head (makeRPL h nh)) h)))
 
-; tail
+;; tail
 
 ;(assert (forall ((h HeadRPLElement)) (= (head (makeRPL h) h))))
 
@@ -67,9 +68,9 @@
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (append (makeRPL h) nh) (makeRPL h nh))))
 
-; isFullySpecified
+;; isFullySpecified
 
-(assert (forall ((nh NonHeadRPLElement)) (= (isFullySpecified nh) (not (= nh Star)))))
+(assert (forall ((nh NonHeadRPLElement)) (iff (isFullySpecified nh) (not (= nh Star)))))
 
 (assert (forall ((h HeadRPLElement)) (isFullySpecified (makeRPL h))))
 
@@ -81,10 +82,15 @@
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (makeRPLElement nh) (last (makeRPL h nh)))))
 
+;; length
+
+(assert (forall ((h HeadRPLElement)) (= (length (makeRPL h)) 1)))
+
+(assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (length (makeRPL h nh)) 2)))
+
 ;; Nesting
 
-; UNDER-NAME
-; (assert (forall ((R1 RPL) (R2 RPL) (elt RPLElement)) (=> (isNested R1 R2) (isNested (append R1 elt) R2))))
+(assert (forall ((R1 RPL) (R2 RPL)) (iff (isNested R1 R2) (or (= R1 R2) (and (and (= (length R1) 2) (= (length R2) 1)) (= (head R1) (head R2)))))))
 
 ;; Disjointness
 
@@ -120,13 +126,13 @@
 
 (push)
 (assert (isFullySpecified (makeRPL Root nh1)))
-(assert (not (isFullySpecified (makeRPL Root Star))))
+;(assert (not (isFullySpecified (makeRPL Root Star))))
 (check-sat) ;sat
 (pop)
 
 (push)
-(assert ((isFullySpecified (makeRPL Root Star))))
-(check-sat) ;unsat
+(assert (isFullySpecified nh1))
+(check-sat) ;sat
 (pop)
 
 (push)
@@ -156,10 +162,18 @@
 (check-sat) ;unsat
 (pop)
 
-;;(push)
-;;(assert (isNested (makeRPL Root nh1) (makeRPL Root)))
-;;(check-sat)
-;;(pop)
+(push)
+(assert (isNested (makeRPL Root) (makeRPL Root)))
+(assert (isNested (makeRPL Root Star) (makeRPL Root)))
+(assert (isNested (makeRPL Root nh1) (makeRPL Root)))
+(assert (not (isNested (makeRPL Root) (makeRPL Root Star))))
+(check-sat) ;sat
+(pop)
+
+(push)
+(assert (isNested (makeRPL Root) (makeRPL Root Star)))
+(check-sat) ;unsat
+(pop)
 
 (exit)
 
