@@ -6,14 +6,16 @@ package edu.illinois.dpjizer.region.core.types;
 /**
  * 
  * @author Mohsen Vakilian
+ * @author Alexandros Tzannes
  * 
  */
 public class IndexVarCounter {
 
 	static VariableCounter variableCounter = new VariableCounter();
-
+	static final String indexPrefix= "idx";
+	
 	public static String getNextIndexVarName() {
-		return "idx" + variableCounter.nextCounter();
+		return indexPrefix + variableCounter.nextCounter();
 	}
 
 }

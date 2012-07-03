@@ -15,15 +15,17 @@ import com.sun.tools.javac.code.dpjizer.constraints.RegionVarEltSymbol;
  * 
  */
 public class RegionVarCounter {
+	
+	static final String regionPrefix = "Pi";
 
-	VariableCounter variableCounter;
+	VariableCounter variableCounter; // FIXME: why is this not static?
 
 	public RegionVarCounter() {
 		this.variableCounter = new VariableCounter();
 	}
 
 	String getNextRegionVarName() {
-		return "Pi" + variableCounter.nextCounter();
+		return regionPrefix + variableCounter.nextCounter();
 	}
 
 	public void reset() {

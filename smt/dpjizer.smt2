@@ -3,7 +3,7 @@
 ;MBQI has to be set before set-logic.
 ;(set-option EMATCHING false)
 ;(set-logic QF_UF)
-(set-option MODEL true)
+;(set-option MODEL true)
 (set-info :source |
   DPJizer
 |)
@@ -39,6 +39,7 @@
 
 (assert (forall ((nh1 NonHeadRPLElement) (nh2 NonHeadRPLElement)) (iff (= nh1 nh2) (= (makeRPLElement nh1) (makeRPLElement nh2)))))
 
+;; Isn't this next rule redundant? Alex 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (not (= (makeRPLElement h) (makeRPLElement nh)))))
 
 ;; head
@@ -77,7 +78,7 @@
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (iff (isFullySpecified (makeRPL h nh)) (isFullySpecified nh))))
 
 ;; last
-
+ 
 (assert (forall ((h HeadRPLElement)) (= (makeRPLElement h) (last (makeRPL h)))))
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (makeRPLElement nh) (last (makeRPL h nh)))))
@@ -88,9 +89,21 @@
 
 (assert (forall ((h HeadRPLElement) (nh NonHeadRPLElement)) (= (length (makeRPL h nh)) 2)))
 
-;; Nesting
+;; Nesting (isUnder)
 
-(assert (forall ((R1 RPL) (R2 RPL)) (iff (isNested R1 R2) (or (= R1 R2) (and (and (= (length R1) 2) (= (length R2) 1)) (= (head R1) (head R2)))))))
+(assert (forall ((R1 RPL)) (isNested R1 R1)))
+
+(assert (forall (R1 RPL)) (isNested R1 (makeRPL Root)))
+
+(assert (forall ((R1 RPL) (R2 RPL)) (iff (isNested R1 R2) 
+                                         (or (= R1 R2) 
+                                             (and (and (= (length R2) 1) 
+                                                       (= (length R1) 2)) 
+                                                  (= (head R1) (head R2)))))))
+
+;; Includes
+
+
 
 ;; Disjointness
 
@@ -103,6 +116,13 @@
 ; disjointness from right
 (assert (forall ((R1 RPL) (R2 RPL)) (=> (not (= (last R1) (last R2))) (disjoint R1 R2))))
 
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (declare-const nh1 NonHeadRPLElement)
 (declare-const nh2 NonHeadRPLElement)
 (declare-const h1 HeadRPLElement)
@@ -173,6 +193,13 @@
 (push)
 (assert (isNested (makeRPL Root) (makeRPL Root Star)))
 (check-sat) ;unsat
+(pop)
+
+
+(push)
+(assert (isNested (makeRPL h1) (makeRPL Root)))
+(assert (isNested (makeRPL h1 nh1) (makeRPL Root)))
+(check-sat) ;sat
 (pop)
 
 (exit)
