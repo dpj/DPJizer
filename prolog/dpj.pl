@@ -9,7 +9,22 @@
 
 
 
-%rplVar(X) :- var(X).
+%%	isRpl(+Rpl:rpl) is det
+%
+%	True if Rpl is a valid RPL 
+isRpl([H|T]) :-
+	isRplTail_(T),
+	headRplElt(H).
+
+%%	isRplTail is a helper of isRpl
+isRplTail_([]).
+
+isRplTail_([H|T]) :-
+	isRplTail_(T),
+	nonHeadRplElt(H).
+
+%% 
+
 
 %%	headRplElt(+X:rpl_elt) is det
 %
@@ -22,6 +37,8 @@ headRplElt(root).			% cut to make det, order for performance
 
 headRplElt(local).			% cut to make det, order for performance
 
+headRplElt(X) :- rplVar(X, _Env).
+
 headRplElt(X) :- rplParam(X).
 
 headRplElt(X) :- rgnName(X).
@@ -33,32 +50,12 @@ headRplElt(X) :- rgnName(X).
 %nonHeadRplElt(qmark).
 nonHeadRplElt(star).
 
+nonHeadRplElt(X) :- rplVar(X, _Env).
+
 nonHeadRplElt(X) :- rgnName(X).
 
 rplElt(X) :- headRplElt(X).
 rplElt(X) :- nonHeadRplElt(X).
-
-%%	rpl(+Rpl:rpl) is det
-%
-%	True if Rpl is a valid RPL 
-%isRpl(_X).
-
-%isRpl([H]) :-
-%	headRplElt(H).
-
-isRpl([H|T]) :-
-	isRplTail_(T),
-	headRplElt(H).
-
-%%	isRplTail is a helper of isRpl
-isRplTail_([]).
-
-%isRplTail_([H]) :-
-%    nonHeadRplElt(H).
-
-isRplTail_([H|T]) :-
-	isRplTail_(T),
-	nonHeadRplElt(H).
 
 %%	lengthRpl(+Rpl:rpl, -Len:int) is det
 %
@@ -93,21 +90,23 @@ stripRoot([root|SansRootRpl], SansRootRpl):- !.
 
 stripRoot(Rpl, Rpl).
 
-% RplOut = Rpl1[Param <- Rpl2]
-substitutionRpl(RplOut, Rpl1, Param, Rpl2) :- 
+% RplOut = RplIn[Param <- RplSub]
+substitutionRpl(RplIn, Param, RplSub, RplOut) :- 
     nonvar(Param), rplParam(Param),
-    nonvar(Rpl2),			% NOTE: nonvar([X]) = true
-    %isRpl(Rpl1), 
-    %isRpl(Rpl2),
-    substitutionRpl_(RplOut, Rpl1, Param, Rpl2).
+    nonvar(RplSub),			% NOTE: nonvar([X]) = true
+    substitutionRpl_(RplIn, Param, RplSub, RplOut).
 
 % NOTE: Param may only be at the head of an RPL.
-substitutionRpl_([], [], _Param, _Rpl2).
 
-substitutionRpl_(RplOut, [Param|T], Param, Rpl2) :- 
-    append(Rpl2, T, RplOut).
-    
-substitutionRpl_( [H|T], [H|T], Param, _Rpl2) :- H \= Param.
+% Empty input RPL
+substitutionRpl_([], _Param, _RplSub, []).
+
+% Substitution (append keeps RPLs flat)
+substitutionRpl_([Param|T], Param, RplSub, RplOut) :- 
+    append(RplSub, T, RplOut).
+
+% No Substitution    
+substitutionRpl_([H|T], Param, _RplSub, [H|T]) :- H \= Param.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%	isUnder(+Rpl1:rpl, +Rpl2:rpl) is det.
@@ -192,6 +191,39 @@ isEffectSet([H|T]) :-
 	isEffect(H),
 	isEffectSet(T).
 
+%% isSetOfEffectSets(+ESS:set_of_effect_sets) is det
+isSetOfEffectSets([]).
+
+isSetOfEffectSets([H|T]) :- 
+	isEffectSet(H),
+	isSetOfEffectSets(T).
+
+%% substitutionEffectSet(ESIn, Param, RplSub, ESOut)
+substitutionEffectSet(ESIn, Param, RplSub, ESOut) :-
+	nonvar(Param), rplParam(Param),
+	nonvar(RplSub),			% NOTE: nonvar([X]) = true
+	substitutionEffectSet_(ESIn, Param, RplSub, ESOut).
+
+substitutionEffectSet_([], _Param, _RplSub, []).
+
+substitutionEffectSet_([Hin|Tin], Param, RplSub, [Hout|Tout]) :-
+	substitutionEffect_(Hin, Param, RplSub, Hout),
+	substitutionEffectSet_(Tin, Param, RplSub, Tout).
+
+%% substitutionEffect
+substitutionEffect_(effectPure, _Param, _RplSub, effectPure).
+
+substitutionEffect_(effectReads(RplIn), Param, RplSub, effectReads(RplOut)) :-
+	substitutionRpl_(RplIn, Param, RplSub, RplOut).
+
+substitutionEffect_(effectWrites(RplIn), Param, RplSub, effectWrites(RplOut)) :-
+	substitutionRpl_(RplIn, Param, RplSub, RplOut).
+
+substitutionEffect_(effectInvokes(Method,EffSetIn), Param, RplSub, effecInvokes(Method, EffSetOut)) :-
+	substitutionEffectSet_(EffSetIn, Param, RplSub, EffSetOut).
+
+
+
 %%	effectUnion(+ES1:effect_set, +ES2:effect_set, -ESUnion:effect_set) is det.
 %
 %	ESUnion = ES1 U ES2
@@ -202,8 +234,34 @@ isEffectSet([H|T]) :-
 effectUnion(EffSet1, EffSet2, ESUnion) :-
 	isEffectSet(EffSet1),
 	isEffectSet(EffSet2),
+	effectUnion_(EffSet1,EffSet2,ESUnion).
+
+effectUnion_(EffSet1,EffSet2,ESUnion) :-
 	union(EffSet1,EffSet2,ESUnion).
 
+%% effectUnionSetOfEffectSets(+ESS:set_of_effect_sets, -ESUnion:effect_set) is det
+%
+%  ESUnion = U E_i , for all E_i \in ESS
+effectUnionSetOfEffectSets(ESS, ESUnion) :-
+	effectUnionSetOfEffectSets_(ESS, [], ESUnion).
+	
+effectUnionSetOfEffectSets_([], ESUnion, ESUnion).
+
+effectUnionSetOfEffectSets_([H|T], PartialUnion, ESUnion) :-
+	effectUnion_(H, PartialUnion, PartU2),
+	effectUnionSetOfEffectSets_(T, PartU2, ESUnion).
+	
+%% non tail-recursive version with 2 instead of 3 args
+%% tail recursion is supposed to perform better so the
+%% 3 arg version (above) is kelp.
+%
+%effectUnionSetOfEffectSets_([], []).
+
+%effectUnionSetOfEffectSets_([H|T], ESUnion) :-
+%	effectUnionSetOfEffectSets_(T, TUnion),
+%    effectUnion(TUnion, H, ESUnion).
+
+	
 %%	subEffectSets(+EffectSet1:effect_set, +EffectSet2:effect_set) is det.
 %
 % 	True if EffectSet1 is a subeffect of EffectSet2
@@ -314,6 +372,25 @@ disjointRightRpl_(Rpl1, Rpl2) :-			% [Disjoint Name&Index]
 	addToRpl(Rpl2, RplH2, LastElt),
     notStar(LastElt),
 	disjointRightRpl_(RplH1, RplH2).	
+
+
+%%	nonInterferingSetOfEffectSets(+ESS:set_of_effect_sets) is det
+%
+%	True if ESi # ESj (they don't interfere) and ESi and ESj are well formed
+%	for any i=/=j
+nonInterferingSetOfEffectSets(ESS) :-
+	isSetOfEffectSets(ESS),
+	nonInterferingSetOfEffectSets_(ESS, []).
+
+nonInterferingSetOfEffectSets_([], _UnionOfPrefix).
+
+nonInterferingSetOfEffectSets_([H|T], UnionOfPrefix) :-
+    effectUnionSetOfEffectSets(T, TUnion),
+	effectUnion(TUnion, UnionOfPrefix, Hcomplement),
+	nonInterferingEffectSets_(H, Hcomplement),
+    effectUnion(UnionOfPrefix, H, UnionOfPrefixUnionH),
+	nonInterferingSetOfEffectSets_(T, UnionOfPrefixUnionH).
+
 
 
 %%	nonInterferingEffectSets(+ES1:effect_set, +ES2:effect_set) is det
