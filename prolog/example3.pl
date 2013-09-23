@@ -1,4 +1,6 @@
-% Example 3: Figure 5 of OOPSLA'95
+% Example 3: Figure 5 of OOPSLA'09
+%:- dynamic rgnName/1, rplParam/1, rplVar/1.
+
 :- consult(dpj).
 
 rplParam(p):- not(rgnName(p)).

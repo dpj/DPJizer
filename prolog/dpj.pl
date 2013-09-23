@@ -144,7 +144,7 @@ isIncluded(Rpl1, Rpl2) :-
 	isRpl(Rpl2),
 	stripRoot(Rpl1, SansRoot1),
 	stripRoot(Rpl2, SansRoot2),
-	isIncluded_(SansRoot1, SansRoot2) .
+	isIncluded_(SansRoot1, SansRoot2).
 
 isIncluded_(Rpl1, Rpl1).			% [Reflexive]
 
