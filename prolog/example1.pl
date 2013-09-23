@@ -1,4 +1,4 @@
-% Example 1: Figure 1 of OOPSLA'95
+% Example 1: Figure 1 of OOPSLA'09
 :- consult(dpj).
 
 rplParam(p):- not(rgnName(p)).

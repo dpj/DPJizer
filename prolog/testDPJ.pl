@@ -7,16 +7,22 @@
 %load_files(['dpj.pl']).
 
 % rplElt(star).
-rplElt(r1).
-rplElt(r2).
-rplElt(r3).
-rplElt(r4).
+rgnName(r1).
+rgnName(r2).
+rgnName(r3).
+rgnName(r4).
 
-rplElt(idxI).
-rplElt(idxJ).
+rgnName(idxI).
+rgnName(idxJ).
 
+rplParam(p).
 
 %isRpl(_X).
+allTests :-
+    testUnderIncluded,
+    testEffects,
+    testDisjointRpl,
+    testNI.
 
 testUnderIncluded :-
     not(isRpl([])),
@@ -101,7 +107,7 @@ testDisjointRpl:-
     not(disjointRpl([r1,r1],[r1,r1])),
     disjointRpl([root,r1,r2,star,r1], [r1,r2]),
     disjointRpl([root,r1,r2,r4,star,r2], [r1,r2,r3]),
-    disjointRpl([root,star], [r1]),
+    not(disjointRpl([root,star], [r1])),
     true.
 
 testNI:-

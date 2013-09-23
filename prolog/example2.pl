@@ -1,4 +1,4 @@
-% Example 2: Figure 3 of OOPSLA'95
+% Example 2: Figure 3 of OOPSLA'09
 %:- dynamic rgnName/1, rplParam/1, rplVar/1.
 
 % TODO: why is the only solution I get Pi1=root, Pi2=p?
