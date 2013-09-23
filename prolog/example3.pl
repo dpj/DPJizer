@@ -5,13 +5,13 @@
 
 rplParam(p):- not(rgnName(p)).
 
-rgnName(links).
-rgnName(mass).
-rgnName(force).
-
 rgnName(pi1).
 rgnName(pi2).
 rgnName(pi3).
+
+rgnName(links).
+rgnName(mass).
+rgnName(force).
 
 env(globalEnv, [root], nullEnv).
 
